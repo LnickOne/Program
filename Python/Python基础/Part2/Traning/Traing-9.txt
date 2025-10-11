@@ -1,0 +1,6 @@
+type(a)==type(b) 和type(a) is type(b)之间有啥不同?
+
+答:python中的对象包含三要素 id type value
+type(a) is type(b)  中的is 判断是a对象是否就是b对象，是用id来判断
+type(a)==type(b) 中的==是a 对象的值是否和b对象的值相等，是用value来判断
+

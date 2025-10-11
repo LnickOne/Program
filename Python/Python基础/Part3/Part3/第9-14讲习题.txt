@@ -1,0 +1,42 @@
+第9-14讲习题
+
+1、 Provide code implementing a Python function that meets the specification below. 
+def findMedian(L):
+"""Finds median of L.
+L: a non-empty list of floats
+Returns:
+ If L has an odd number of elements, returns the median
+element of L.  For example, if L is the list
+[15.0, 5.3, 18.2], returns 15.0.
+   If L has an even number of elements, returns the average
+   of the two median elements. For example, if L is the
+list [1.0, 2.0, 3.0, 4.0], returns 2.5.
+ If the list is empty, raises a ValueError exception.
+ Side effects: none.
+写一个函数实现以下功能
+ 找出一个列表的中位数，列表的元素都是浮点数。
+ 列表中的元素个数为奇数：比喻L =[15.0, 5.3, 18.2], returns 15.0. 返回中位数
+ 列表中的元素个数为偶数：比喻L =[1.0, 2.0, 3.0, 4.0], returns 2.5. 返回中间2位数之和/2
+
+
+2、craps掷骰子游戏
+掷两个骰子(每个骰子有六面，1～6个点)
+计算两个骰子之和
+1、如果和为7或者11，玩家赢，庄家输；
+2、如果和为2、3或12，玩家输，庄家赢；
+3、如果和为4、5、6、8、9或10，则这个值称为“点数” t，重新掷骰子
+    a.如果和为“点数” t，则玩家赢，庄家输；
+    b.如果和为7，则玩家输，庄家赢；
+    c.否则，重新掷骰子 
+  
+
+3、  gettysburg.txt是一个文件文件，请用函数，list,dict,文件读写等知识分析该文本文件中单词个数（输出所有单词，并输出个数），输出不重复的单词和个数， 统计每个单词出现的次数，并输出单词和出现次数的表。
+
+4、自己将编程思路1、2中的文本文件转换代码实现一遍(文件为test.txt)。
+
+5、日志文件抽取搜狗的不重复IP,先用过程化语言实现一遍，再用函数做一遍，最后用生成器做一遍。（文件为ip.txt）
+
+6、python核心编程第11章后面的习题。
+
+
+

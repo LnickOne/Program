@@ -1,0 +1,38 @@
+Examine the following code a = 10 b = 20 print Before swapping a=%d,
+b=%d % ( a , b ) #Swap values a=b b=a print After swapping a=%d, b=%d % ( a
+, b )
+
+
+1. Try running this small program. What are the values of a and b after the
+swap
+2. Why is the result not a having the value 20 and b having the value 10 as
+appears to be the intention from the use of the word swap in the code
+3. Modify the code so that the final result is a having the value 20 and b having
+the value 10 using simultaneous assignment to swap the values.
+4. Many languages, such as C, C++, Java, do not have simulta- neous
+assignment. Modify the program so that it successfully swaps the two values
+without using simultaneous assignment.
+5. Both a and b have the value 20.
+6. Becausethelinea=bsetsato20,leavingbasitwas.
+7. a,b=b,a
+8. a = 10 b = 20 print "Before swapping a=%d, b=%d" % (a, b) # Swap values
+temp = a a=b b = temp print "After swapping a=%d, b=%d" % (a, b)
+
+Answer:
+
+1.交换值之后 a=20 ,b=20 
+2. 代码是先后执行的，先执行a=b ,则b的值20已经赋值给了a,  然后执行b=a, a的值再赋值给b,b的值此刻仍为20
+
+3.代码如下:
+a=10 
+b=20
+temp=a
+a=b
+b=temp
+print("After swapping a=%d, b=%d"% (a,b))
+
+4.没看懂
+
+5.a=b 再打印就行
+
+6.7 8是啥意思

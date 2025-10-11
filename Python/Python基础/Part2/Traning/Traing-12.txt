@@ -1,0 +1,12 @@
+在字符串模块中是不是有一个函数或方法可以鉴定一个字符串是另外一个大字符串的一部分
+
+答 
+   string模块中find内建函数，string.find(str,beg=0,end=len(str))，在beg和end之间查找str字符串。
+
+   string模块中rfind内建函数，string.rfind(str,beg=0,end=len(str))，类似于find()函数，不过是从右边开始查找。
+
+   string模块中index内建函数，string.index(str,beg=0,end=len(str))，类似于find()函数，不过查找不存在会返回一个异常。
+
+   string模块中rindex内建函数，string.rindex(str,beg=0,end=len(str))，类似于index()函数，不过是从右边开始查找。
+
+   index和find函数的相同之处在于，包含要寻找的字符串时，均返回索引，区别在于，找不到要寻找的字符串时，index函数返回一个异常，find函数返回-1.

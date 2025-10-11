@@ -1,0 +1,22 @@
+10-5.异常。下面这些交互解释器下的Python代码段分别会引发什么异常(参阅表10.2给出的内建异常清单)：
+
+(a)>>>if 3 < 4 then:print '3 is less than 4!'
+
+(b)>>>aList = ['Hello','World','Anyone','Home?']
+
+>>>print 'the last string in aList is: ',aList[len(aList)]
+
+(c)>>>x
+
+(d)>>>x = 4 % 0
+
+(e)>>>import math
+
+>>>i = math.sqrt(-1)
+
+答: 
+(a) 是SyntaxError :invalid systax 
+(b) 是indexError:list index out of range
+(c) 是NameError:name 'x' is not defined
+(d) 是ZeroDivisionError:integer division or modulo by zero
+(e) 是ValueError: math domain error
