@@ -1,5 +1,5 @@
 [package]
-name = "CH01_Hello_Rust"
+name = "ch02_guess_name"
 version = "0.1.0"
 edition = "2024"
 
