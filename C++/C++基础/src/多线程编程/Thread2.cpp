@@ -7,13 +7,14 @@ void foo(int &x)
 {
     x += 1;
 }
-void test(){
+void test()
+{
     int a = 10;
-
 }
-int main(){
+int main()
+{
     int a = 1;
-    t = thread(foo,ref(a));
+    t = thread(foo, ref(a));
     cout << a << endl;
     return 0;
 }

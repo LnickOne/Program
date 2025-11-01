@@ -25,7 +25,10 @@ public:
         mAge = p.mAge;
     }
     // 析构函数在释放内存之前调用
-    ~Person() { cout << "Person析构函数调用!" << endl; }
+    ~Person()
+    {
+        cout << "Person析构函数调用!" << endl;
+    }
 
 public:
     int mAge;

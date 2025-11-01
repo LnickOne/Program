@@ -39,7 +39,6 @@ void test()
 	// p.m_A = 1;
 	// p.m_B = 2;
 	cout << p;
-
 	Person p1(10, 20);
 	cout << p1 << "hello world !" << endl; // Á´Ê½±à³Ì
 }

@@ -33,6 +33,6 @@ void test01()
 int main()
 {
     test01();
-    //Person p;
+    Person p;
     return 0;
 }

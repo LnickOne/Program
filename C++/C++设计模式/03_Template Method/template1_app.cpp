@@ -1,3 +1,6 @@
+#include <iostream>
+#include <string>
+using namespace std;
 //应用程序开发人员
 class Application{
 public:
