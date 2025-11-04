@@ -58,7 +58,6 @@ int main()
     // 不使用静态方法创建产品
     Factory factory;
     Product *productB = factory.createProduct("B");
-
     if (productA != nullptr)
     {
         productA->show();
@@ -71,6 +70,5 @@ int main()
         delete productB;
         productB = nullptr;
     }
-
     return 0;
 }

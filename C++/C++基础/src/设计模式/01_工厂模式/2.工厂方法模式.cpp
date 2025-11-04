@@ -7,18 +7,20 @@ class Product
 {
 public:
     virtual void show() = 0;
-    virtual ~Product()
-    {
-        cout << "产品被销毁" << endl;
-    }
+    virtual ~Product() = 0;
 };
-
+// 纯虚析构函数需要提供实现
+inline Product::~Product(){}
 class productA : public Product
 {
 public:
     void show() override
     {
         cout << "我是产品A" << endl;
+    }
+    ~productA() override
+    {
+        cout << "产品A被销毁" << endl;
     }
 };
 
@@ -28,6 +30,10 @@ public:
     void show() override
     {
         cout << "我是产品B" << endl;
+    }
+    ~productB() override
+    {
+        cout << "产品B被销毁" << endl;
     }
 };
 class Factory
