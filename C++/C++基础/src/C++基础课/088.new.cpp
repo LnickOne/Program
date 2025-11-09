@@ -8,7 +8,6 @@ int *func()
     int *p = new int(10);
     return p;
 }
-
 void test01()
 {
     int *p = func();
@@ -37,7 +36,6 @@ void test02()
     // 释放堆区数组：delete后加[]
     delete[] arr; // 释放数组的时候要加[]才可以
 }
-
 int main()
 {
     int *p = new int(100);
