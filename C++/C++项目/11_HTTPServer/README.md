@@ -1,4 +1,4 @@
-# Kama-HTTPServer
+# HTTPServer
 【代码随想录知识星球】项目分享：Kama-HTTPServer
 
 >⭐️ 本项目为[【代码随想录知识星球】](https://programmercarl.com/other/kstar.html) 教学项目  
