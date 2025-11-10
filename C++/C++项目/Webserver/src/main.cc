@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
     Logger::setOutput(asyncLog); // 为Logger设置输出回调, 重新配接输出位置
     log.start();                 // 开启日志后端线程
     // 第二步启动内存池和LFU缓存
-    //  初始化内存池
+    // 初始化内存池
     memoryPool::HashBucket::initMemoryPool();
 
     // 初始化缓存

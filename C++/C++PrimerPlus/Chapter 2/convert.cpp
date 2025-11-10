@@ -1,6 +1,6 @@
 // convert.cpp -- converts stone to pounds
 #include <iostream>
-int stonetolb(int);     // function prototype
+int stonetolb(int); // function prototype
 int main()
 {
     using namespace std;
@@ -10,12 +10,12 @@ int main()
     int pounds = stonetolb(stone);
     cout << stone << " stone = ";
     cout << pounds << " pounds." << endl;
-	// cin.get();
+    // cin.get();
     // cin.get();
     return 0;
 }
 
 int stonetolb(int sts)
 {
-     return 14 * sts;
+    return 14 * sts;
 }

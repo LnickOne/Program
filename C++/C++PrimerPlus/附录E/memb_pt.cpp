@@ -7,6 +7,7 @@ class Example
 private:
     int feet;
     int inches;
+
 public:
     Example();
     Example(int ft);
@@ -67,7 +68,7 @@ int main()
 {
     Example car(15);
     Example van(20);
-    Example garage; 
+    Example garage;
 
     cout << "car.use_ptr() output:\n";
     car.use_ptr();
