@@ -1,27 +1,21 @@
 #include <iostream>
 using namespace std;
 
-/*
-2.7 布尔类型 bool
-作用：布尔数据类型代表真或假的值
-
-bool类型只有两个值：
-
-true  --- 真（本质是1）
-false --- 假（本质是0）
-bool类型占==1个字节==大小
-*/
-
 int main()
 {
-
-	bool flag = true;
+	// 1、创建bool数据类型
+	bool flag = true;	  // true代表真
 	cout << flag << endl; // 1
 
-	flag = false;
+	flag = false;		  // false代表假
 	cout << flag << endl; // 0
+	// bool本质上，1代表真、0代表假
 
-	cout << "size of bool = " << sizeof(bool) << endl; // 1
+	// 2、查看bool数据类型所占内存空间
+	cout << "bool类型所占内存空间：" << sizeof(bool) << endl; // 1
+	cout << "size of bool = " << sizeof(bool) << endl;		  // 1
+
+	system("pause");
 
 	return 0;
 }

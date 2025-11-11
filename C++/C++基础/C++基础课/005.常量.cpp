@@ -8,7 +8,6 @@ C++定义常量两种方式
 2.const 修饰的变量 :const 数据类型 常量名 = 常量值
    通常在变量定义前加关键字，修饰该变量为常量，不可修改
 */
-
 #include <iostream>
 using namespace std;
 // 1、宏常量
@@ -16,14 +15,11 @@ using namespace std;
 
 int main4()
 {
-
 	cout << "一周里总共有 " << day << " 天" << endl;
 	// day = 8;  //报错，宏常量不可以修改
-
 	// 2、const修饰变量
 	const int month = 12;
 	cout << "一年里总共有 " << month << " 个月份" << endl;
 	// month = 24; //报错，常量是不可以修改的
-
 	return 0;
 }
