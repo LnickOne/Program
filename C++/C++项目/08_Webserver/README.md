@@ -41,13 +41,8 @@ sudo apt-get install -y wget cmake build-essential unzip git
 ```
 
 ## 编译指令
-1. 克隆项目：
-```bash
-   git clone https://github.com/youngyangyang04/kama-webserver.git
-   cd kama-webserver
 ```
-
-2. 创建构建目录并编译：
+1. 创建构建目录并编译：
 
 ```bash
    mkdir build &&
@@ -56,13 +51,13 @@ sudo apt-get install -y wget cmake build-essential unzip git
    make -j ${nproc}
 ```
 
-3. 在构建完成后，先进入到bin文件
+2. 在构建完成后，先进入到bin文件
 
 ```bash
 cd bin
 ```
 
-4. 启动项目可执行程序main
+3. 启动项目可执行程序main
 
 ```bash
 ./main 
@@ -159,6 +154,3 @@ cd bin
 ### LFU缓存模块
 - 用于在缓存容量不足时决定删除哪些内容以释放空间。LFU 的核心思想是优先移除使用频率最低的缓存项。
 
-## 贡献
-
-欢迎任何形式的贡献！请提交问题、建议或代码请求。

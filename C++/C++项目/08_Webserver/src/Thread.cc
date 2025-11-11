@@ -1,12 +1,10 @@
 #include <Thread.h>
 #include <CurrentThread.h>
-
 #include <semaphore.h>
 
 std::atomic_int Thread::numCreated_(0);
 
-Thread::Thread(ThreadFunc func, const std::string &name)
-    : started_(false), joined_(false), tid_(0), func_(std::move(func)), name_(name)
+Thread::Thread(ThreadFunc func, const std::string &name) : started_(false), joined_(false), tid_(0), func_(std::move(func)), name_(name)
 {
     setDefaultName();
 }
@@ -27,9 +25,7 @@ void Thread::start() // 一个Thread对象 记录的就是一个新线程的详�
     // 开启线程
     thread_ = std::shared_ptr<std::thread>(new std::thread([&]()
                                                            {
-                                                               tid_ = CurrentThread::tid(); // 获取线程的tid值
-                                                               sem_post(&sem);
-                                                               func_(); // 开启一个新线程 专门执行该线程函数
+                                                               tid_ = CurrentThread::tid(); // 获取线程的tid值sem_post(&sem);func_(); // 开启一个新线程 专门执行该线程函数
                                                            }));
 
     // 这里必须等待获取上面新创建的线程的tid值
