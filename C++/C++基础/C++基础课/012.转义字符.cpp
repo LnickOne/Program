@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 /*
@@ -6,13 +6,13 @@ using namespace std;
 现阶段我们常用的转义字符有：\n  \\  \t
 */
 
-
-
-int main() {
+int main()
+{
 
 	cout << "\\" << endl;
 	cout << "\tHello" << endl;
-	cout << "\n" << endl;
+	cout << "\n"
+		 << endl;
 
 	return 0;
 }

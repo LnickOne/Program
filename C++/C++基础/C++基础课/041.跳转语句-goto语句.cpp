@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int main() //gotoÓï¾ä
+int main() // gotoÓï¾ä
 {
 	cout << "1¡¢xxx" << endl;
 	cout << "2¡¢xxx" << endl;
@@ -12,10 +12,6 @@ int main() //gotoÓï¾ä
 	cout << "4¡¢xxx" << endl;
 
 FLAG:
-
 	cout << "5¡¢xxx" << endl;
-
-	system("pause");
-
 	return 0;
 }

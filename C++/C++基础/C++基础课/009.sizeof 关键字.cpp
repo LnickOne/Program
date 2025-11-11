@@ -6,7 +6,8 @@ using namespace std;
 语法： sizeof( 数据类型 / 变量)
 */
 
-int main() {
+int main()
+{
 
 	cout << "short 类型所占内存空间为： " << sizeof(short) << endl;
 	cout << "int 类型所占内存空间为： " << sizeof(int) << endl;
