@@ -28,8 +28,5 @@ int main()
 	d1 = 0.5;
 	d2 = 0.22;
 	cout << d1 / d2 << endl; // 2.27273 运算结果可以是小数
-
-	system("pause");
-
 	return 0;
 }

@@ -26,7 +26,5 @@ int main() // 递增
 	cout << "a3 = " << a3 << endl; // 11
 	cout << "b3 = " << b3 << endl; // 100
 
-	system("pause");
-
 	return 0;
 }

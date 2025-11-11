@@ -21,7 +21,5 @@ int main()
 	double d2 = 1.1;
 	// cout << d1 % d2 << endl; // 报错
 
-	system("pause");
-
 	return 0;
 }
