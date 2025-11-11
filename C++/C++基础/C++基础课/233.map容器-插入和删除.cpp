@@ -37,7 +37,7 @@ void test01()
     m.erase(m.begin());
     printMap(m);
 
-    m.erase(3); // 按照key删除 
+    m.erase(3); // 按照key删除
     printMap(m);
 
     // 清空

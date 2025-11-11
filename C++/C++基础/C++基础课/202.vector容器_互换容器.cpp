@@ -49,9 +49,9 @@ void test02()
          << endl; // v的大小为：100000
 
     v.resize(3);                                   // 重新指定大小
-    cout << "v的容量为：" << v.capacity() << endl;   // v的容量为：131072
+    cout << "v的容量为：" << v.capacity() << endl; // v的容量为：131072
     cout << "v的大小为：" << v.size() << endl
-         << endl;   // v的大小为：3
+         << endl; // v的大小为：3
 
     // 利用swap收缩内存，让v当前占用的空间与实际数据量匹配
     vector<int>(v).swap(v); // 匿名对象

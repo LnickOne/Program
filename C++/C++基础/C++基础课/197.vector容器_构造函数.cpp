@@ -8,7 +8,7 @@ void printVector(vector<int> &v)
     {
         cout << *it << " ";
     }
-    cout << endl; 
+    cout << endl;
 }
 
 // vector容器构造

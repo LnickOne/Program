@@ -4,7 +4,7 @@ using namespace std;
 
 void test01()
 {
-	 // string求子串
+	// string求子串
 	string str = "abcdefg";
 	string subStr = str.substr(1, 3);
 	cout << "subStr = " << subStr << endl;

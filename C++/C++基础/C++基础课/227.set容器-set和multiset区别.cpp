@@ -4,7 +4,7 @@ using namespace std;
 
 // set和multiset区别
 void test01()
-{// set和multiset区别
+{ // set和multiset区别
     set<int> s;
     pair<set<int>::iterator, bool> ret = s.insert(10);
 

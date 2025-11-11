@@ -28,8 +28,6 @@ void test01()
     L1.push_back(80);
     L1.push_back(90);
 
-
-
     // 打印容器
     printList(L1); // 10 20 30 40
 

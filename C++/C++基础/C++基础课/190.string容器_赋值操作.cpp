@@ -22,7 +22,7 @@ void test01()
     string str2;
     str2 = str1;
     cout << "str2 = " << str2 << endl;
-    
+
     string str3;
     str3 = 'a';
     cout << "str3 = " << str3 << endl;

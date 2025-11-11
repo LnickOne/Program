@@ -96,7 +96,6 @@ int main()
 
 	// 2.给5个选手打分
 	setScore(v);
-	
 
 	// 3.显示最后得分
 	showScore(v);
