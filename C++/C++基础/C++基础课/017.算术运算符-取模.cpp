@@ -20,6 +20,5 @@ int main()
 	double d1 = 3.14;
 	double d2 = 1.1;
 	// cout << d1 % d2 << endl; // 报错
-
 	return 0;
 }

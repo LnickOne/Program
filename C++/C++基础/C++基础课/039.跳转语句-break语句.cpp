@@ -46,6 +46,5 @@ int main() // break的使用时机
 		}
 		cout << endl;
 	}
-
 	return 0;
 }

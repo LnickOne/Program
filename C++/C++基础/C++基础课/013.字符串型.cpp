@@ -17,6 +17,5 @@ int main()
    // 2.C++风格字符串： string  变量名 = "字符串值"
    string str = "hello world1";
    cout << str << endl;
-
    return 0;
 }

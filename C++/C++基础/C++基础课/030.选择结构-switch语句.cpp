@@ -40,10 +40,8 @@ int main() // switch语句
 		cout << "您认为是烂片！" << endl;
 		break;
 	}
-
 	// if和switch区别?
 	// switch缺点：判断时候只能是整型或者字符型，不可以是一个区间！
 	// switch优点：结构清晰，执行效率高！
-
 	return 0;
 }

@@ -24,8 +24,5 @@ int main()
 	{
 		cout << "我未考上一本大学！" << endl;
 	}
-
-	system("pause");
-
 	return 0;
 }

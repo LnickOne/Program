@@ -20,6 +20,5 @@ int main()
 	cout << "a = " << a << endl; //a = 10
 	cout << "b = " << b << endl; //b = 100
 	cout << "c = " << c << endl; //c = 20
-
 	return 0;
 }

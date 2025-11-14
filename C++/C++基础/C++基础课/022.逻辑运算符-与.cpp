@@ -16,9 +16,6 @@ int main()
 	a = 0;
 	b = 0;
 	cout << (a && b) << endl; // 0
-
 	// 逻辑与运算符总结：同真为真，其余为假！
-	system("pause");
-
 	return 0;
 }

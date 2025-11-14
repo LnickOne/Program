@@ -22,6 +22,5 @@ int main()
 
 	float f3 = 3e-2; // 3 * 0.1 ^ 2
 	cout << "f3 = " << f3 << endl;
-
 	return 0;
 }

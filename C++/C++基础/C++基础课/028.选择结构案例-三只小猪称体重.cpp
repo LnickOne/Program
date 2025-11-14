@@ -48,6 +48,5 @@ int main()
             cout << "小猪C最重！" << endl;
         }
     }
-
     return 0;
 }

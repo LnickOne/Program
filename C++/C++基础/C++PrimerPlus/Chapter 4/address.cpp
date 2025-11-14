@@ -8,10 +8,10 @@ int main()
 
     cout << "donuts value = " << donuts;
     cout << " and donuts address = " << &donuts << endl;
-// NOTE: you may need to use unsigned (&donuts)
-// and unsigned (&cups)
+    // NOTE: you may need to use unsigned (&donuts)
+    // and unsigned (&cups)
     cout << "cups value = " << cups;
     cout << " and cups address = " << &cups << endl;
     // cin.get();
-    return 0; 
+    return 0;
 }

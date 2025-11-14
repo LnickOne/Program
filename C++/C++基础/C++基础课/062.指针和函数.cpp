@@ -36,6 +36,5 @@ int main() // 指针和函数
 	swap02(&a, &b);
 	cout << "a = " << a << endl;
 	cout << "b = " << b << endl;
-
 	return 0;
 }

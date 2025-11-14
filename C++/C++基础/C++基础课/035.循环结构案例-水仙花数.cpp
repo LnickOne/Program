@@ -24,6 +24,5 @@ int main()
 		num++;
 
 	} while (num < 1000);
-
 	return 0;
 }

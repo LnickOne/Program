@@ -25,6 +25,5 @@ int main() // 递增
 	int b3 = a3++ * 10;
 	cout << "a3 = " << a3 << endl; // 11
 	cout << "b3 = " << b3 << endl; // 100
-
 	return 0;
 }

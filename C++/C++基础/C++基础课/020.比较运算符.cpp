@@ -18,6 +18,5 @@ int main() // 比较运算符
 	cout << (a >= b) << endl; // 0
 	// <=
 	cout << (a <= b) << endl; // 1
-
 	return 0;
 }

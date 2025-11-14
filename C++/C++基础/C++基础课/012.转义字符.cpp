@@ -22,6 +22,5 @@ int main()
 	cout << "aaaa hello world！" << endl;
 	cout << "aa  hello world！" << endl;
 	cout << "aaaaa hello world！" << endl;
-
 	return 0;
 }

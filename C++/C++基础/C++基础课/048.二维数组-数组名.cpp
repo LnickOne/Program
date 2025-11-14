@@ -30,6 +30,5 @@ int main()
 	cout << "第一个元素地址：" << &arr[0][0] << " (十进制: " << (long long)&arr[0][0] << ")" << endl;
 	cout << "第二个元素地址：" << &arr[0][1] << " (十进制: " << (long long)&arr[0][1] << ")" << endl;
 	cout << "第二个元素与第一个元素地址差：" << (long long)&arr[0][1] - (long long)&arr[0][0] << " 字节" << endl;
-
 	return 0;
 }

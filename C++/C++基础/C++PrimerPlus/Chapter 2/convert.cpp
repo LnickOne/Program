@@ -1,6 +1,6 @@
-// convert.cpp -- converts stone to pounds
+// convert.cpp -- 将英石转换为磅
 #include <iostream>
-int stonetolb(int); // function prototype
+int stonetolb(int); // 函数原型声明
 int main()
 {
     using namespace std;

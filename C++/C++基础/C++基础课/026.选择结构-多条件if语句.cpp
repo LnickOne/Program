@@ -26,8 +26,5 @@ int main()
 	{
 		cout << "我未考上本科！" << endl;
 	}
-
-	system("pause");
-
 	return 0;
 }

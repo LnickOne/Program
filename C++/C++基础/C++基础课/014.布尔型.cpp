@@ -14,8 +14,5 @@ int main()
 	// 2、查看bool数据类型所占内存空间
 	cout << "bool类型所占内存空间：" << sizeof(bool) << endl; // 1
 	cout << "size of bool = " << sizeof(bool) << endl;		  // 1
-
-	system("pause");
-
 	return 0;
 }

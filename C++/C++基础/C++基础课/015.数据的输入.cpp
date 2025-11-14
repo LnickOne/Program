@@ -38,6 +38,5 @@ int main()
 	cout << "请给布尔型变量flag赋值：" << endl; // 请输入布尔型变量
 	cin >> flag;								// bool类型：只要是非0的值，都代表真
 	cout << "布尔型变量flag = " << flag << endl;
-
 	return EXIT_SUCCESS;
 }

@@ -29,7 +29,6 @@ int main() // 利用冒泡排序实现升序序列
 			}
 		}
 	}
-
 	// 打印排序后的结果
 	cout << "排序后：" << endl;
 	for (int i = 0; i < 9; i++)
@@ -37,6 +36,5 @@ int main() // 利用冒泡排序实现升序序列
 		cout << arr[i] << "  ";
 	}
 	cout << endl;
-
 	return 0;
 }

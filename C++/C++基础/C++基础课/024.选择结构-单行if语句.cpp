@@ -21,6 +21,5 @@ int main()
 	{
 		cout << "我考上了一本大学！！！" << endl;
 	}
-
 	return 0;
 }
