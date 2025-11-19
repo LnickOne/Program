@@ -1,0 +1,6 @@
+Which of the following are types mutable and which are immutable: int, list,
+float, tuple, str.
+
+
+可变类型：列表(list) dictionary(字典)
+不可变类型:数字(int,float)、字符串(str)、元组(tuple)

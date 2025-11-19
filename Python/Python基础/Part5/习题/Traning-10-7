@@ -1,0 +1,28 @@
+下面两端Python伪代码a)和b)有什么区别？考虑语句A和B的上下文环境。(这么细致的区别要感谢Guido!)
+
+(a) try:
+
+		statement_A
+
+	except . . .:
+
+		. . .
+
+	else:
+
+		statement_B
+
+(b) try:
+
+		statement_A
+
+		statement_B
+
+	except . . .:
+
+		. . .
+
+答：
+如果statement_A执行出错，则(a)和(b)都不会执行statement_B；
+
+如果statement_A执行正常，则(a)和(b)都会执行statement_B——但是，如果statement_B的执行也出错，(b)可以在except子句里捕获到异常并做处理，而(a)则只能将statement_B产生的异常抛给上层调用者。

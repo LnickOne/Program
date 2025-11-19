@@ -1,0 +1,4 @@
+What are the types of variables a and b in the following code: a=(1) b=(1,)
+
+a 是int类型
+b 是元组类型

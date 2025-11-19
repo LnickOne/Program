@@ -1,0 +1,30 @@
+$def with (posts,pages,total,lastpage,nextpage)
+<html xmlns="http:www.w3.org/1999/xhtml">
+<head>
+<title>Template</title>
+<meta http-equiv="Content-Type" content="text/html;charset="utf-8">
+</head>
+<body>
+<h1>Blog posts</h1>
+
+<ul>
+$for post in posts:
+    <li>
+        <a href="/view/$post.id">$post.title</a> 
+        from $datestr(post.posted_on) 
+        <a href="/edit/$post.id">Edit</a>
+    </li>
+</ul>
+
+<a href="?page=1">第一页</a>
+$if lastpage>1:
+	<a href="?page=$lastpage">上一页</a>
+$for page in pages:
+	$if page<total+1:
+		<a href="?page=$page">$page</a>
+$#这个地方判断不能加$
+$if nextpage<total+1:
+	<a href="?page=$nextpage">下一页</a>
+<a href="?page=$total">最后一页</a>
+</body>
+</html>

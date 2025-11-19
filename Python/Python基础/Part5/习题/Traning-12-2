@@ -1,0 +1,9 @@
+导入属性。假设你的模块mymodule里有一个foo()函数。
+
+(a)把这个函数导入到你的名称空间有哪两种方法？
+
+import mymodule
+from mymodule import foo
+(b)这两种方法导入后的名称空间有什么不同？
+
+答：第一种将mymodule里的属性全部导入，第二种只导入foo(只取一块)

@@ -1,0 +1,8 @@
+[workspace]
+members = [
+    "ch01_Hello_Rust",
+    "ch02_guess_name", 
+    "ch03_variable", 
+    "ch04_ownership",
+]
+

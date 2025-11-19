@@ -1,0 +1,10 @@
+关键字。try-except和try-finally 有什么不同？
+
+P237-238页
+
+答:try-except和try-finally 这两个语句是互斥的,只能使用其中的一种.一个try语句可以对应一个或者多个except子句,但只能对应一个finally子句,或是一个try-except-finally复合语句.
+
+区别:
+try-except：当try代码块运行出错，except代码块才会被执行（匹配到相应异常时），处理完异常后try-except后的代码会继续往下执行；
+
+try-finally：不管try代码块是否出现异常，最终都会执行finally里的代码。如果出现异常，执行完finally代码块后，异常会继续往上层抛。

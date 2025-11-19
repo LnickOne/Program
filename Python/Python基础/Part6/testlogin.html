@@ -1,0 +1,2050 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="baidu-site-verification" content="nLiHyR1j8p" />
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>Python - 第10页-ChinaUnix.net</title>
+<meta name="description" content="这里主要讨论包括python语法在内的基础知识、包括魔法糖、属性、迭代器在内的高级主题，以及如何将python与数据库、网络、c语言等工具结合使用。 " />
+<meta name="author" content="Discuz! Team and Comsenz UI Team" />
+<meta name="copyright" content="2001-2011 Comsenz Inc." />
+<meta name="MSSmartTagsPreventParsing" content="True" />
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<base href="http://bbs.chinaunix.net/" /><link rel="stylesheet" type="text/css" href="data/cache/style_3_common.css?cYn" /><link rel="stylesheet" type="text/css" href="data/cache/style_3_forum_forumdisplay.css?cYn" /><script type="text/javascript">var STYLEID = '3', STATICURL = 'static/', IMGDIR = 'static/image/common', VERHASH = 'cYn', charset = 'gbk', discuz_uid = '0', cookiepre = 'ndfU_2132_', cookiedomain = '', cookiepath = '/', showusercard = '1', attackevasive = '0', disallowfloat = 'login|newthread|reply|tradeorder|activity|debate|nav|usergroups|task', creditnotice = '', defaultstyle = '', REPORTURL = 'aHR0cDovL2Jicy5jaGluYXVuaXgubmV0L2ZvcnVtLTU1LTEwLmh0bWw=', SITEURL = 'http://bbs.chinaunix.net/', JSPATH = 'static/js/';</script>
+
+<script src="static/js/common.js?cYn" type="text/javascript"></script>
+<!-- 2014 -->
+<script type='text/javascript' src='http://168.it168.com/a/h599.js'></script>
+
+
+<meta name="application-name" content="ChinaUnix.net" />
+<meta name="msapplication-tooltip" content="ChinaUnix.net" />
+<meta name="msapplication-task" content="name=论坛;action-uri=http://bbs.chinaunix.net/forum.php;icon-uri=http://bbs.chinaunix.net/static/image/common/bbs.ico" />
+<link rel="archives" title="ChinaUnix.net" href="http://bbs.chinaunix.net/archiver/" />
+<link rel="alternate" type="application/rss+xml" title="ChinaUnix.net - " href="http://bbs.chinaunix.net/forum.php?mod=rss&fid=55&amp;auth=0" />
+<link rel="stylesheet" id="css_widthauto" type="text/css" href="data/cache/style_3_widthauto.css?cYn" />
+<script type="text/javascript">HTMLNODE.className += ' widthauto'</script>
+
+<script src="static/js/forum.js?cYn" type="text/javascript" charset=gbk></script>
+</head>
+<body id="nv_forum" class="pg_forumdisplay"  style="max-width: 1000px; margin: 0 auto;" >
+<div id="append_parent"></div><div id="ajaxwaitid"></div>
+<!-- 自定义 -->		
+<!--头-->
+<!--广告位置名称：首页通栏 -->
+<div id="ADV_13039"><script>LG('ADV_13039')</script></div>
+<!--2011.12.1修改 大版宽屏显示 但是莫名其妙设置中的用户组也宽屏了，打印了下gid为28.暂时不清楚为什么 -->
+<div class="wp head_top">
+<table width="100%" cellspacing="0" cellpadding="0" border="0"  align="left">
+<tr>
+<td>
+<a href="member.php?mod=logging&amp;action=login&amp;logsubmit=yes"><img src="http://www.chinaunix.net/images_new/login.gif"></img></a>
+&nbsp;&nbsp;<a href="http://u.it168.com/findPassword?returnUrl=http://bbs.chinaunix.net/home.php?mod=spacecp">忘记密码</a>
+&nbsp;&nbsp;<a href="member.php?mod=register">免费注册</a>
+</td>
+<td align="right">
+<a href="http://bbs.chinaunix.net/listthread.php">查看新帖</a> |
+<!--a href="http://www.chinaunix.net/jh/"><font color="red">论坛精华区</font></a-->
+</td>
+</tr>
+<tr><td height="1" colspan="3" style="background-color:#000"></td></tr>
+</table>
+</div>
+<div id="hd">
+<div class="wp" >
+<!--LOGO和banner  -->
+<table width="100%"  style="clear: both;height:90px">
+<tr>
+<td style="padding:0">
+<h1>
+<!--2011.12.27修改只有首页去www其他去bbs-->
+<a href="http://bbs.chinaunix.net" title="ChinaUnix.net"><img src="static/image/common/logo.gif" alt="ChinaUnix.net" border="0" /></a>
+</h1>
+</td>
+<td style="padding:0" align="center">
+<!--不同页面广告位 -->
+<div id="ADV_21647" style="display:inline;"><script>LG('ADV_21647')</script></div>
+	
+</td>
+<!--2014.07.30添加广告位ADV_20649-->
+<td style="padding:0" align="center">
+<div id="ADV_20649" style="display:inline;"><script>LG('ADV_20649')</script></div>
+</td>
+</tr>
+</table>
+<!--<div id="nv">
+<a href="javascript:;" id="qmenu" onmouseover="showMenu({'ctrlid':'qmenu','pos':'34!','ctrlclass':'a','duration':2});">快捷导航</a>
+<ul> --><!-- <li id="mn_Ne30e" ><a href="plugin.php?id=auction" hidefocus="true" title="Auction"  >竞拍<span>Auction</span></a></li> --><!-- <li id="mn_N2ddf" ><a href="plugin.php?id=itpub_medal:medal_shop" hidefocus="true"  >商店</a></li> --><!-- <li id="mn_forum" ><a href="forum.php" hidefocus="true" title="BBS"  >论坛<span>BBS</span></a></li> --><!-- <li id="mn_N12a7" ><a href="misc.php?mod=ranklist" hidefocus="true" title="Ranklist"  >排行榜<span>Ranklist</span></a></li> --><!--</ul>
+</div> -->
+<div class="p_pop h_pop" id="mn_userapp_menu" style="display: none"></div><div id="mu" class="cl">
+</div><!--搜索框去掉20111024 -->
+</div>
+</div>
+<!--2011.11.30如果是大版则宽屏显示 -->
+<div id="wp" class="wp" >
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center" style="background:url(static/image/common/bg_menu_top.gif)"> 
+<tbody>
+<tr><td height="2" colspan="2"></td></tr>
+<tr>
+<td width="*" valign="center" align="left">&nbsp;
+<font color="#666666"><strong>平台</strong></font> 
+<a target="_blank" class="title2" href="http://bbs.chinaunix.net/"><font color="#5B7DB3">论坛</font></a>   
+<a target="_blank" class="title2" href="http://blog.chinaunix.net/"><font color="#5B7DB3">博客</font></a>
+
+<a target="_blank" class="title2" href="http://wenku.it168.com/"><font color="#5B7DB3">文库</font></a>
+
+</a><font color="#666666"><strong>频道</strong></font>：
+<a target="_blank" class="title2" href="http://www.chinaunix.net/ops/"><font color="#5B7DB3">自动化运维</font></a>   
+<a target="_blank" class="title2" href="http://www.chinaunix.net/virtual/"><font color="#5B7DB3">虚拟化</font></a>   
+ 
+<a target="_blank" class="title2" href="http://www.chinaunix.net/stor/"><font color="#5B7DB3">储存备份</font></a>  
+<a target="_blank" class="title2" href="http://www.chinaunix.net/cpp/"><font color="#5B7DB3">C/C++</font></a>  
+<a target="_blank" class="title2" href="http://www.chinaunix.net/php/"><font color="#5B7DB3">PHP</font></a>   
+<a target="_blank" class="title2" href="http://www.chinaunix.net/mysql/"><font color="#5B7DB3">MySQL</font></a>   
+<a target="_blank" class="title2" href="http://www.chinaunix.net/embedded/"><font color="#5B7DB3">嵌入式</font></a> 
+<a target="_blank" class="title2" href="http://www.chinaunix.net/linux/"><font color="#5B7DB3">Linux系统</font></a>  
+</td>
+<td>
+                            <!--<form id="scbar_form" method="get" autocomplete="off" onSubmit="searchFocus($('scbar_txt'))" action="http://search.bbs.chinaunix.net/cse/search" target="_blank">-->
+<form id="scbar_form" method="post" autocomplete="off" onSubmit="searchFocus($('scbar_txt'))" action="search.php?searchsubmit=yes" target="_blank">
+<!--<form target="_blank" method="get" action="http://search.chinaunix.net/bbs.php"> -->
+<!--<input type="text" name=q  size="15" maxlength="20" style="width:60px">-->
+<input type="hidden" name="title" value="fulltext">
+<input type="hidden" name="st" value="title">
+<input type="hidden" name="bbs" value="1">
+<input type="hidden" name="forums" value="all">
+<input type="text" name="q" id="scbar_txt" autocomplete="off" style="width:80px">
+<!--					<input type="hidden" name="mod" id="scbar_mod" value="forum" />
+<input type="hidden" name="formhash" value="9ab83c8b" />
+<input type="hidden" name="srchtype" value="title" />
+<input type="hidden" name="srhfid" value="55" id="dzsearchforumid" />
+<input type="hidden" name="srhlocality" value="forum::forumdisplay" />
+<input type="hidden" name="source" value="discuz" />
+<input type="hidden" name="fId" value=""  id="cloudsearchforumId" />
+<input type="hidden" name="q" id="cloudsearchquery" value="" />-->
+                                        <input type="hidden" name="click" value="1" />
+                                        <input type="hidden" name="s" value="17746599429486556584" />
+                                        <input type="hidden" name="nsid" value="" />
+<input type="submit" value="搜索" >
+</form>
+</td>
+</tr>
+<tr><td height="2" colspan="2"></td></tr> 
+</tbody>
+</table>
+<script>
+function search(){
+    val = document.getElementById("scbar_txt").value;
+    if(val == ""){
+        //location.href = "http://search.bbs.chinaunix.net/";
+        location.href = "http://search.bbs.chinaunix.net/cse/search?q="+val+"&click=1&s=17746599429486556584&nsid= ";
+    }else{
+        location.href = "http://search.bbs.chinaunix.net/cse/search?q="+val+"&click=1&s=17746599429486556584&nsid= ";
+    }
+}
+   
+</script>
+<style id="diy_style" type="text/css"></style>
+<!--[diy=diynavtop]--><div id="diynavtop" class="area"></div><!--[/diy]-->
+
+<div style="width:100%;height:auto"><table cellpadding="0" cellspacing="1" class="tab30"><tr><th width="20%"><a href="forummodule-5-0-1.html" target="_blank">最新活动</a></th><th width="20%"><a href="forummodule-7-55-1.html" target="_blank">本版热门话题</a></th><th width="20%"><a href="forummodule-8-55-1.html" target="_blank">本版精华</a></th><th width="20%"><a href="http://blog.chinaunix.net/" target="_blank">博客热门</a></th></tr><tr><td valign="top"><ul><li><div>·<a href="thread-4298313-1-1.html" title="别让你的奖品等太久！新华三产品百科有奖测试" target="_blank">别让你的奖品等太久！新华三产品百科有奖测试</a></div></li><li><div>·<a href="thread-4298146-1-1.html" title="【技术解析】聊聊对子弹短信的看法" target="_blank">【技术解析】聊聊对子弹短信的看法</a></div></li><li><div>·<a href="thread-4298086-1-1.html" title="【讨论】技术层面讲，滴滴技术有哪些改进空间？" target="_blank">【讨论】技术层面讲，滴滴技术有哪些改进空间？</a></div></li><li><div>·<a href="thread-4298014-1-1.html" title="【技术盘点】运维利器盘点，细数那些不为知的运维应用技巧？" target="_blank">【技术盘点】运维利器盘点，细数那些不为知的运维应用技巧？</a></div></li><li><div>·<a href="thread-4297965-1-1.html" title="技术大会| Splunk集结号！IT老兵传授你“数据心法”" target="_blank">技术大会| Splunk集结号！IT老兵传授你“数据心法”</a></div></li><li><div>·<a href="thread-4297964-1-1.html" title="【内含福利】这个大会由AI推荐~" target="_blank">【内含福利】这个大会由AI推荐~</a></div></li><li><div>·<a href="thread-4297834-1-1.html" title="有奖调研| 深度探究IT服务技术选型，参与有惊喜~" target="_blank">有奖调研| 深度探究IT服务技术选型，参与有惊喜~</a></div></li><li><div>·<a href="thread-4297792-1-1.html" title="【大话IT】风口浪尖的腾讯云，如何进行有效备份？" target="_blank">【大话IT】风口浪尖的腾讯云，如何进行有效备份？</a></div></li><li><div>·<a href="thread-4297097-1-1.html" title="【大话IT】如何治理开源项目？独裁or民主" target="_blank">【大话IT】如何治理开源项目？独裁or民主</a></div></li></ul></td><td valign="top"><ul><li><div>·<a href="thread-4263785-1-1.html" title="Python3使用pymysql问题" target="_blank">Python3使用pymysql问题</a></div></li><li><div>·<a href="thread-4263756-1-1.html" title="Python2处理中文dict的问题，求助" target="_blank">Python2处理中文dict的问题，求助</a></div></li><li><div>·<a href="thread-4252328-1-1.html" title="问个入门级的问题" target="_blank">问个入门级的问题</a></div></li><li><div>·<a href="thread-4252078-1-1.html" title="这是什么问题，绝对新手" target="_blank">这是什么问题，绝对新手</a></div></li><li><div>·<a href="thread-4252054-1-1.html" title="PyMySQL模块查询带有时间格式字段的记录时输出异常" target="_blank">PyMySQL模块查询带有时间格式字段的记录时输出异常</a></div></li><li><div>·<a href="thread-4251960-1-1.html" title="easy_install安装总失败" target="_blank">easy_install安装总失败</a></div></li><li><div>·<a href="thread-4252014-1-1.html" title="获取继承程序的路径" target="_blank">获取继承程序的路径</a></div></li><li><div>·<a href="thread-4251929-1-1.html" title="python放crontab里怎么不能执行，正常shell下可以。" target="_blank">python放crontab里怎么不能执行，正常shell下可以。</a></div></li><li><div>·<a href="thread-4251927-1-1.html" title="请教大神 python 是否支持这种格式化字符串的操作？" target="_blank">请教大神 python 是否支持这种格式化字符串的操作？</a></div></li></ul></td><td valign="top"><ul><li><div>·<a href="thread-1502270-1-1.html" title="web.py官方doc(chm版)" target="_blank">web.py官方doc(chm版)</a></div></li><li><div>·<a href="thread-1668860-1-1.html" title="Python 学习资源 ( 整理日期2010-02-24 )" target="_blank">Python 学习资源 ( 整理日期2010-02-24 )</a></div></li><li><div>·<a href="thread-698985-1-1.html" title="pygtk做了个游戏，还没完成，迫不及待给大家看啦 :D" target="_blank">pygtk做了个游戏，还没完成，迫不及待给大家看啦 :D</a></div></li><li><div>·<a href="thread-553985-1-1.html" title="做为脚本语言来说perl和python那个更有优势?" target="_blank">做为脚本语言来说perl和python那个更有优势?</a></div></li><li><div>·<a href="thread-2320953-1-1.html" title="[招聘] 北京酷讯科技有限公司招聘Python工程师4名" target="_blank">[招聘] 北京酷讯科技有限公司招聘Python工程师4名</a></div></li><li><div>·<a href="thread-2306082-1-1.html" title="玩GAE（Google App Engine）完全指南" target="_blank">玩GAE（Google App Engine）完全指南</a></div></li><li><div>·<a href="thread-1702090-1-1.html" title="ChinaUnix程序设计图书赠送之--《Python Cookbook》（第2版）中文版（已评出）" target="_blank">ChinaUnix程序设计图书赠送之--《Python Cookbook》（第2版）中文版（已评出）</a></div></li><li><div>·<a href="thread-1596644-1-1.html" title="【译】py2exe Tutorial" target="_blank">【译】py2exe Tutorial</a></div></li><li><div>·<a href="thread-553884-1-1.html" title="Python 指南" target="_blank">Python 指南</a></div></li></ul></td><td valign="top"><ul><li><div>·<a href="http://blog.chinaunix.net/uid-23333947-id-5787725.html" title="重载JsonMappingException以定制对错误JSON输入的异常返回信息" target="_blank">重载JsonMappingException以定制对错误JSON输入的异常返回信息</a></div></li><li><div>·<a href="http://blog.chinaunix.net/uid-78707-id-5787566.html" title="第九章：特定于平台的API调用（四）" target="_blank">第九章：特定于平台的API调用（四）</a></div></li><li><div>·<a href="http://blog.chinaunix.net/uid-29386764-id-5787548.html" title="基于 HTML5 结合互联网+的电力接线图" target="_blank">基于 HTML5 结合互联网+的电力接线图</a></div></li><li><div>·<a href="http://blog.chinaunix.net/uid-31544559-id-5787540.html" title="深入理解分布式系统中的缓存架构(上)" target="_blank">深入理解分布式系统中的缓存架构(上)</a></div></li><li><div>·<a href="http://blog.chinaunix.net/uid-78707-id-5787537.html" title="第九章：特定于平台的API调用（三）" target="_blank">第九章：特定于平台的API调用（三）</a></div></li><li><div>·<a href="http://blog.chinaunix.net/uid-30029642-id-5787489.html" title="关于jquery 的绑定事件on 如何绑定动态生成的dom元素" target="_blank">关于jquery 的绑定事件on 如何绑定动态生成的dom元素</a></div></li><li><div>·<a href="http://blog.chinaunix.net/uid-78707-id-5787421.html" title="第八章：代码和XAML协调一致5" target="_blank">第八章：代码和XAML协调一致5</a></div></li><li><div>·<a href="http://blog.chinaunix.net/uid-31388439-id-5787318.html" title="第15章 RCC—使用HSE/HSI配置时钟" target="_blank">第15章 RCC—使用HSE/HSI配置时钟</a></div></li><li><div>·<a href="http://blog.chinaunix.net/uid-29386764-id-5787251.html" title="基于 HTML5 的工业互联网云平台监控机房 U 位" target="_blank">基于 HTML5 的工业互联网云平台监控机房 U 位</a></div></li></ul></td></tr></table>
+			<style>
+			.tab30{width:100%;background:#000000;font-size:12px;border-collapse:separate;}
+			.tab30 th{background:#9898ba;color:#fff;font-weight:bold;text-align:center;height:20px;}
+			.tab30 th a{color:#FFFF00;}
+			.tab30 td{padding:4px;background:#ffffff;}
+			.tab30 td li{line-height:18px; width : 180;}
+			.tab30 td li div{height:18px;overflow:Hidden; width : 180px;}
+			.tab30 td li div a{color:#000;text-decoration:none;}
+			.tab30 td li div a:hover{color:#f00;}
+			p,div,form,ul,ol,li,dl,dt,dd {margin:0; padding:0; }
+			ul,ol,li{list-style:none; }
+			
+			</style></div>
+<!--广告位置移动这,去掉自带的 换为广告系统标签 -->
+<table width="100%" height="20" cellspacing="0" cellpadding="0" border="0"> 
+<tbody>
+<tr>
+<td align="center"><div id="ADV_17278"><script>LG('ADV_17278')</script></div></td>
+<td align="center"><div id="ADV_18502"><script>LG('ADV_18502')</script></div></td>
+<td align="center"><div id="ADV_18503"><script>LG('ADV_18503')</script></div></td>
+<td align="center"><div id="ADV_18504"><script>LG('ADV_18504')</script></div></td>
+</tr>
+</tbody>
+</table>
+<!--2011.11.30增加样式style-->
+<div id="pt" class="bm cl" style="margin:0;line-height:24px; height:24px">
+<div class="z">
+<a href="http://www.chinaunix.net" class="nvhm" title="首页">ChinaUnix.net</a>  <em>&rsaquo;</em> <a href='/'>论坛</a> <em>&rsaquo;</em> <a href="forum.php?gid=60">程序设计</a><em>&rsaquo;</em> <a href="forum-55-1.html">Python</a></div>
+</div>
+<div class="wp" style="clear: both;">
+<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+</div>
+<div class="boardnav">
+<div id="ct" class="wp cl">
+<div class="mn">
+<!--2011.11.30去除bm样式 -->
+<div class="bml pbn">
+<!--<div class="bm bml pbn"> -->
+<!--2011.11.30加style-->
+<div class="bm_h cl" style="padding-top:0">
+<span class="y">
+
+<a href="home.php?mod=spacecp&amp;ac=favorite&amp;type=forum&amp;id=55&amp;handlekey=favoriteforum&amp;formhash=9ab83c8b" id="a_favorite" class="fa_fav" onclick="showWindow(this.id, this.href, 'get', 0);">收藏本版 <strong class="xi1" id="number_favorite" >(<span id="number_favorite_num">117</span>)</strong></a>
+ <span class="pipe">|
+ </span><a href="forum.php?mod=rss&amp;fid=55&amp;auth=0" class="fa_rss" target="_blank" title="RSS">订阅</a>											
+</span>
+<h1 class="xs2">
+<a href="forum-55-1.html">Python</a>
+<span class="xs1 xw0 i">今日: <strong class="xi1">0</strong><span class="pipe">|</span>主题: <strong class="xi1">12101</strong></span>&nbsp;&nbsp;
+<a href="expand/rankuser/day/55_201809.html" style=" font-weight:normal; color:#F00; font-size:12px" target=_blank>本版发帖排行榜</a>
+				
+</h1>
+</div>
+<div class="bm_c cl pbn">
+
+<!--追加样式为蓝色粗体20111027-->
+<div>版主: <span class="xi2 blue1"><a href="space-username-iamacnhero.html" class="notabs" c="1">iamacnhero</a>, <a href="space-username-smallfish_xy.html" class="notabs" c="1">smallfish_xy</a>, <a href="space-username-ning_lianjie.html" class="notabs" c="1">ning_lianjie</a>, <a href="space-username-mswsg.html" class="notabs" c="1">mswsg</a></span></div></div>
+</div>
+
+
+
+<div class="drag">
+<!--[diy=diy4]--><div id="diy4" class="area"></div><!--[/diy]-->
+</div>
+
+
+<div id="pgt" class="bm bw0 pgs cl">
+<div class="pg"><a href="forum-55-1.html" class="first">1 ...</a><a href="forum-55-9.html" class="prev">&nbsp;&nbsp;</a><a href="forum-55-6.html">6</a><a href="forum-55-7.html">7</a><a href="forum-55-8.html">8</a><a href="forum-55-9.html">9</a><strong>10</strong><a href="forum-55-11.html">11</a><a href="forum-55-12.html">12</a><a href="forum-55-13.html">13</a><a href="forum-55-14.html">14</a><a href="forum-55-346.html" class="last">... 346</a><label><input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="10" onkeydown="if(event.keyCode==13) {window.location='forum.php?mod=forumdisplay&fid=55&amp;page='+this.value;; doane(event);}" /><span title="共 346 页"> / 346 页</span></label><a href="forum-55-11.html" class="nxt">下一页</a></div><span class="pgb y"  ><a href="forum.php">最近访问版块</a></span>
+<!--增加版块跳转  -->
+<span style="float:right; padding:0px 0 4px 0; margin-top:5px">
+<select  style=" padding:5px 0 4px 0" onchange="if(this.options[this.selectedIndex].value != '') {
+window.location=('forum-' + this.options[this.selectedIndex].value + '-1.html') }">
+<option value="">版块跳转</option>
+<optgroup label="--Linux操作系统">
+<option value="216">新手园地</option>
+<option value="269">&nbsp;&nbsp;&nbsp;硬件问题</option>
+<option value="217">Linux系统管理</option>
+<option value="218">Linux网络问题</option>
+<option value="223">Linux环境编程</option>
+<option value="271">Linux桌面系统</option>
+<option value="221">国产Linux</option>
+</optgroup>
+<optgroup label="--Unix操作系统">
+<option value="5">BSD</option>
+<option value="127">&nbsp; &nbsp; &nbsp; BSD文档中心</option>
+<option value="9">AIX</option>
+<option value="193">&nbsp; &nbsp; &nbsp; 新手入门</option>
+<option value="124">&nbsp; &nbsp; &nbsp; AIX文档中心</option>
+<option value="189">&nbsp; &nbsp; &nbsp; 资源下载</option>
+<option value="188">&nbsp; &nbsp; &nbsp; Power高级应用</option>
+<option value="187">&nbsp; &nbsp; &nbsp; IBM存储</option>
+<option value="10">AS400</option>
+<option value="6">Solaris</option>
+<option value="128">&nbsp; &nbsp; &nbsp; Solaris文档中心</option>
+<option value="8">HP-UX</option>
+<option value="129">HP文档中心</option>
+<option value="7">SCO UNIX</option>
+<option value="130">&nbsp; &nbsp; &nbsp; SCO文档中心</option>
+<option value="118">互操作专区</option>
+<option value="12">IRIX</option>
+<option value="11">Tru64 UNIX</option>
+<option value="41">Mac OS X</option>
+</optgroup>
+<optgroup label="--IT运维架构">
+<option value="141">门户网站运维</option>
+<option value="233">集群和高可用</option>
+<option value="232">服务器应用</option>
+<option value="235">监控和防护</option>
+<option value="283">虚拟化技术</option>
+<option value="185">架构设计</option>
+<option value="285">行业应用和管理</option>
+</optgroup>
+<optgroup label="--IT基础设施">
+<option value="45">服务器及硬件技术</option>
+<option value="184">&nbsp; &nbsp; &nbsp; 服务器资源下载</option>
+<option value="180">云计算</option>
+<option value="181">&nbsp; &nbsp; &nbsp; 云计算文档中心</option>
+<option value="182">&nbsp; &nbsp; &nbsp; 云计算业界</option>
+<option value="183">&nbsp; &nbsp; &nbsp; 云计算资源下载</option>
+<option value="34">存储备份</option>
+<option value="125">&nbsp; &nbsp; &nbsp; 存储文档中心</option>
+<option value="126">&nbsp; &nbsp; &nbsp; 存储业界</option>
+<option value="145">&nbsp; &nbsp; &nbsp; 存储资源下载</option>
+<option value="194">&nbsp; &nbsp; &nbsp; Symantec技术交流区</option>
+<option value="29">安全技术</option>
+<option value="30">网络技术</option>
+<option value="131">&nbsp; &nbsp; &nbsp; 网络技术文档中心</option>
+</optgroup>
+<optgroup label="--程序设计">
+<option value="23">C/C++</option>
+<option value="84">&nbsp; &nbsp; &nbsp; GUI编程</option>
+<option value="142">&nbsp; &nbsp; &nbsp; Functional编程</option>
+<option value="224">内核源码</option>
+<option value="220">&nbsp; &nbsp; &nbsp; 内核问题</option>
+<option value="222">移动开发</option>
+<option value="265">&nbsp; &nbsp; &nbsp; 移动开发技术资料</option>
+<option value="24">Shell</option>
+<option value="25">Perl</option>
+<option value="26">Java</option>
+<option value="133">&nbsp; &nbsp; &nbsp; Java文档中心</option>
+<option value="27">PHP</option>
+<option value="135">&nbsp; &nbsp; &nbsp; php文档中心</option>
+<option value="55">Python</option>
+<option value="132">&nbsp; &nbsp; &nbsp; Python文档中心</option>
+<option value="116">Ruby</option>
+<option value="226">CPU与编译器</option>
+<option value="225">嵌入式开发</option>
+<option value="227">驱动开发</option>
+<option value="80">Web开发</option>
+<option value="100">VoIP开发技术</option>
+</optgroup>
+<optgroup label="--数据库技术">
+<option value="17">MySQL</option>
+<option value="136">&nbsp; &nbsp; &nbsp; MySQL文档中心</option>
+<option value="21">Sybase</option><option value="19">Oracle</option>
+<option value="18">PostgreSQL</option><option value="22">DB2</option>
+<option value="20">Informix</option><option value="140">数据仓库与数据挖掘</option>
+<option value="292">NoSQL技术</option></optgroup><optgroup label="--综合交流区">
+<option value="46">IT业界新闻与评论</option><option value="32">IT职业生涯</option>
+<option value="293">&nbsp; &nbsp; &nbsp; 猎头招聘</option>
+<option value="82">IT图书与评论</option>
+<option value="156">&nbsp; &nbsp; &nbsp; CU技术图书大系</option>
+<option value="247">&nbsp; &nbsp; &nbsp; Linux书友会</option>
+<option value="54">二手交易</option><option value="249">下载共享</option>
+<option value="250">Linux文档专区</option><option value="53">IT培训与认证</option>
+<option value="295">&nbsp; &nbsp; &nbsp; 培训交流</option>
+<option value="191">&nbsp; &nbsp; &nbsp; 认证培训</option>
+</optgroup>
+<optgroup label="--休闲生活">
+<option value="31">清茶斋</option><option value="115">投资理财</option>
+<option value="39">运动地带</option><option value="40">快乐数码摄影</option>
+<option value="168">&nbsp; &nbsp; &nbsp; 摄影器材</option>
+<option value="134">&nbsp; &nbsp; &nbsp; 摄影比赛专区</option><option value="121">IT爱车族</option>
+<option value="96">旅游天下</option>
+</optgroup>
+<optgroup label="--站务及频道">
+<option value="2">站务交流</option><option value="3">版主会议室</option>
+<option value="51">博客SNS站务交流区</option><option value="123">CU活动专区</option>
+<option value="207">&nbsp; &nbsp; &nbsp; Power活动专区</option>
+<option value="169">&nbsp; &nbsp; &nbsp; 拍卖交流区</option>
+<option value="97">频道交流区</option>
+</optgroup>
+</select>
+</span>
+<a href="javascript:;" style="margin-top:8px" id="newspecial" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})" onclick="showWindow('newthread', 'forum.php?mod=post&action=newthread&fid=55')" title="发新帖"><img src="static/image/common/pn_post.png" alt="发新帖" /></a></div>
+<div id="threadlist" class="tl bm bmw">
+
+<div class="th" style="background-color:#9898BA;padding:0;border:0;margin-bottom:-1px">
+<table style="border-collapse:collapse;" cellspacing="0" cellpadding="0">
+<tbody>
+<tr class="header">
+<td class="icn" style="border:1px solid #000;width:50px;line-height:24px;color:#fff;font-weight:bold;">
+<a id="filter_special" href="javascript:;" class="showmenu xi2" onclick="showMenu(this.id)">
+类型
+</a>	
+</td>
+<td colspan="2" style="border:1px solid #000;padding-left:5px;line-height:24px;" class="common">
+主题: 
+<a href="forum-55-1.html" style="font-weight:bold">全部</a> 
+<a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=digest&amp;digest=1" style="font-weight:bold">精华</a>
+<a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=specialtype&amp;specialtype=poll" style="font-weight:bold">投票</a> 
+<a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=specialtype&amp;specialtype=reward" style="font-weight:bold">悬赏</a> 
+<a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=specialtype&amp;specialtype=activity" style="font-weight:bold">活动</a> 
+  |   
+时间: 
+<a href="forum.php?mod=forumdisplay&amp;fid=55&amp;orderby=lastpost&amp;filter=dateline&amp;dateline=86400" style="font-weight:bold">一天</a> 
+<a href="forum.php?mod=forumdisplay&amp;fid=55&amp;orderby=lastpost&amp;filter=dateline&amp;dateline=172800" style="font-weight:bold">两天</a>
+ 	<a href="forum.php?mod=forumdisplay&amp;fid=55&amp;orderby=lastpost&amp;filter=dateline&amp;dateline=604800" style="font-weight:bold">周</a>
+ 	<a href="forum.php?mod=forumdisplay&amp;fid=55&amp;orderby=lastpost&amp;filter=dateline&amp;dateline=2592000" style="font-weight:bold">月</a> 
+ 	<a href="forum.php?mod=forumdisplay&amp;fid=55&amp;orderby=lastpost&amp;filter=dateline&amp;dateline=7948800" style="font-weight:bold">季</a> 
+ | 
+<a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=heat&amp;orderby=heats" style="font-weight:bold">热门</a> 
+
+
+
+</td>
+<td style="border:1px solid #000;text-align:center;color:#fff;font-weight:bold;width:114px" class="by"><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=author&amp;orderby=dateline">作者/时间</a></td>
+<td style="border:1px solid #000;text-align:center;color:#fff;font-weight:bold" class="num"><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=reply&amp;orderby=replies">回复</a></td>
+<td style="border:1px solid #000;text-align:center;color:#fff;font-weight:bold" class="num"><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=reply&amp;orderby=views">查看</a></td>
+<td style="border:1px solid #000;text-align:center;color:#fff;font-weight:bold;width:115px;" class="by"><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=lastpost&amp;orderby=lastpost">最后发表</a></td>
+</tr>				
+</tbody>
+</table>
+</div>
+
+
+
+
+
+<div class="bm_c" style="padding:0">
+
+<script type="text/javascript">var lasttime = 1538312077;</script>
+<div id="forumnew" style="display:none"></div>
+
+<form method="post" autocomplete="off" name="moderate" id="moderate" action="forum.php?mod=topicadmin&amp;action=moderate&amp;fid=55&amp;infloat=yes&amp;nopost=yes">
+<input type="hidden" name="formhash" value="9ab83c8b" />
+<input type="hidden" name="listextra" value="page%3D10" />
+<table summary="forum_55" id="forum_55" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
+<tbody id="normalthread_4260460">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260460-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260460-1-10.html" onclick="atarget(this)" class="xst" >【解决 结帖】python 3 print函数输出对齐的问题？</a>
+<img src="static/image/stamp/011.small.gif" alt="新人帖" align="absmiddle" />
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-31406222.html" c="1">snipxx</a></cite>
+<em><span>2017-03-17 16:47</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260460-1-10.html" class="xi2">1</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1566</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-inpool.html" c="1">inpool</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260460&goto=lastpost#lastpost">2017-04-19 19:18</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4151776">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4151776-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4151776-1-10.html" onclick="atarget(this)" class="xst" >最新版 The Python Tutorial 的中文版</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-29827410.html" c="1">Python_Yiyi</a></cite>
+<em><span>2014-08-25 22:55</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4151776-1-10.html" class="xi2">9</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>16409</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-%CF%C4%C2%E5%CC%D8%C3%A8.html" c="1">夏洛特猫</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4151776&goto=lastpost#lastpost">2017-04-19 08:51</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261302">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261302-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261302-1-10.html" onclick="atarget(this)" class="xst" >python如何在60s后自己停止</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-26425645.html" c="1">centrify</a></cite>
+<em><span>2017-04-11 10:04</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261302-1-10.html" class="xi2">3</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1480</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-ghostwwl.html" c="1">ghostwwl</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261302&goto=lastpost#lastpost">2017-04-16 08:41</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4180705">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4180705-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4180705-1-10.html" onclick="atarget(this)" class="xst" >使用TimedRotatingFileHandler自定义日志后缀的问题</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-11208850.html" c="1">number321</a></cite>
+<em><span>2015-06-26 11:24</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4180705-1-10.html" class="xi2">1</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>6901</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-dhuib.html" c="1">dhuib</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4180705&goto=lastpost#lastpost">2017-04-14 10:44</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261252">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261252-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261252-1-10.html" onclick="atarget(this)" class="xst" >python如何实现一个文件复制100份带编号的文件</a>
+<img src="static/image/stamp/011.small.gif" alt="新人帖" align="absmiddle" />
+<!-- 开启打赏 -->
+<span class="tps">&nbsp;...<a href="thread-4261252-2-10.html">2</a></span>
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-29750725.html" c="1">summer599</a></cite>
+<em><span>2017-04-09 21:52</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261252-1-10.html" class="xi2">14</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>2736</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-summer599.html" c="1">summer599</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261252&goto=lastpost#lastpost">2017-04-13 22:34</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261287">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261287-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261287-1-10.html" onclick="atarget(this)" class="xst" >Python的ssh执行命令</a>
+<!-- 开启打赏 -->
+<img src="static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle" />
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-29925033.html" c="1">Lemon_乐</a></cite>
+<em><span>2017-04-10 17:25</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261287-1-10.html" class="xi2">5</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1400</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-baby_%C9%F1.html" c="1">baby_神<em style='display: inline-block;width: 16px;height: 9px;background: url(source/plugin/auction/images/v.jpg) no-repeat;overflow: hidden;'></em></a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261287&goto=lastpost#lastpost">2017-04-13 18:17</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261267">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261267-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261267-1-10.html" onclick="atarget(this)" class="xst" >正则，请问怎么取最后一个冒号后边的数字？如 ::1:25</a>
+<!-- 开启打赏 -->
+<span class="tps">&nbsp;...<a href="thread-4261267-2-10.html">2</a></span>
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-28717910.html" c="1">huarte</a></cite>
+<em><span>2017-04-10 11:44</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261267-1-10.html" class="xi2">13</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>4310</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-baby_%C9%F1.html" c="1">baby_神<em style='display: inline-block;width: 16px;height: 9px;background: url(source/plugin/auction/images/v.jpg) no-repeat;overflow: hidden;'></em></a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261267&goto=lastpost#lastpost">2017-04-12 20:53</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261328">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261328-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261328-1-10.html" onclick="atarget(this)" class="xst" >python如何画出与y轴平行的线</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-31449171.html" c="1">天字三号</a></cite>
+<em><span>2017-04-11 18:13</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261328-1-10.html" class="xi2">0</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1166</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-%CC%EC%D7%D6%C8%FD%BA%C5.html" c="1">天字三号</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261328&goto=lastpost#lastpost">2017-04-11 18:13</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261195">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261195-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261195-1-10.html" onclick="atarget(this)" class="xst" >请问python有直接读取compress（Z）压缩的文件模块吗？</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-181255.html" c="1">zerostudy</a></cite>
+<em><span>2017-04-09 11:32</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261195-1-10.html" class="xi2">0</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>862</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-zerostudy.html" c="1">zerostudy</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261195&goto=lastpost#lastpost">2017-04-09 11:32</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261148">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261148-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261148-1-10.html" onclick="atarget(this)" class="xst" >我想给一个类的方法增加一个装饰器，有可能搞定吗？</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-10619456.html" c="1">ssfjhh</a></cite>
+<em><span>2017-04-07 16:55</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261148-1-10.html" class="xi2">1</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>998</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-ssfjhh.html" c="1">ssfjhh</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261148&goto=lastpost#lastpost">2017-04-07 18:00</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4235191">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4235191-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4235191-1-10.html" onclick="atarget(this)" class="xst" >windows下使用paramiko进行SSH的连接和交互不成功</a>
+<!-- 开启打赏 -->
+<img src="static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle" />
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-11904410.html" c="1">kingcmy</a></cite>
+<em><span>2016-02-17 15:11</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4235191-1-10.html" class="xi2">8</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>7116</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-barnett8023.html" c="1">barnett8023</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4235191&goto=lastpost#lastpost">2017-04-05 14:26</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261031">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261031-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261031-1-10.html" onclick="atarget(this)" class="xst" >python3怎么转换html中＆#29256;＆#26412;这种字符实体到中文</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-20275288.html" c="1">yakczh_cu</a></cite>
+<em><span>2017-04-03 15:07</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261031-1-10.html" class="xi2">3</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1432</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-inpool.html" c="1">inpool</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261031&goto=lastpost#lastpost">2017-04-04 11:59</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261036">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261036-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261036-1-10.html" onclick="atarget(this)" class="xst" >commands.getstatusoutput会不会阻塞不返回</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-10328574.html" c="1">linewer</a></cite>
+<em><span>2017-04-03 18:24</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261036-1-10.html" class="xi2">0</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1357</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-linewer.html" c="1">linewer</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261036&goto=lastpost#lastpost">2017-04-03 18:24</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261035">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261035-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261035-1-10.html" onclick="atarget(this)" class="xst" >求助：web相关</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-31432300.html" c="1">lorihuang</a></cite>
+<em><span>2017-04-03 18:20</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261035-1-10.html" class="xi2">0</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1035</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-lorihuang.html" c="1">lorihuang</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261035&goto=lastpost#lastpost">2017-04-03 18:20</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261026">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261026-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261026-1-10.html" onclick="atarget(this)" class="xst" >scipy.optimize.fsolve</a>
+<img src="static/image/stamp/011.small.gif" alt="新人帖" align="absmiddle" />
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-31449171.html" c="1">天字三号</a></cite>
+<em><span>2017-04-02 20:33</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261026-1-10.html" class="xi2">0</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1173</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-%CC%EC%D7%D6%C8%FD%BA%C5.html" c="1">天字三号</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261026&goto=lastpost#lastpost">2017-04-02 20:33</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4261024">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4261024-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4261024-1-10.html" onclick="atarget(this)" class="xst" >pandas  read_html 丟 table</a>
+<!-- 开启打赏 -->
+<img src="static/image/filetype/common.gif" alt="attachment" title="附件" align="absmiddle" />
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-584589.html" c="1">shihyu</a></cite>
+<em><span>2017-04-02 12:46</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4261024-1-10.html" class="xi2">0</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1220</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-shihyu.html" c="1">shihyu</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4261024&goto=lastpost#lastpost">2017-04-02 12:46</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260853">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260853-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260853-1-10.html" onclick="atarget(this)" class="xst" >xml 文件处理</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-27682006.html" c="1">cwd0204</a></cite>
+<em><span>2017-03-28 20:36</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260853-1-10.html" class="xi2">2</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1214</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-echo52.html" c="1">echo52</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260853&goto=lastpost#lastpost">2017-03-29 13:15</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4259847">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4259847-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4259847-1-10.html" onclick="atarget(this)" class="xst" >python tcp，http客户端（socket while循环）</a>
+<img src="static/image/stamp/011.small.gif" alt="新人帖" align="absmiddle" />
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-31439104.html" c="1">handarm<em style='display: inline-block;width: 16px;height: 9px;background: url(source/plugin/auction/images/v.jpg) no-repeat;overflow: hidden;'></em></a></cite>
+<em><span>2017-03-02 09:53</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4259847-1-10.html" class="xi2">1</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1166</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-zhzhs.html" c="1">zhzhs</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4259847&goto=lastpost#lastpost">2017-03-28 15:37</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260776">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260776-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260776-1-10.html" onclick="atarget(this)" class="xst" >【求助】python 一个bug问题！！</a>
+<img src="static/image/stamp/011.small.gif" alt="新人帖" align="absmiddle" />
+<!-- 开启打赏 -->
+<img src="static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle" />
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-24467122.html" c="1">ggangelo</a></cite>
+<em><span>2017-03-27 12:23</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260776-1-10.html" class="xi2">1</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1046</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-ggangelo.html" c="1">ggangelo</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260776&goto=lastpost#lastpost">2017-03-27 14:48</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260663">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260663-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260663-1-10.html" onclick="atarget(this)" class="xst" >请教正则，提取匹配后面的字符串？</a>
+<!-- 开启打赏 -->
+<img src="static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle" />
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-20107976.html" c="1">w123456_cu</a></cite>
+<em><span>2017-03-23 15:18</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260663-1-10.html" class="xi2">6</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1373</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-w123456_cu.html" c="1">w123456_cu</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260663&goto=lastpost#lastpost">2017-03-24 17:56</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260522">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260522-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260522-1-10.html" onclick="atarget(this)" class="xst" >如何训练自己的编程思路</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-29191527.html" c="1">python爱好者</a></cite>
+<em><span>2017-03-20 11:57</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260522-1-10.html" class="xi2">1</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1185</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-python%B0%AE%BA%C3%D5%DF.html" c="1">python爱好者</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260522&goto=lastpost#lastpost">2017-03-24 07:51</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260484">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260484-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260484-1-10.html" onclick="atarget(this)" class="xst" >如何让Ubuntu16.04默认是python3.5？</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-20107976.html" c="1">w123456_cu</a></cite>
+<em><span>2017-03-18 16:32</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260484-1-10.html" class="xi2">4</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1323</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-yizuwei520.html" c="1">yizuwei520</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260484&goto=lastpost#lastpost">2017-03-20 16:47</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260367">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260367-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260367-1-10.html" onclick="atarget(this)" class="xst" >Python 小白求助，正则表达式处理文本</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-482124.html" c="1">jackwenghui</a></cite>
+<em><span>2017-03-15 18:45</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260367-1-10.html" class="xi2">2</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1055</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-ssfjhh.html" c="1">ssfjhh</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260367&goto=lastpost#lastpost">2017-03-16 21:41</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260402">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260402-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260402-1-10.html" onclick="atarget(this)" class="xst" >centos7中python2.7如何安装pysftp</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-559197.html" c="1">eremiter</a></cite>
+<em><span>2017-03-16 14:57</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260402-1-10.html" class="xi2">0</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1559</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-eremiter.html" c="1">eremiter</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260402&goto=lastpost#lastpost">2017-03-16 14:57</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_3618482">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-3618482-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-3618482-1-10.html" onclick="atarget(this)" class="xst" >求助 怎样修改anaconda 把系统默认的分区增加一个</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-17203269.html" c="1">haochao_1988</a></cite>
+<em><span>2011-11-14 13:50</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-3618482-1-10.html" class="xi2">2</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>2947</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-924687868.html" c="1">924687868</a></cite>
+<em><a href="forum.php?mod=redirect&tid=3618482&goto=lastpost#lastpost">2017-03-16 10:48</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260355">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260355-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260355-1-10.html" onclick="atarget(this)" class="xst" >求助：pygal.i18n中加载COUNTRIES失败</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-31432300.html" c="1">lorihuang</a></cite>
+<em><span>2017-03-15 14:15</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260355-1-10.html" class="xi2">1</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>2235</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-lorihuang.html" c="1">lorihuang</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260355&goto=lastpost#lastpost">2017-03-15 14:28</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4259587">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4259587-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4259587-1-10.html" onclick="atarget(this)" class="xst" >想用python扫描出指定开放端口</a>
+<img src="static/image/stamp/011.small.gif" alt="新人帖" align="absmiddle" />
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-31428976.html" c="1">没村架纯</a></cite>
+<em><span>2017-02-23 10:51</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4259587-1-10.html" class="xi2">4</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1000</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-python%B0%AE%BA%C3%D5%DF.html" c="1">python爱好者</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4259587&goto=lastpost#lastpost">2017-03-14 21:39</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4180887">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4180887-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4180887-1-10.html" onclick="atarget(this)" class="xst" >如何捅破python编程的那层纸</a>
+<!-- 开启打赏 -->
+<span class="tps">&nbsp;...<a href="thread-4180887-2-10.html">2</a></span>
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-29191527.html" c="1">python爱好者</a></cite>
+<em><span>2015-06-29 13:56</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4180887-1-10.html" class="xi2">10</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>2482</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-python%B0%AE%BA%C3%D5%DF.html" c="1">python爱好者</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4180887&goto=lastpost#lastpost">2017-03-14 17:42</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260256">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260256-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260256-1-10.html" onclick="atarget(this)" class="xst" >Python的变量打印问题</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-27682006.html" c="1">cwd0204</a></cite>
+<em><span>2017-03-12 10:18</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260256-1-10.html" class="xi2">2</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1222</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-expert1.html" c="1">expert1</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260256&goto=lastpost#lastpost">2017-03-14 17:17</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260293">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260293-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260293-1-10.html" onclick="atarget(this)" class="xst" >True/False用于or/and的问题</a>
+<img src="static/image/stamp/011.small.gif" alt="新人帖" align="absmiddle" />
+<!-- 开启打赏 -->
+<img src="static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle" />
+<span class="tps">&nbsp;...<a href="thread-4260293-2-10.html">2</a></span>
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-24126766.html" c="1">m0338005</a></cite>
+<em><span>2017-03-13 14:44</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260293-1-10.html" class="xi2">11</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1336</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-sditmaner.html" c="1">sditmaner</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260293&goto=lastpost#lastpost">2017-03-14 10:03</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260284">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260284-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260284-1-10.html" onclick="atarget(this)" class="xst" >python3文本中超链接处理问题求助</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-30441893.html" c="1">anna_bi</a></cite>
+<em><span>2017-03-13 11:43</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260284-1-10.html" class="xi2">0</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>916</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-anna_bi.html" c="1">anna_bi</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260284&goto=lastpost#lastpost">2017-03-13 11:43</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260262">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260262-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260262-1-10.html" onclick="atarget(this)" class="xst" >django forms.ModelForm 问题</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-23989554.html" c="1">ws00310976</a></cite>
+<em><span>2017-03-12 17:51</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260262-1-10.html" class="xi2">0</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>966</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-ws00310976.html" c="1">ws00310976</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260262&goto=lastpost#lastpost">2017-03-12 17:51</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260255">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260255-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260255-1-10.html" onclick="atarget(this)" class="xst" >请教大家一个问题</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-27682006.html" c="1">cwd0204</a></cite>
+<em><span>2017-03-12 00:25</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260255-1-10.html" class="xi2">0</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>921</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-cwd0204.html" c="1">cwd0204</a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260255&goto=lastpost#lastpost">2017-03-12 00:25</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_4260222">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-4260222-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-4260222-1-10.html" onclick="atarget(this)" class="xst" >有放回随机采样遇到的问题</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-31394502.html" c="1">buluto1986<em style='display: inline-block;width: 16px;height: 9px;background: url(source/plugin/auction/images/v.jpg) no-repeat;overflow: hidden;'></em></a></cite>
+<em><span>2017-03-10 12:38</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-4260222-1-10.html" class="xi2">0</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>1241</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-buluto1986.html" c="1">buluto1986<em style='display: inline-block;width: 16px;height: 9px;background: url(source/plugin/auction/images/v.jpg) no-repeat;overflow: hidden;'></em></a></cite>
+<em><a href="forum.php?mod=redirect&tid=4260222&goto=lastpost#lastpost">2017-03-10 12:38</a></em>
+</td>
+</tr>
+</tbody>
+<tbody id="normalthread_1067354">
+<tr>
+<!--2011.11.30增加style-->
+<td class="icn" style="border:1px solid #000;width:50px;text-align:center" bgcolor="#F0F3FA">
+<!-- 这里删除一堆的东西将原文件copy这 -->
+<center>
+<a href="thread-1067354-1-1.html" title="新窗口打开" target="_blank">
+<img src="static/image/common/folder_common.gif" style="margin-left:-5px"/></a>
+</center>
+</td>
+<th class="common" style="border:1px solid #000" colspan="2" bgcolor="#fafbfc">
+&nbsp;&nbsp;
+<!--将管理选项置顶图标移到标题td中 -->		
+
+<!--2011.11.30特殊主题图标 -->
+
+<!--2011.12.01精华图标 -->
+										
+	
+ <a href="thread-1067354-1-10.html" onclick="atarget(this)" class="xst" >请教高手们:PYTHON如何读取ZIP压缩文件里的单个文件</a>
+<!-- 开启打赏 -->
+</th>
+<td class="by" style="border:1px solid #000;width:114px;text-align:center" bgcolor="#F0F3FA">
+<cite>
+<a href="space-uid-9624363.html" c="1">jin_80</a></cite>
+<em><span>2008-03-19 08:58</span></em>
+</td>
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#fafbfc">
+<a href="thread-1067354-1-10.html" class="xi2">3</a>
+</td>
+<!--加一列 -->
+<td class="num" style="border:1px solid #000;text-align:center" bgcolor="#F0F3FA">
+<em>6969</em>
+</td>
+<td class="by" style="border:1px solid #000;text-align:center;width:115px" bgcolor="#fafbfc">
+<cite><a href="space-username-herocsz.html" c="1">herocsz</a></cite>
+<em><a href="forum.php?mod=redirect&tid=1067354&goto=lastpost#lastpost">2017-03-10 09:46</a></em>
+</td>
+</tr>
+</tbody>
+</table><!-- end of table "forum_G[fid]" branch 1/3 -->
+</form>
+</div>
+</div>
+
+<div id="filter_special_menu" class="p_pop" style="display:none" change="location.href='forum.php?mod=forumdisplay&fid=55&filter='+$('filter_special').value">
+<ul>
+<li><a href="forum-55-1.html">全部主题</a></li>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=specialtype&amp;specialtype=poll">投票</a></li><li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=specialtype&amp;specialtype=reward">悬赏</a></li><li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=specialtype&amp;specialtype=activity">活动</a></li></ul>
+</div>
+<div id="filter_dateline_menu" class="p_pop" style="display:none">
+<ul>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;orderby=&amp;filter=dateline">时间</a></li>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;orderby=&amp;filter=dateline&amp;dateline=86400">一天</a></li>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;orderby=&amp;filter=dateline&amp;dateline=172800">两天</a></li>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;orderby=&amp;filter=dateline&amp;dateline=604800">一周</a></li>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;orderby=&amp;filter=dateline&amp;dateline=2592000">一个月</a></li>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;orderby=&amp;filter=dateline&amp;dateline=7948800">三个月</a></li>
+</ul>
+</div>
+<div id="filter_orderby_menu" class="p_pop" style="display:none">
+<ul>
+<li><a href="forum-55-1.html">默认排序</a></li>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=author&amp;orderby=dateline">发帖时间</a></li>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=reply&amp;orderby=replies">回复/查看</a></li>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=reply&amp;orderby=views">查看</a></li>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=lastpost&amp;orderby=lastpost">最后发表</a></li>
+<li><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;filter=heat&amp;orderby=heats">热门</a></li>
+<ul>
+</div>
+<div class="bm bw0 pgs cl">
+<div class="pg"><a href="forum-55-1.html" class="first">1 ...</a><a href="forum-55-9.html" class="prev">&nbsp;&nbsp;</a><a href="forum-55-6.html">6</a><a href="forum-55-7.html">7</a><a href="forum-55-8.html">8</a><a href="forum-55-9.html">9</a><strong>10</strong><a href="forum-55-11.html">11</a><a href="forum-55-12.html">12</a><a href="forum-55-13.html">13</a><a href="forum-55-14.html">14</a><a href="forum-55-346.html" class="last">... 346</a><label><input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="10" onkeydown="if(event.keyCode==13) {window.location='forum.php?mod=forumdisplay&fid=55&amp;page='+this.value;; doane(event);}" /><span title="共 346 页"> / 346 页</span></label><a href="forum-55-11.html" class="nxt">下一页</a></div><span  class="pgb y"><a href="forum.php">最近访问版块</a></span>
+<!--增加版块跳转  -->
+<span style="float:right; padding:0px 0 4px 0; margin-top:1px">
+<select  style=" padding:5px 0 4px 0" onchange="if(this.options[this.selectedIndex].value != '') {
+window.location=('forum-' + this.options[this.selectedIndex].value + '-1.html') }">
+<option value="">版块跳转</option>
+<optgroup label="--Linux操作系统"><option value="216">新手园地</option><option value="269">&nbsp; &nbsp; &nbsp; 硬件问题</option><option value="217">Linux系统管理</option><option value="218">Linux网络问题</option><option value="223">Linux环境编程</option><option value="271">Linux桌面系统</option><option value="221">国产Linux</option></optgroup><optgroup label="--Unix操作系统"><option value="5">BSD</option><option value="127">&nbsp; &nbsp; &nbsp; BSD文档中心</option><option value="9">AIX</option><option value="193">&nbsp; &nbsp; &nbsp; 新手入门</option><option value="124">&nbsp; &nbsp; &nbsp; AIX文档中心</option><option value="189">&nbsp; &nbsp; &nbsp; 资源下载</option><option value="188">&nbsp; &nbsp; &nbsp; Power高级应用</option><option value="187">&nbsp; &nbsp; &nbsp; IBM存储</option><option value="10">AS400</option><option value="6">Solaris</option><option value="128">&nbsp; &nbsp; &nbsp; Solaris文档中心</option><option value="8">HP-UX</option><option value="129">&nbsp; &nbsp; &nbsp; HP文档中心</option><option value="7">SCO UNIX</option><option value="130">&nbsp; &nbsp; &nbsp; SCO文档中心</option><option value="118">互操作专区</option><option value="12">IRIX</option><option value="11">Tru64 UNIX</option><option value="41">Mac OS X</option></optgroup><optgroup label="--IT运维架构"><option value="141">门户网站运维</option><option value="233">集群和高可用</option><option value="232">服务器应用</option><option value="235">监控和防护</option><option value="283">虚拟化技术</option><option value="185">架构设计</option><option value="285">行业应用和管理</option></optgroup><optgroup label="--IT基础设施"><option value="45">服务器及硬件技术</option><option value="184">&nbsp; &nbsp; &nbsp; 服务器资源下载</option><option value="180">云计算</option><option value="181">&nbsp; &nbsp; &nbsp; 云计算文档中心</option><option value="182">&nbsp; &nbsp; &nbsp; 云计算业界</option><option value="183">&nbsp; &nbsp; &nbsp; 云计算资源下载</option><option value="34">存储备份</option><option value="125">&nbsp; &nbsp; &nbsp; 存储文档中心</option><option value="126">&nbsp; &nbsp; &nbsp; 存储业界</option><option value="145">&nbsp; &nbsp; &nbsp; 存储资源下载</option><option value="194">&nbsp; &nbsp; &nbsp; Symantec技术交流区</option><option value="29">安全技术</option><option value="30">网络技术</option><option value="131">&nbsp; &nbsp; &nbsp; 网络技术文档中心</option></optgroup><optgroup label="--程序设计"><option value="23">C/C++</option><option value="84">&nbsp; &nbsp; &nbsp; GUI编程</option><option value="142">&nbsp; &nbsp; &nbsp; Functional编程</option><option value="224">内核源码</option><option value="220">&nbsp; &nbsp; &nbsp; 内核问题</option><option value="222">移动开发</option><option value="265">&nbsp; &nbsp; &nbsp; 移动开发技术资料</option><option value="24">Shell</option><option value="25">Perl</option><option value="26">Java</option><option value="133">&nbsp; &nbsp; &nbsp; Java文档中心</option><option value="27">PHP</option><option value="135">&nbsp; &nbsp; &nbsp; php文档中心</option><option value="55">Python</option><option value="132">&nbsp; &nbsp; &nbsp; Python文档中心</option><option value="116">Ruby</option><option value="226">CPU与编译器</option><option value="225">嵌入式开发</option><option value="227">驱动开发</option><option value="80">Web开发</option><option value="100">VoIP开发技术</option></optgroup><optgroup label="--数据库技术"><option value="17">MySQL</option><option value="136">&nbsp; &nbsp; &nbsp; MySQL文档中心</option><option value="21">Sybase</option><option value="19">Oracle</option><option value="18">PostgreSQL</option><option value="22">DB2</option><option value="20">Informix</option><option value="140">数据仓库与数据挖掘</option><option value="292">NoSQL技术</option></optgroup><optgroup label="--综合交流区"><option value="46">IT业界新闻与评论</option><option value="32">IT职业生涯</option><option value="293">&nbsp; &nbsp; &nbsp; 猎头招聘</option><option value="82">IT图书与评论</option><option value="156">&nbsp; &nbsp; &nbsp; CU技术图书大系</option><option value="247">&nbsp; &nbsp; &nbsp; Linux书友会</option><option value="54">二手交易</option><option value="249">下载共享</option><option value="250">Linux文档专区</option><option value="53">IT培训与认证</option><option value="295">&nbsp; &nbsp; &nbsp; 培训交流</option><option value="191">&nbsp; &nbsp; &nbsp; 认证培训</option></optgroup><optgroup label="--休闲生活"><option value="31">清茶斋</option><option value="115">投资理财</option><option value="39">运动地带</option><option value="40">快乐数码摄影</option><option value="168">&nbsp; &nbsp; &nbsp; 摄影器材</option><option value="134">&nbsp; &nbsp; &nbsp; 摄影比赛专区</option><option value="121">IT爱车族</option><option value="96">旅游天下</option></optgroup><optgroup label="--站务及频道"><option value="2">站务交流</option><option value="3">版主会议室</option><option value="51">博客SNS站务交流区</option><option value="123">CU活动专区</option><option value="207">&nbsp; &nbsp; &nbsp; Power活动专区</option><option value="169">&nbsp; &nbsp; &nbsp; 拍卖交流区</option><option value="97">频道交流区</option></optgroup></select>
+</span>
+<a href="javascript:;" id="newspecialtmp" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})" onclick="showWindow('newthread', 'forum.php?mod=post&action=newthread&fid=55')" title="发新帖"><img src="static/image/common/pn_post.png" alt="发新帖" /></a></div>
+<!--[diy=diyfastposttop]--><div id="diyfastposttop" class="area"></div><!--[/diy]-->
+<script type="text/javascript">
+var postminchars = parseInt('10');
+var postmaxchars = parseInt('40000');
+var disablepostctrl = parseInt('0');
+var fid = parseInt('55');
+</script>
+<div id="f_pst" class="bm">
+<div class="bm_h">
+<h2>快速发帖</h2>
+</div>
+<div class="bm_c">
+<form method="post" autocomplete="off" id="fastpostform" action="forum.php?mod=post&amp;action=newthread&amp;fid=55&amp;topicsubmit=yes&amp;infloat=yes&amp;handlekey=fastnewpost" onSubmit="return fastpostvalidate(this)">
+
+<div id="fastpostreturn" style="margin:-5px 0 5px"></div>
+
+<div class="pbt cl">
+<input type="text" id="subject" name="subject" class="px" value="" onkeyup="strLenCalc(this, 'checklen', 80);" tabindex="11" style="width: 25em" />
+<span>还可输入 <strong id="checklen">80</strong> 个字符</span>
+</div>
+
+<div class="cl">
+<div id="fastsmiliesdiv" class="y"><div id="fastsmiliesdiv_data"><div id="fastsmilies"></div></div></div><div class="hasfsl" id="fastposteditor">
+<div class="tedt">
+<div class="bar">
+<span class="y">
+<a href="forum.php?mod=post&amp;action=newthread&amp;fid=55" onclick="switchAdvanceMode(this.href);doane(event);">高级模式</a>
+</span><script src="static/js/seditor.js?cYn" type="text/javascript"></script>
+<div class="fpd">
+<a href="javascript:;" title="文字加粗" class="fbld">B</a>
+<a href="javascript:;" title="设置文字颜色" class="fclr" id="fastpostforecolor">Color</a>
+<a id="fastpostimg" href="javascript:;" title="图片" class="fmg">Image</a>
+<a id="fastposturl" href="javascript:;" title="添加链接" class="flnk">Link</a>
+<a id="fastpostquote" href="javascript:;" title="引用" class="fqt">Quote</a>
+<a id="fastpostcode" href="javascript:;" title="代码" class="fcd">Code</a>
+<a href="javascript:;" class="fsml" id="fastpostsml">Smilies</a>
+</div>
+</div>
+<div class="area">
+<div class="pt hm">
+您需要登录后才可以发帖 <a href="member.php?mod=logging&amp;action=login" onclick="showWindow('login', this.href)" class="xi2">登录</a> | <a href="member.php?mod=register" class="xi2">注册</a>
+</div>
+</div>
+</div>
+</div>
+<div id="seccheck_fastpost">
+</div>
+
+<input type="hidden" name="formhash" value="9ab83c8b" />
+<input type="hidden" name="usesig" value="" />
+</div>
+
+
+<p class="ptm pnpost">
+<a href="home.php?mod=spacecp&amp;ac=credit&amp;op=rule&amp;fid=55" class="y" target="_blank">本版积分规则</a>
+<button type="submit" onmouseover="checkpostrule('seccheck_fastpost', 'ac=newthread');this.onmouseover=null" name="topicsubmit" id="fastpostsubmit" value="topicsubmit" tabindex="13" class="pn pnc"><strong>发表帖子</strong></button>
+</p>
+</form>
+</div>
+</div>
+
+<!--[diy=diyforumdisplaybottom]--><div id="diyforumdisplaybottom" class="area"></div><!--[/diy]-->
+</div>
+
+</div>
+</div>
+<script type="text/javascript">document.onkeyup = function(e){keyPageScroll(e, 1, 1, 'forum.php?mod=forumdisplay&fid=55&filter=&orderby=&', 10);}</script>
+
+<div class="wp mtn">
+<!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
+</div>
+
+
+<!--正在浏览此版块的 -->
+
+
+<div class="bm" >
+<div class="bm_h cl"  style="background-color:#9898BA">
+<span class="o y"><a href="forum.php?mod=forumdisplay&amp;fid=55&amp;page=10&amp;showoldetails=yes#online" class="nobdr"><img src="static/image/common/collapsed_yes.gif" alt="" /></a></span>
+<h2><font color="#fff">正在浏览此版块的会员 ()</font></h2>
+</div>
+</div>
+
+<!--有无新帖图标-->				
+<div style="padding: 9px;">
+<center>
+<table width="100%" align="center" style="border-collapse: collapse">
+<tbody><tr><td align="center">
+<img alt="" src="static/image/common/folder_new.gif">&nbsp; 有新回复
+<img alt="" src="static/image/common/folder_hot_new.gif">&nbsp; 有新回复的热门主题
+<img alt="" src="static/image/common/folder_lock.gif">&nbsp; 关闭主题
+<img alt="" src="static/image/common/folder_common.gif">&nbsp; 无新回复
+<img alt="" src="static/image/common/folder_hot_common.gif">&nbsp; 热门主题
+</td></tr>
+</tbody></table>
+<center>
+</center></center></div>	</div>
+&nbsp;&nbsp;<span id="tcss"></span><script type="text/javascript" src="http://tcss.qq.com/ping.js?v=1VERHASH" charset="utf-8"></script><script type="text/javascript" reload="1">pgvMain({"discuzParams":{"r2":"8399146","ui":0,"rt":"forum","md":"forumdisplay","fi":"55","pn":10,"qq":"000"},"extraParams":""});</script><div><div style="text-align:center;margin-bottom:10px;">
+<script type="text/javascript" smua="d=p&s=b&u=u3118757&w=960&h=90" src="//www.nksc
+dn.com/smu0/o.js"></script>
+</div></div><div style="width:960px; margin:0 auto; text-align:center; line-height:18px; padding:0 10px 10px 10px">
+<p>北京盛拓优讯信息技术有限公司. 版权所有 京ICP备16024965号 北京市公安局海淀分局网监中心备案编号：11010802020122<br/>	
+广播电视节目制作经营许可证(京) 字第1234号  中国互联网协会会员&nbsp;&nbsp;联系我们：wangnan@it168.com
+<br >感谢所有关心和支持过ChinaUnix的朋友们    转载本站内容请注明原作者名及出处</p>
+</div>
+
+<table align="center">
+<tr>
+<td align="center">
+<a href="member.php?mod=clearcookies">清除 Cookies</a> - <a target="_blank" href="http://www.chinaunix.net">ChinaUnix</a>
+ 	- <a target="_blank" href="archiver/">Archiver</a> - <a target="_blank" href="/">WAP</a> - <a href="#top">TOP</a>
+</td>
+</tr>
+</table>
+
+<!--广告标签 -->
+<!--  <script type='text/javascript' src='http://168.it168.com/js/599.js'></script>-->
+<!-- <script type='text/javascript' src='http://168.it168.com/js/863.js'></script>-->
+<script>if(typeof(BLA)!='undefined'){BLA();}</script>
+<!--新版测试广告标签 -->
+<script type="text/javascript">
+var SeriesId='';
+var BrandId='';
+</script>
+<!-- <script type='text/javascript' src='http://168.it168.com/ajs/599.js'></script> -->
+<!-- <script type='text/javascript' src='http://168.it168.com/ajs/863.js'></script> -->
+
+    <!--//ITPUB 腾讯分析代码-->
+        &nbsp;&nbsp;<span id="tcss"></span><script type="text/javascript" src="http://tcss.qq.com/ping.js?v=1VERHASH" charset="utf-8"></script><script type="text/javascript" reload="1">pgvMain({"discuzParams":{"r2":"8399146","ui":0,"rt":"forum","md":"forumdisplay","fi":"55","pn":10,"qq":"000"},"extraParams":""});</script>        </script>
+    
+<div id="g_upmine_menu" class="tip tip_3" style="display:none;">
+<div class="tip_c">
+积分 0, 距离下一级还需  积分
+</div>
+<div class="tip_horn"></div>
+</div>
+<script src="home.php?mod=misc&ac=sendmail&rand=1538312077" type="text/javascript"></script>
+<!--回顶部js2011.12.30-->
+<script language="javascript">
+ lastScrollY=0;
+ function heartBeat(){
+ var diffY;
+ if (document.documentElement && document.documentElement.scrollTop)
+     diffY = document.documentElement.scrollTop;
+ else if (document.body)
+     diffY = document.body.scrollTop
+ else
+     {/*Netscape stuff*/}
+ percent=.1*(diffY-lastScrollY);
+ if(percent>0)percent=Math.ceil(percent);
+ else percent=Math.floor(percent);
+ document.getElementById("full").style.top=parseInt(document.getElementById("full").style.top)+percent+"px";
+ lastScrollY=lastScrollY+percent;
+ if(lastScrollY<200)
+ {
+ document.getElementById("full").style.display="none";
+ }
+ else
+ {
+ document.getElementById("full").style.display="block";
+ }
+ }
+ var gkuan=document.body.clientWidth;
+ var ks=(gkuan-960)/2-30;
+ suspendcode="<div id=\"full\" style='right:4px;POSITION:absolute;TOP:500px;z-index:100;width:20px; height:50px;cursor:pointer;'><a href=\"javascript:void(0)\" onclick=\"window.scrollTo(0,0);\"></a></div>"
+ document.write(suspendcode);
+ window.setInterval("heartBeat()",1);
+ </script>
+
+
+<!-- 统计 START -->
+<script src="http://stat.it168.com/pv.js" type="text/javascript" type="text/javascript"></script>
+<script type='text/javascript'>
+function sendPV(){
+    var pvTrack = new PvTrack();
+    pvTrack.type = 35; // 频道类别ID
+    pvTrack.channel = 22; // 频道ID
+    pvTrack.pageType = 0;
+    pvTrack.track();
+}
+window.setTimeout("sendPV()", 0);
+</script>
+<script type="text/javascript">
+//  var _gaq = _gaq || [];
+//  _gaq.push(['_setAccount', 'UA-20237423-2']);
+//  _gaq.push(['_setDomainName', '.chinaunix.net']);
+//  _gaq.push(['_trackPageview']);
+//  (function() {
+//    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+//    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+//  })();
+</script>
+<script type="text/javascript"> 
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js?0ee5e8cdc4d43389b3d1bfd76e83216b' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!-- 统计 END -->
+
+<!-- 临时加的广告统计 al -->
+<!--  临时加的广告统计 阿狸-->			<div id="discuz_tips" style="display:none;"></div>
+			<script type="text/javascript">
+				var tipsinfo = '8399146|X3.2|0.6||0||0|7|1538312077|1a73b0e65294be1b19cf996d8ca5ff92|2';
+			</script></body>
+</html>
