@@ -4,7 +4,9 @@
             "path": "",
             "envManager": "ms-python.python:conda",
             "packageManager": "ms-python.python:conda",
-            "python.defaultInterpreterPath": "/home/lnick/anaconda3/envs/pytorch"
+            "[jupyter-notebook]": {
+                "editor.defaultFormatter": "ms-python.black-formatter"
+            },
         }
     ]
 }
