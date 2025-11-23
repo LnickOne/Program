@@ -6,7 +6,13 @@
             "packageManager": "ms-python.python:conda",
             "[jupyter-notebook]": {
                 "editor.defaultFormatter": "ms-python.black-formatter"
-            },
+            }
+        },
+        {
+            "path": "YOLO",
+            "envManager": "ms-python.python:conda",
+            "packageManager": "ms-python.python:conda",
+            "workspace": "CV"
         }
     ]
 }
