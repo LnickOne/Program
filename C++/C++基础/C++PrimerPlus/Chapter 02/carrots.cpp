@@ -1,10 +1,9 @@
 // carrots.cpp -- 食品处理程序
 // 使用并显示变量
-
 #include <iostream>
-using namespace std;
 int main()
 {
+    using namespace std;
     int carrots;  // 声明一个整型变量
     carrots = 25; // 给变量赋值
     cout << "I have ";
