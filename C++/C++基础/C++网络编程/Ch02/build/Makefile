@@ -173,6 +173,32 @@ client/fast:
 .PHONY : client/fast
 
 #=============================================================================
+# Target rules for targets named server_thread
+
+# Build rule for target.
+server_thread: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server_thread
+.PHONY : server_thread
+
+# fast build rule for target.
+server_thread/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_thread.dir/build.make CMakeFiles/server_thread.dir/build
+.PHONY : server_thread/fast
+
+#=============================================================================
+# Target rules for targets named client_thread
+
+# Build rule for target.
+client_thread: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_thread
+.PHONY : client_thread
+
+# fast build rule for target.
+client_thread/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_thread.dir/build.make CMakeFiles/client_thread.dir/build
+.PHONY : client_thread/fast
+
+#=============================================================================
 # Target rules for targets named Experimental
 
 # Build rule for target.
@@ -560,6 +586,30 @@ client.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client.cpp.s
 .PHONY : client.cpp.s
 
+client_thread.o: client_thread.cpp.o
+.PHONY : client_thread.o
+
+# target to build an object file
+client_thread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_thread.dir/build.make CMakeFiles/client_thread.dir/client_thread.cpp.o
+.PHONY : client_thread.cpp.o
+
+client_thread.i: client_thread.cpp.i
+.PHONY : client_thread.i
+
+# target to preprocess a source file
+client_thread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_thread.dir/build.make CMakeFiles/client_thread.dir/client_thread.cpp.i
+.PHONY : client_thread.cpp.i
+
+client_thread.s: client_thread.cpp.s
+.PHONY : client_thread.s
+
+# target to generate assembly for a file
+client_thread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_thread.dir/build.make CMakeFiles/client_thread.dir/client_thread.cpp.s
+.PHONY : client_thread.cpp.s
+
 server.o: server.cpp.o
 .PHONY : server.o
 
@@ -583,6 +633,30 @@ server.s: server.cpp.s
 server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cpp.s
 .PHONY : server.cpp.s
+
+server_thread.o: server_thread.cpp.o
+.PHONY : server_thread.o
+
+# target to build an object file
+server_thread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_thread.dir/build.make CMakeFiles/server_thread.dir/server_thread.cpp.o
+.PHONY : server_thread.cpp.o
+
+server_thread.i: server_thread.cpp.i
+.PHONY : server_thread.i
+
+# target to preprocess a source file
+server_thread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_thread.dir/build.make CMakeFiles/server_thread.dir/server_thread.cpp.i
+.PHONY : server_thread.cpp.i
+
+server_thread.s: server_thread.cpp.s
+.PHONY : server_thread.s
+
+# target to generate assembly for a file
+server_thread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_thread.dir/build.make CMakeFiles/server_thread.dir/server_thread.cpp.s
+.PHONY : server_thread.cpp.s
 
 # Help Target
 help:
@@ -624,13 +698,21 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... client"
+	@echo "... client_thread"
 	@echo "... server"
+	@echo "... server_thread"
 	@echo "... client.o"
 	@echo "... client.i"
 	@echo "... client.s"
+	@echo "... client_thread.o"
+	@echo "... client_thread.i"
+	@echo "... client_thread.s"
 	@echo "... server.o"
 	@echo "... server.i"
 	@echo "... server.s"
+	@echo "... server_thread.o"
+	@echo "... server_thread.i"
+	@echo "... server_thread.s"
 .PHONY : help
 
 

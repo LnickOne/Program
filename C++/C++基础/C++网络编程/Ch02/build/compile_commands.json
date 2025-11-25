@@ -8,5 +8,15 @@
   "directory": "/home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/build",
   "command": "/usr/bin/c++   -g -o CMakeFiles/client.dir/client.cpp.o -c /home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/client.cpp",
   "file": "/home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/client.cpp"
+},
+{
+  "directory": "/home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/server_thread.dir/server_thread.cpp.o -c /home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/server_thread.cpp",
+  "file": "/home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/server_thread.cpp"
+},
+{
+  "directory": "/home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/client_thread.dir/client_thread.cpp.o -c /home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/client_thread.cpp",
+  "file": "/home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/client_thread.cpp"
 }
 ]

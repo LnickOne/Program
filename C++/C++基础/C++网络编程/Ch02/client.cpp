@@ -5,56 +5,101 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include <signal.h>
+
+// 全局变量，用于信号处理
+bool running = true;
+int client_sock = -1;
+
+// 信号处理函数
+void signalHandler(int signum)
+{
+    std::cout << "\n收到终止信号，正在关闭客户端..." << std::endl;
+    running = false;
+
+    // 关闭套接字
+    if (client_sock != -1)
+    {
+        close(client_sock);
+        std::cout << "连接已关闭" << std::endl;
+    }
+
+    exit(0);
+}
 
 int main()
 {
+    // 注册信号处理函数
+    signal(SIGINT, signalHandler);
+
     // 1.创建一个套接字socket
-    int client_sock = socket(AF_INET, SOCK_STREAM, 0);
+    client_sock = socket(AF_INET, SOCK_STREAM, 0);
     if (client_sock == -1)
     {
         std::cout << "socket create error" << std::endl;
         return -1;
     }
+
     // 2.连接服务器
     struct sockaddr_in server_addr;
-    memset(&server_addr, 0, sizeof(server_addr)); // 清零整个结构
-    server_addr.sin_family = AF_INET;             // 设置地址族为IPv4
+    memset(&server_addr, 0, sizeof(server_addr));
+    server_addr.sin_family = AF_INET;
     inet_pton(AF_INET, "127.0.0.1", &server_addr.sin_addr.s_addr);
     server_addr.sin_port = htons(6666);
+
     if (connect(client_sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1)
     {
         std::cout << "connect error" << std::endl;
+        close(client_sock);
         return -1;
     }
-    std::cout << "连接服务器成功" << std::endl;
 
-    // 3.数据交互
-    std::string msg = "Hello, server!";
+    std::cout << "连接服务器成功 (按Ctrl+C退出)" << std::endl;
 
-    if (write(client_sock, msg.c_str(), msg.size()) == -1)
+    // 3.数据交互 - 持续通信循环
+    while (running)
     {
-        std::cout << "write error" << std::endl;
-        return -1;
-    }
-    // 接收消息
-    char buffer[1024] = {0};                                       // 初始化缓冲区为0，防止乱码
-    int read_size = read(client_sock, buffer, sizeof(buffer) - 1); // 留一个字节给终止符
+        // 发送消息
+        std::string msg;
+        std::cout << "客户端发送: " << std::flush;
+        std::getline(std::cin, msg);
 
-    if (read_size == -1)
-    {
-        std::cout << "read error" << std::endl;
-        return -1;
-    }
-    else if (read_size == 0)
-    {
-        std::cout << "服务器已关闭连接" << std::endl;
-        return -1;
+        if (msg.empty())
+        {
+            continue; // 跳过空消息
+        }
+
+        if (write(client_sock, msg.c_str(), msg.size()) == -1)
+        {
+            std::cout << "write error" << std::endl;
+            break;
+        }
+
+        // 接收回复
+        char buffer[1024] = {0};
+        int read_size = read(client_sock, buffer, sizeof(buffer) - 1);
+
+        if (read_size == -1)
+        {
+            std::cout << "read error" << std::endl;
+            break;
+        }
+        else if (read_size == 0)
+        {
+            std::cout << "服务器已关闭连接" << std::endl;
+            break;
+        }
+
+        buffer[read_size] = '\0';
+        std::cout << "服务器: " << buffer << std::endl;
     }
 
-    buffer[read_size] = '\0'; // 确保字符串正确终止
-    std::cout << "接收到服务器的数据：" << buffer << std::endl;
     // 4.关闭套接字
-    close(client_sock);
+    if (client_sock != -1)
+    {
+        close(client_sock);
+    }
 
+    std::cout << "客户端已关闭" << std::endl;
     return 0;
 }

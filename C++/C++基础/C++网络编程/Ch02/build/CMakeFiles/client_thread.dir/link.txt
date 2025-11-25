@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/client_thread.dir/client_thread.cpp.o -o client_thread 
