@@ -6,8 +6,8 @@ add_executable(client client.cpp)
 add_executable(server_thread server_thread.cpp)
 add_executable(client_thread client_thread.cpp)
 
-include(CTest)
-enable_testing()
+# include(CTest)
+# enable_testing()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
