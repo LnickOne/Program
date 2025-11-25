@@ -1,4 +1,5 @@
 /home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/build/CMakeFiles/server.dir
+/home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/build/CMakeFiles/client.dir
 /home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/build/CMakeFiles/Experimental.dir
 /home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/build/CMakeFiles/Nightly.dir
 /home/lnick/GitHub/Program/C++/C++基础/C++网络编程/Ch02/build/CMakeFiles/Continuous.dir
