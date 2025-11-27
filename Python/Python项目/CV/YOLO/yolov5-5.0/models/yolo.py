@@ -1,5 +1,23 @@
 # YOLOv5 YOLO-specific modules
-
+from .common import (
+    Conv,
+    # GhostConv,  # 移除不存在的类
+    Bottleneck,
+    # GhostBottleneck,  # 移除不存在的类
+    SPP,
+    SPPF,  # 保留SPPF导入
+    DWConv,
+    # MixConv2d,  # 移除不存在的类
+    Focus,
+    # CrossConv,  # 移除不存在的类
+    # BottleneckCSP,  # 移除不存在的类
+    C3,
+    # C3TR,  # 移除不存在的类
+    # C3SPP,  # 移除不存在的类
+    # C3Ghost,  # 移除不存在的类
+    nn,
+    # Ensemble,  # 移除不存在的类
+)
 import argparse
 import logging
 import sys
@@ -47,6 +65,8 @@ class Detect(nn.Module):
         self.m = nn.ModuleList(
             nn.Conv2d(x, self.no * self.na, 1) for x in ch
         )  # output conv
+        # 添加缺失的inplace属性
+        self.inplace = True
 
     def forward(self, x):
         # x = x.copy()  # for profiling
@@ -286,19 +306,34 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
                 pass
 
         n = max(round(n * gd), 1) if n > 1 else n  # depth gain
+        # if m in [
+        #     Conv,
+        #     GhostConv,
+        #     Bottleneck,
+        #     GhostBottleneck,
+        #     SPP,
+        #     DWConv,
+        #     MixConv2d,
+        #     Focus,
+        #     CrossConv,
+        #     BottleneckCSP,
+        #     C3,
+        #     C3TR,
+        # ]:
         if m in [
             Conv,
-            GhostConv,
+            # GhostConv,  # 移除不存在的类
             Bottleneck,
-            GhostBottleneck,
+            # GhostBottleneck,  # 移除不存在的类
             SPP,
+            SPPF,  # 添加SPPF类
             DWConv,
-            MixConv2d,
+            # MixConv2d,  # 移除不存在的类
             Focus,
-            CrossConv,
-            BottleneckCSP,
+            # CrossConv,  # 移除不存在的类
+            # BottleneckCSP,  # 移除不存在的类
             C3,
-            C3TR,
+            # C3TR,  # 移除不存在的类
         ]:
             c1, c2 = ch[f], args[0]
             if c2 != no:  # if not output

@@ -494,14 +494,68 @@ class Classify(nn.Module):
         return self.flat(self.conv(z))  # flatten to x(b,c2)
 
 
-class SPPF(nn.Module):
-    # Spatial Pyramid Pooling - Fast (SPPF) layer for YOLOv5 by Glenn Jocher
-    def __init__(self, c1, c2, k=5):  # equivalent to SPP(k=(5, 9, 13))
-        super(SPPF, self).__init__()
+# class SPPF(nn.Module):
+#     # Spatial Pyramid Pooling - Fast (SPPF) layer for YOLOv5 by Glenn Jocher
+#     def __init__(self, c1, c2, k=5):  # equivalent to SPP(k=(5, 9, 13))
+#         super(SPPF, self).__init__()
+#         c_ = c1 // 2  # hidden channels
+#         self.cv1 = Conv(c1, c_, 1, 1)
+#         self.cv2 = Conv(c_ * 4, c2, 1, 1)
+#         self.m = nn.MaxPool2d(kernel_size=k, stride=1, padding=k // 2)
+
+
+#     def forward(self, x):
+#         x = self.cv1(x)
+#         with warnings.catch_warnings():
+#             warnings.simplefilter("ignore")  # suppress torch 1.9.0 max_pool2d() warning
+#             y1 = self.m(x)
+#             y2 = self.m(y1)
+#             return self.cv2(torch.cat([x, y1, y2, self.m(y2)], 1))
+# 先找到原始的SPP类并注释掉或删除它
+# class SPP(nn.Module):
+#     # Spatial pyramid pooling layer used in YOLOv3-SPP
+#     def __init__(self, c1, c2, k=(5, 9, 13)):
+#         super(SPP, self).__init__()
+#         c_ = c1 // 2  # hidden channels
+#         self.cv1 = Conv(c1, c_, 1, 1)
+#         self.cv2 = Conv(c_ * (len(k) + 1), c2, 1, 1)
+#         self.m = nn.ModuleList(
+#             [nn.MaxPool2d(kernel_size=x, stride=1, padding=x // 2) for x in k]
+#         )
+
+#     def forward(self, x):
+#         x = self.cv1(x)
+#         return self.cv2(torch.cat([x] + [m(x) for m in self.m], 1))
+
+
+# 保留原始的SPP类，确保与配置文件兼容
+class SPP(nn.Module):
+    # Spatial pyramid pooling layer used in YOLOv3-SPP
+    def __init__(self, c1, c2, k=(5, 9, 13)):
+        super(SPP, self).__init__()
         c_ = c1 // 2  # hidden channels
         self.cv1 = Conv(c1, c_, 1, 1)
-        self.cv2 = Conv(c_ * 4, c2, 1, 1)
-        self.m = nn.MaxPool2d(kernel_size=k, stride=1, padding=k // 2)
+        self.cv2 = Conv(c_ * (len(k) + 1), c2, 1, 1)
+        self.m = nn.ModuleList(
+            [nn.MaxPool2d(kernel_size=x, stride=1, padding=x // 2) for x in k]
+        )
+
+    def forward(self, x):
+        x = self.cv1(x)
+        return self.cv2(torch.cat([x] + [m(x) for m in self.m], 1))
+
+
+# 添加SPPF类以支持预训练权重的加载
+class SPPF(nn.Module):
+    # Spatial Pyramid Pooling - Fast (SPPF) layer for YOLOv5 by Glenn Jocher
+    def __init__(self, c1, c2, k=(5, 9, 13)):  # 修改为接受列表参数
+        super(SPPF, self).__init__()
+        # 关键：使用与SPP相同的通道计算方式
+        c_ = c1 // 2  # hidden channels
+        self.cv1 = Conv(c1, c_, 1, 1)  # 第一个卷积将通道减半
+        # 这里使用固定的4个分支，与配置文件中的len(k)+1一致
+        self.cv2 = Conv(c_ * 4, c2, 1, 1)  # 计算总通道数
+        self.m = nn.MaxPool2d(kernel_size=5, stride=1, padding=2)  # 使用固定的5x5池化核
 
     def forward(self, x):
         x = self.cv1(x)
@@ -509,4 +563,5 @@ class SPPF(nn.Module):
             warnings.simplefilter("ignore")  # suppress torch 1.9.0 max_pool2d() warning
             y1 = self.m(x)
             y2 = self.m(y1)
-            return self.cv2(torch.cat([x, y1, y2, self.m(y2)], 1))
+            y3 = self.m(y2)
+            return self.cv2(torch.cat([x, y1, y2, y3], 1))  # 连接4个分支
