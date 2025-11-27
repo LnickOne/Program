@@ -8,10 +8,10 @@
 
 class EventLoop;
 
-/**
+/*
  * 理清楚 EventLoop、Channel、Poller之间的关系  Reactor模型上对应多路事件分发器
  * Channel理解为通道 封装了sockfd和其感兴趣的event 如EPOLLIN、EPOLLOUT事件 还绑定了poller返回的具体事件
- **/
+ */
 class Channel : noncopyable
 {
 public:
@@ -38,11 +38,31 @@ public:
     void set_revents(int revt) { revents_ = revt; }
 
     // 设置fd相应的事件状态 相当于epoll_ctl add delete
-    void enableReading() { events_ |= kReadEvent; update(); }
-    void disableReading() { events_ &= ~kReadEvent; update(); }
-    void enableWriting() { events_ |= kWriteEvent; update(); }
-    void disableWriting() { events_ &= ~kWriteEvent; update(); }
-    void disableAll() { events_ = kNoneEvent; update(); }
+    void enableReading()
+    {
+        events_ |= kReadEvent;
+        update();
+    }
+    void disableReading()
+    {
+        events_ &= ~kReadEvent;
+        update();
+    }
+    void enableWriting()
+    {
+        events_ |= kWriteEvent;
+        update();
+    }
+    void disableWriting()
+    {
+        events_ &= ~kWriteEvent;
+        update();
+    }
+    void disableAll()
+    {
+        events_ = kNoneEvent;
+        update();
+    }
 
     // 返回fd当前的事件状态
     bool isNoneEvent() const { return events_ == kNoneEvent; }
@@ -55,8 +75,8 @@ public:
     // one loop per thread
     EventLoop *ownerLoop() { return loop_; }
     void remove();
-private:
 
+private:
     void update();
     void handleEventWithGuard(Timestamp receiveTime);
 

@@ -13,12 +13,12 @@ std::atomic 的使用方式类似于普通的 C++ 变量，但是它的操作是
 #include <atomic>
 #include <iostream>
 #include <thread>
-std::atomic<int> count = 0;
+std::atomic<int> count(0);
 void increment()
 {
-    for (int i = 0; i < 1000000; ++i)
+    for (int i = 0; i < 1000000; i += 1)
     {
-        count++;
+        count += 1;
     }
 }
 int main()

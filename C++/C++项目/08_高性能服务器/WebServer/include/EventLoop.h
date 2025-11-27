@@ -44,7 +44,7 @@ public:
 
     // 判断EventLoop对象是否在自己的线程里
     bool isInLoopThread() const { return threadId_ == CurrentThread::tid(); } // threadId_为EventLoop创建时的线程id CurrentThread::tid()为当前线程id
-    /**
+    /*
      * 定时任务相关函数
      */
     void runAt(Timestamp timestamp, Functor &&cb)
