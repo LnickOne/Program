@@ -1,102 +1,169 @@
 #pragma once
-#include <iostream>
-using namespace std;
+
+#include <utility> // 用于std::move
 
 template <class T>
 class MyArray
 {
 public:
+    // 默认构造函数
+    MyArray() : pAddress(nullptr), m_Capacity(0), m_Size(0) {}
+
     // 构造函数
-    MyArray(int capacity)
+    explicit MyArray(int capacity) : m_Capacity(capacity), m_Size(0)
     {
-        this->m_Capacity = capacity;
-        this->m_Size = 0;
-        pAddress = new T[this->m_Capacity];
+        if (capacity > 0)
+        {
+            pAddress = new T[capacity];
+        }
+        else
+        {
+            pAddress = nullptr;
+        }
     }
 
     // 拷贝构造
-    MyArray(const MyArray &arr)
+    MyArray(const MyArray &arr) : m_Capacity(arr.m_Capacity), m_Size(arr.m_Size)
     {
-        this->m_Capacity = arr.m_Capacity;
-        this->m_Size = arr.m_Size;
-        this->pAddress = new T[this->m_Capacity];
-        for (int i = 0; i < this->m_Size; i++)
+        if (m_Capacity > 0)
         {
-            // 如果T为对象，而且还包含指针，必须需要重载 = 操作符，因为这个等号不是 构造 而是赋值，
-            //  普通类型可以直接= 但是指针类型需要深拷贝
-            this->pAddress[i] = arr.pAddress[i];
+            pAddress = new T[m_Capacity];
+            for (int i = 0; i < m_Size; i++)
+            {
+                pAddress[i] = arr.pAddress[i]; // 直接访问，避免递归
+            }
+        }
+        else
+        {
+            pAddress = nullptr;
         }
     }
 
-    // 重载= 操作符  防止浅拷贝问题
+    // 移动构造
+    MyArray(MyArray &&arr) noexcept : pAddress(arr.pAddress),
+                                      m_Capacity(arr.m_Capacity),
+                                      m_Size(arr.m_Size)
+    {
+        // 将原对象置于有效但不确定的状态
+        arr.pAddress = nullptr;
+        arr.m_Capacity = 0;
+        arr.m_Size = 0;
+    }
+
+    // 重载= 操作符
     MyArray &operator=(const MyArray &myarray)
     {
-        if (this->pAddress != NULL)
-        {
-            delete[] this->pAddress;
-            this->m_Capacity = 0;
-            this->m_Size = 0;
-        }
+        if (this != &myarray)
+        { // 自我赋值检查
+            // 释放原有资源
+            delete[] pAddress;
 
-        this->m_Capacity = myarray.m_Capacity;
-        this->m_Size = myarray.m_Size;
-        this->pAddress = new T[this->m_Capacity];
-        for (int i = 0; i < this->m_Size; i++)
-        {
-            this->pAddress[i] = myarray[i];
+            // 分配新资源并拷贝
+            m_Capacity = myarray.m_Capacity;
+            m_Size = myarray.m_Size;
+
+            if (m_Capacity > 0)
+            {
+                pAddress = new T[m_Capacity];
+                for (int i = 0; i < m_Size; i++)
+                {
+                    pAddress[i] = myarray.pAddress[i]; // 直接访问，避免递归
+                }
+            }
+            else
+            {
+                pAddress = nullptr;
+            }
         }
         return *this;
     }
 
-    // 重载[] 操作符  arr[0]
+    // 移动赋值操作符
+    MyArray &operator=(MyArray &&myarray) noexcept
+    {
+        if (this != &myarray)
+        { // 自我赋值检查
+            // 释放原有资源
+            delete[] pAddress;
+
+            // 移动资源
+            pAddress = myarray.pAddress;
+            m_Capacity = myarray.m_Capacity;
+            m_Size = myarray.m_Size;
+
+            // 将原对象置于有效但不确定的状态
+            myarray.pAddress = nullptr;
+            myarray.m_Capacity = 0;
+            myarray.m_Size = 0;
+        }
+        return *this;
+    }
+
+    // 重载[] 操作符
     T &operator[](int index)
     {
-        return this->pAddress[index]; // 不考虑越界，用户自己去处理
+        // 可以添加边界检查
+        // if (index < 0 || index >= m_Size) throw std::out_of_range("Index out of range");
+        return pAddress[index];
+    }
+
+    // 对const对象的[]操作符重载
+    const T &operator[](int index) const
+    {
+        return pAddress[index];
     }
 
     // 尾插法
     void Push_back(const T &val)
     {
-        if (this->m_Capacity == this->m_Size)
+        if (m_Capacity == m_Size)
         {
             return;
         }
-        this->pAddress[this->m_Size] = val;
-        this->m_Size++;
+        pAddress[m_Size] = val;
+        m_Size++;
+    }
+
+    // 移动版本的尾插法
+    void Push_back(T &&val)
+    {
+        if (m_Capacity == m_Size)
+        {
+            return;
+        }
+        pAddress[m_Size] = std::move(val);
+        m_Size++;
     }
 
     // 尾删法
     void Pop_back()
     {
-        if (this->m_Size == 0)
+        if (m_Size > 0)
         {
-            return;
+            m_Size--;
         }
-        this->m_Size--;
     }
 
     // 获取数组容量
-    int getCapacity()
+    int getCapacity() const
     {
-        return this->m_Capacity;
+        return m_Capacity;
     }
 
     // 获取数组大小
-    int getSize()
+    int getSize() const
     {
-        return this->m_Size;
+        return m_Size;
     }
 
     // 析构
     ~MyArray()
     {
-        if (this->pAddress != NULL)
-        {
-            delete[] this->pAddress;
-            this->pAddress = NULL;
-            this->m_Capacity = 0;
-            this->m_Size = 0;
-        }
+        delete[] pAddress;
+        // 以下初始化是可选的，因为对象即将销毁
+        pAddress = nullptr;
+        m_Capacity = 0;
+        m_Size = 0;
     }
 
 private:
