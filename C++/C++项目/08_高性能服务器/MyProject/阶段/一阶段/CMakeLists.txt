@@ -15,12 +15,6 @@ include_directories(include)
 set(SRCS
     src/InetAddress.cc
     src/Socket.cc
-    src/Channel.cc
-    src/EPollPoller.cc
-    src/EventLoop.cc
-    src/Logger.cc
-    src/Timestamp.cc
-    src/Poller.cc
     src/main.cc
 )
 

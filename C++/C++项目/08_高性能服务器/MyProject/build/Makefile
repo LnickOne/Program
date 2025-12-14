@@ -129,6 +129,78 @@ server/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
+src/Channel.o: src/Channel.cc.o
+.PHONY : src/Channel.o
+
+# target to build an object file
+src/Channel.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Channel.cc.o
+.PHONY : src/Channel.cc.o
+
+src/Channel.i: src/Channel.cc.i
+.PHONY : src/Channel.i
+
+# target to preprocess a source file
+src/Channel.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Channel.cc.i
+.PHONY : src/Channel.cc.i
+
+src/Channel.s: src/Channel.cc.s
+.PHONY : src/Channel.s
+
+# target to generate assembly for a file
+src/Channel.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Channel.cc.s
+.PHONY : src/Channel.cc.s
+
+src/EPollPoller.o: src/EPollPoller.cc.o
+.PHONY : src/EPollPoller.o
+
+# target to build an object file
+src/EPollPoller.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EPollPoller.cc.o
+.PHONY : src/EPollPoller.cc.o
+
+src/EPollPoller.i: src/EPollPoller.cc.i
+.PHONY : src/EPollPoller.i
+
+# target to preprocess a source file
+src/EPollPoller.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EPollPoller.cc.i
+.PHONY : src/EPollPoller.cc.i
+
+src/EPollPoller.s: src/EPollPoller.cc.s
+.PHONY : src/EPollPoller.s
+
+# target to generate assembly for a file
+src/EPollPoller.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EPollPoller.cc.s
+.PHONY : src/EPollPoller.cc.s
+
+src/EventLoop.o: src/EventLoop.cc.o
+.PHONY : src/EventLoop.o
+
+# target to build an object file
+src/EventLoop.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EventLoop.cc.o
+.PHONY : src/EventLoop.cc.o
+
+src/EventLoop.i: src/EventLoop.cc.i
+.PHONY : src/EventLoop.i
+
+# target to preprocess a source file
+src/EventLoop.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EventLoop.cc.i
+.PHONY : src/EventLoop.cc.i
+
+src/EventLoop.s: src/EventLoop.cc.s
+.PHONY : src/EventLoop.s
+
+# target to generate assembly for a file
+src/EventLoop.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EventLoop.cc.s
+.PHONY : src/EventLoop.cc.s
+
 src/InetAddress.o: src/InetAddress.cc.o
 .PHONY : src/InetAddress.o
 
@@ -153,6 +225,54 @@ src/InetAddress.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/InetAddress.cc.s
 .PHONY : src/InetAddress.cc.s
 
+src/Logger.o: src/Logger.cc.o
+.PHONY : src/Logger.o
+
+# target to build an object file
+src/Logger.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Logger.cc.o
+.PHONY : src/Logger.cc.o
+
+src/Logger.i: src/Logger.cc.i
+.PHONY : src/Logger.i
+
+# target to preprocess a source file
+src/Logger.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Logger.cc.i
+.PHONY : src/Logger.cc.i
+
+src/Logger.s: src/Logger.cc.s
+.PHONY : src/Logger.s
+
+# target to generate assembly for a file
+src/Logger.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Logger.cc.s
+.PHONY : src/Logger.cc.s
+
+src/Poller.o: src/Poller.cc.o
+.PHONY : src/Poller.o
+
+# target to build an object file
+src/Poller.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Poller.cc.o
+.PHONY : src/Poller.cc.o
+
+src/Poller.i: src/Poller.cc.i
+.PHONY : src/Poller.i
+
+# target to preprocess a source file
+src/Poller.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Poller.cc.i
+.PHONY : src/Poller.cc.i
+
+src/Poller.s: src/Poller.cc.s
+.PHONY : src/Poller.s
+
+# target to generate assembly for a file
+src/Poller.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Poller.cc.s
+.PHONY : src/Poller.cc.s
+
 src/Socket.o: src/Socket.cc.o
 .PHONY : src/Socket.o
 
@@ -176,6 +296,30 @@ src/Socket.s: src/Socket.cc.s
 src/Socket.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Socket.cc.s
 .PHONY : src/Socket.cc.s
+
+src/Timestamp.o: src/Timestamp.cc.o
+.PHONY : src/Timestamp.o
+
+# target to build an object file
+src/Timestamp.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Timestamp.cc.o
+.PHONY : src/Timestamp.cc.o
+
+src/Timestamp.i: src/Timestamp.cc.i
+.PHONY : src/Timestamp.i
+
+# target to preprocess a source file
+src/Timestamp.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Timestamp.cc.i
+.PHONY : src/Timestamp.cc.i
+
+src/Timestamp.s: src/Timestamp.cc.s
+.PHONY : src/Timestamp.s
+
+# target to generate assembly for a file
+src/Timestamp.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Timestamp.cc.s
+.PHONY : src/Timestamp.cc.s
 
 src/main.o: src/main.cc.o
 .PHONY : src/main.o
@@ -210,12 +354,30 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... server"
+	@echo "... src/Channel.o"
+	@echo "... src/Channel.i"
+	@echo "... src/Channel.s"
+	@echo "... src/EPollPoller.o"
+	@echo "... src/EPollPoller.i"
+	@echo "... src/EPollPoller.s"
+	@echo "... src/EventLoop.o"
+	@echo "... src/EventLoop.i"
+	@echo "... src/EventLoop.s"
 	@echo "... src/InetAddress.o"
 	@echo "... src/InetAddress.i"
 	@echo "... src/InetAddress.s"
+	@echo "... src/Logger.o"
+	@echo "... src/Logger.i"
+	@echo "... src/Logger.s"
+	@echo "... src/Poller.o"
+	@echo "... src/Poller.i"
+	@echo "... src/Poller.s"
 	@echo "... src/Socket.o"
 	@echo "... src/Socket.i"
 	@echo "... src/Socket.s"
+	@echo "... src/Timestamp.o"
+	@echo "... src/Timestamp.i"
+	@echo "... src/Timestamp.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

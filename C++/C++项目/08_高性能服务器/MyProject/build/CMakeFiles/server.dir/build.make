@@ -97,10 +97,94 @@ CMakeFiles/server.dir/src/Socket.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Socket.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Socket.cc -o CMakeFiles/server.dir/src/Socket.cc.s
 
+CMakeFiles/server.dir/src/Channel.cc.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Channel.cc.o: ../src/Channel.cc
+CMakeFiles/server.dir/src/Channel.cc.o: CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/Channel.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/Channel.cc.o -MF CMakeFiles/server.dir/src/Channel.cc.o.d -o CMakeFiles/server.dir/src/Channel.cc.o -c /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Channel.cc
+
+CMakeFiles/server.dir/src/Channel.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Channel.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Channel.cc > CMakeFiles/server.dir/src/Channel.cc.i
+
+CMakeFiles/server.dir/src/Channel.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Channel.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Channel.cc -o CMakeFiles/server.dir/src/Channel.cc.s
+
+CMakeFiles/server.dir/src/EPollPoller.cc.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/EPollPoller.cc.o: ../src/EPollPoller.cc
+CMakeFiles/server.dir/src/EPollPoller.cc.o: CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/EPollPoller.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/EPollPoller.cc.o -MF CMakeFiles/server.dir/src/EPollPoller.cc.o.d -o CMakeFiles/server.dir/src/EPollPoller.cc.o -c /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EPollPoller.cc
+
+CMakeFiles/server.dir/src/EPollPoller.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/EPollPoller.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EPollPoller.cc > CMakeFiles/server.dir/src/EPollPoller.cc.i
+
+CMakeFiles/server.dir/src/EPollPoller.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/EPollPoller.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EPollPoller.cc -o CMakeFiles/server.dir/src/EPollPoller.cc.s
+
+CMakeFiles/server.dir/src/EventLoop.cc.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/EventLoop.cc.o: ../src/EventLoop.cc
+CMakeFiles/server.dir/src/EventLoop.cc.o: CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/EventLoop.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/EventLoop.cc.o -MF CMakeFiles/server.dir/src/EventLoop.cc.o.d -o CMakeFiles/server.dir/src/EventLoop.cc.o -c /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EventLoop.cc
+
+CMakeFiles/server.dir/src/EventLoop.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/EventLoop.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EventLoop.cc > CMakeFiles/server.dir/src/EventLoop.cc.i
+
+CMakeFiles/server.dir/src/EventLoop.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/EventLoop.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EventLoop.cc -o CMakeFiles/server.dir/src/EventLoop.cc.s
+
+CMakeFiles/server.dir/src/Logger.cc.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Logger.cc.o: ../src/Logger.cc
+CMakeFiles/server.dir/src/Logger.cc.o: CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/src/Logger.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/Logger.cc.o -MF CMakeFiles/server.dir/src/Logger.cc.o.d -o CMakeFiles/server.dir/src/Logger.cc.o -c /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Logger.cc
+
+CMakeFiles/server.dir/src/Logger.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Logger.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Logger.cc > CMakeFiles/server.dir/src/Logger.cc.i
+
+CMakeFiles/server.dir/src/Logger.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Logger.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Logger.cc -o CMakeFiles/server.dir/src/Logger.cc.s
+
+CMakeFiles/server.dir/src/Timestamp.cc.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Timestamp.cc.o: ../src/Timestamp.cc
+CMakeFiles/server.dir/src/Timestamp.cc.o: CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/src/Timestamp.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/Timestamp.cc.o -MF CMakeFiles/server.dir/src/Timestamp.cc.o.d -o CMakeFiles/server.dir/src/Timestamp.cc.o -c /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Timestamp.cc
+
+CMakeFiles/server.dir/src/Timestamp.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Timestamp.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Timestamp.cc > CMakeFiles/server.dir/src/Timestamp.cc.i
+
+CMakeFiles/server.dir/src/Timestamp.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Timestamp.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Timestamp.cc -o CMakeFiles/server.dir/src/Timestamp.cc.s
+
+CMakeFiles/server.dir/src/Poller.cc.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Poller.cc.o: ../src/Poller.cc
+CMakeFiles/server.dir/src/Poller.cc.o: CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/src/Poller.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/Poller.cc.o -MF CMakeFiles/server.dir/src/Poller.cc.o.d -o CMakeFiles/server.dir/src/Poller.cc.o -c /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Poller.cc
+
+CMakeFiles/server.dir/src/Poller.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Poller.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Poller.cc > CMakeFiles/server.dir/src/Poller.cc.i
+
+CMakeFiles/server.dir/src/Poller.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Poller.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Poller.cc -o CMakeFiles/server.dir/src/Poller.cc.s
+
 CMakeFiles/server.dir/src/main.cc.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/main.cc.o: ../src/main.cc
 CMakeFiles/server.dir/src/main.cc.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/main.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/src/main.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/main.cc.o -MF CMakeFiles/server.dir/src/main.cc.o.d -o CMakeFiles/server.dir/src/main.cc.o -c /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/main.cc
 
 CMakeFiles/server.dir/src/main.cc.i: cmake_force
@@ -115,6 +199,12 @@ CMakeFiles/server.dir/src/main.cc.s: cmake_force
 server_OBJECTS = \
 "CMakeFiles/server.dir/src/InetAddress.cc.o" \
 "CMakeFiles/server.dir/src/Socket.cc.o" \
+"CMakeFiles/server.dir/src/Channel.cc.o" \
+"CMakeFiles/server.dir/src/EPollPoller.cc.o" \
+"CMakeFiles/server.dir/src/EventLoop.cc.o" \
+"CMakeFiles/server.dir/src/Logger.cc.o" \
+"CMakeFiles/server.dir/src/Timestamp.cc.o" \
+"CMakeFiles/server.dir/src/Poller.cc.o" \
 "CMakeFiles/server.dir/src/main.cc.o"
 
 # External object files for target server
@@ -122,10 +212,16 @@ server_EXTERNAL_OBJECTS =
 
 server: CMakeFiles/server.dir/src/InetAddress.cc.o
 server: CMakeFiles/server.dir/src/Socket.cc.o
+server: CMakeFiles/server.dir/src/Channel.cc.o
+server: CMakeFiles/server.dir/src/EPollPoller.cc.o
+server: CMakeFiles/server.dir/src/EventLoop.cc.o
+server: CMakeFiles/server.dir/src/Logger.cc.o
+server: CMakeFiles/server.dir/src/Timestamp.cc.o
+server: CMakeFiles/server.dir/src/Poller.cc.o
 server: CMakeFiles/server.dir/src/main.cc.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

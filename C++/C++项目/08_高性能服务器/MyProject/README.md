@@ -305,12 +305,316 @@ int main()
 - Linux系统编程和网络编程的实战经验
 - 面向对象设计和RAII原则的应用
 
-
-## 致谢
-
-感谢所有为本项目做出贡献的开发者和用户！
-
 ---
 
 **版本**：第一阶段实现（v1.0）
 **更新日期**：2025年10月15日
+
+---
+
+# MyProject 高性能服务器 - 第二阶段实现
+
+## 第二阶段完成的功能
+
+第二阶段主要实现了事件驱动的高性能服务器架构，包括以下核心组件：
+
+### 1. 事件循环 (EventLoop)
+- 实现了基于事件驱动的事件循环机制
+- 管理事件的注册、删除和分发
+- 支持异步任务的执行和事件处理
+- 实现了线程安全的设计，确保每个EventLoop对象只在一个线程中运行
+
+### 2. 事件通道 (Channel)
+- 封装了文件描述符和感兴趣的事件类型
+- 管理事件的回调函数（可读、可写、错误、关闭）
+- 提供了事件的注册、更新和移除接口
+- 与EventLoop和Poller协同工作
+
+### 3. IO多路复用 (Poller/EPollPoller)
+- 实现了Poller抽象基类，定义了IO多路复用的通用接口
+- 基于epoll实现了EPollPoller具体类，提供高效的IO多路复用机制
+- 支持事件的注册、更新、移除和等待
+- 实现了高效的事件分发机制
+
+### 4. 时间戳工具 (Timestamp)
+- 提供了高精度的时间戳功能
+- 支持时间戳的格式化输出
+- 用于日志记录和超时管理
+
+### 5. 线程安全工具 (Thread, MutexLock, Condition)
+- 封装了线程的创建和管理
+- 提供了互斥锁和条件变量的封装
+- 支持线程安全的任务队列
+
+### 6. 倒计时门闩 (CountDownLatch)
+- 用于线程同步的工具类
+- 实现了线程等待机制，直到计数器减为0
+
+### 7. 日志系统 (LogStream, Logger)
+- 提供了高效的日志记录功能
+- 支持不同级别的日志输出（DEBUG, INFO, WARN, ERROR, FATAL）
+- 实现了线程安全的日志记录
+
+## 设计思路与实现理由
+
+### 1. 事件驱动架构
+- 采用Reactor模式设计事件驱动系统
+- 将IO事件和定时器事件统一管理
+- 提高服务器的响应能力和并发处理能力
+
+### 2. 高性能设计
+- 使用epoll作为IO多路复用机制，支持高并发连接
+- 采用非阻塞IO提高服务器的吞吐量
+- 实现了高效的事件分发机制，避免不必要的上下文切换
+
+### 3. 线程安全设计
+- 每个EventLoop对象绑定到一个线程
+- 支持跨线程的任务投递和执行
+- 使用互斥锁和条件变量确保线程安全
+
+### 4. 模块化设计
+- 组件之间低耦合，便于扩展和维护
+- 接口设计清晰，便于使用和测试
+- 每个组件负责单一职责，符合单一职责原则
+
+### 5. 可扩展性
+- 支持添加新的事件类型和处理方式
+- 支持扩展到多线程模型
+- 便于添加新的协议支持
+
+## 第二阶段项目结构
+
+```
+MyProject/
+├── CMakeLists.txt       # CMake构建配置文件
+├── README.md            # 项目说明文档
+├── include/             # 头文件目录
+│   ├── noncopyable.h    # 不可拷贝基类（第一阶段）
+│   ├── InetAddress.h    # 网络地址封装（第一阶段）
+│   ├── Socket.h         # 套接字封装（第一阶段）
+│   ├── EventLoop.h      # 事件循环（第二阶段）
+│   ├── Channel.h        # 事件通道（第二阶段）
+│   ├── Poller.h         # IO多路复用抽象基类（第二阶段）
+│   ├── EPollPoller.h    # epoll实现（第二阶段）
+│   ├── Timestamp.h      # 时间戳工具（第二阶段）
+│   ├── Thread.h         # 线程封装（第二阶段）
+│   ├── MutexLock.h      # 互斥锁封装（第二阶段）
+│   ├── Condition.h      # 条件变量封装（第二阶段）
+│   ├── CountDownLatch.h # 倒计时门闩（第二阶段）
+│   ├── LogStream.h      # 日志流（第二阶段）
+│   └── Logger.h         # 日志器（第二阶段）
+├── src/                 # 源代码目录
+│   ├── InetAddress.cc   # 网络地址实现（第一阶段）
+│   ├── Socket.cc        # 套接字实现（第一阶段）
+│   ├── EventLoop.cc     # 事件循环实现（第二阶段）
+│   ├── Channel.cc       # 事件通道实现（第二阶段）
+│   ├── Poller.cc        # IO多路复用抽象基类实现（第二阶段）
+│   ├── EPollPoller.cc   # epoll实现（第二阶段）
+│   ├── Timestamp.cc     # 时间戳工具实现（第二阶段）
+│   ├── Thread.cc        # 线程封装实现（第二阶段）
+│   ├── MutexLock.cc     # 互斥锁封装实现（第二阶段）
+│   ├── Condition.cc     # 条件变量封装实现（第二阶段）
+│   ├── CountDownLatch.cc # 倒计时门闩实现（第二阶段）
+│   ├── LogStream.cc     # 日志流实现（第二阶段）
+│   ├── Logger.cc        # 日志器实现（第二阶段）
+│   └── main.cc          # 服务器主程序（更新）
+└── build/               # 构建目录（自动生成）
+    ├── CMakeCache.txt
+    ├── CMakeFiles/
+    ├── Makefile
+    ├── cmake_install.cmake
+    └── server           # 编译生成的可执行文件
+```
+
+## 核心组件详细说明
+
+### 1. 事件循环 (EventLoop)
+
+```cpp
+class EventLoop : noncopyable
+{
+public:
+    using Functor = std::function<void()>;
+
+    EventLoop();
+    ~EventLoop();
+
+    void loop();
+    void quit();
+
+    void runInLoop(Functor cb);
+    void queueInLoop(Functor cb);
+
+    void updateChannel(Channel *channel);
+    void removeChannel(Channel *channel);
+    bool hasChannel(Channel *channel);
+
+    // 其他方法...
+
+private:
+    void wakeup();
+    void handleRead();
+    void doPendingFunctors();
+
+    // 成员变量...
+};
+```
+
+- 实现了事件循环的核心逻辑
+- 支持事件的注册、更新和移除
+- 提供了跨线程的任务执行机制
+- 使用wakeupFd实现事件循环的唤醒
+
+### 2. 事件通道 (Channel)
+
+```cpp
+class Channel : noncopyable
+{
+public:
+    using EventCallback = std::function<void()>;
+    using ReadEventCallback = std::function<void(Timestamp)>;
+
+    Channel(EventLoop *loop, int fd);
+    ~Channel();
+
+    void handleEvent(Timestamp receiveTime);
+
+    void setReadCallback(ReadEventCallback cb) { readCallback_ = std::move(cb); }
+    void setWriteCallback(EventCallback cb) { writeCallback_ = std::move(cb); }
+    void setCloseCallback(EventCallback cb) { closeCallback_ = std::move(cb); }
+    void setErrorCallback(EventCallback cb) { errorCallback_ = std::move(cb); }
+
+    // 事件操作方法...
+
+private:
+    void update();
+
+    // 成员变量...
+};
+```
+
+- 封装了文件描述符和事件类型
+- 管理事件的回调函数
+- 与EventLoop和Poller协同工作
+- 实现了事件的处理和分发
+
+### 3. IO多路复用 (Poller/EPollPoller)
+
+```cpp
+class Poller : noncopyable
+{
+public:
+    using ChannelList = std::vector<Channel*>;
+
+    Poller(EventLoop *loop);
+    virtual ~Poller();
+
+    virtual Timestamp poll(int timeoutMs, ChannelList *activeChannels) = 0;
+    virtual void updateChannel(Channel *channel) = 0;
+    virtual void removeChannel(Channel *channel) = 0;
+    virtual bool hasChannel(Channel *channel) const = 0;
+
+    // 其他方法...
+};
+```
+
+- 定义了IO多路复用的通用接口
+- 基于epoll实现了高效的事件等待和分发
+- 支持事件的注册、更新和移除
+- 提供了高效的事件处理机制
+
+## 第二阶段技术特点
+
+### 1. 高性能设计
+- 使用epoll作为IO多路复用机制，支持百万级并发连接
+- 采用非阻塞IO提高服务器的吞吐量
+- 实现了高效的事件分发机制，避免不必要的上下文切换
+- 使用时间戳工具精确管理超时事件
+
+### 2. 可靠性设计
+- 严格的错误处理和资源管理
+- 使用RAII原则管理文件描述符和资源
+- 提供了线程安全的设计，确保多线程环境下的正确性
+
+### 3. 可扩展性设计
+- 组件之间低耦合，便于扩展和维护
+- 支持添加新的事件类型和处理方式
+- 便于扩展到多线程模型
+
+### 4. 易用性设计
+- 提供了简洁的API接口
+- 支持Lambda表达式作为回调函数
+- 提供了详细的日志记录功能
+
+## 第二阶段代码示例
+
+### 事件循环使用示例
+
+```cpp
+#include "EventLoop.h"
+#include "Timestamp.h"
+#include <iostream>
+
+int main()
+{
+    EventLoop loop;
+    
+    // 在事件循环中执行任务
+    loop.runInLoop([]() {
+        std::cout << "Hello from event loop" << std::endl;
+    });
+    
+    // 启动事件循环
+    loop.loop();
+    
+    return 0;
+}
+```
+
+## 第二阶段成果展示
+
+第二阶段实现了一个完整的事件驱动架构，包括：
+
+1. **事件驱动系统**：基于Reactor模式实现的事件驱动架构
+2. **IO多路复用**：基于epoll的高效IO多路复用机制
+3. **线程安全工具**：提供了完整的线程安全工具类
+4. **日志系统**：实现了高效的日志记录功能
+5. **事件管理**：支持多种事件类型的注册、更新和处理
+
+这个事件驱动架构为后续的开发奠定了坚实的基础，可以在其上构建各种网络应用，如TCP服务器、HTTP服务器等。
+
+## 第二阶段与第一阶段的区别
+
+| 特性 | 第一阶段 | 第二阶段 |
+|------|----------|----------|
+| 架构模式 | 阻塞式IO | 事件驱动（Reactor模式） |
+| IO多路复用 | 无 | epoll |
+| 并发处理 | 单连接 | 高并发连接 |
+| 事件管理 | 无 | 完整的事件注册、更新和处理机制 |
+| 线程支持 | 单线程 | 线程安全设计，支持跨线程任务执行 |
+| 扩展性 | 有限 | 高度可扩展，支持多线程模型 |
+| 性能 | 基础 | 高性能，支持百万级并发连接 |
+
+## 后续规划
+
+- **第三阶段**：实现TCP连接管理（TcpConnection）
+- **第四阶段**：实现HTTP协议解析（HttpRequest/HttpResponse）
+- **第五阶段**：实现多线程处理（EventLoopThread）
+- **第六阶段**：实现完整的HTTP服务器功能
+- **第七阶段**：添加性能测试和优化
+
+## 学习价值
+
+通过第二阶段的学习，你可以掌握：
+
+- 事件驱动架构的设计和实现
+- Reactor模式的应用
+- epoll的使用和原理
+- 线程安全的设计和实现
+- 高性能服务器的设计原则
+- 现代C++的高级特性
+
+---
+
+**版本**：第二阶段实现（v2.0）
+**更新日期**：2025年11月15日
