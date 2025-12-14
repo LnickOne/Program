@@ -1,11 +1,16 @@
-/*
-优先实现noncopyable.h头文件有以下几个重要原因：
-1. 它是一个基础工具类 ：noncopyable是一个混入类(mixin)，提供了防止对象被复制的功能，许多其他核心类会继承它
-2. 依赖关系简单 ：它不依赖于项目中的其他组件，可以独立实现，适合作为第一个实现的文件
-3. 实现简单 ：代码逻辑非常简单，通常只需要几十行代码，可以快速完成并验证编译环境
-4. 设计模式示范 ：展示了C++中常见的"删除特殊成员函数"的设计模式，有助于理解项目的设计思路
-5. 被广泛使用 ：在高性能服务器中，很多类（如EventLoop、Connection等）不应该被复制，因此会继承noncopyable
-6. 基础设施先行 ：遵循"自下而上"的开发方法，先构建基础工具，再构建上层组件
-noncopyable的实现通常非常简洁，主要通过删除拷贝构造函数和赋值运算符来禁止对象复制，这对于确保服务器中的关键对象不会被意外复制导致的资源管理问题至关重要。优先实现它可以为后续开发奠定良好基础。
-*/
 #pragma once // 防止头文件重复包含
+
+/**
+ * noncopyable被继承后 派生类对象可正常构造和析构 
+ * 但派生类对象无法进行拷贝构造和赋值构造
+ **/
+class noncopyable
+{
+public:
+    noncopyable(const noncopyable &) = delete;
+    noncopyable &operator=(const noncopyable &) = delete;
+    // void operator=(const noncopyable &) = delete;    // muduo将返回值变为void 这其实无可厚非
+protected:
+    noncopyable() = default;
+    ~noncopyable() = default;
+};
