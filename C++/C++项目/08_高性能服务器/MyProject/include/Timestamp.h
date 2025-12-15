@@ -1,6 +1,3 @@
-// Copyright 2024. All Rights Reserved.
-// Author: xxx@xxx.com
-
 #ifndef MY_PROJECT_TIMESTAMP_H
 #define MY_PROJECT_TIMESTAMP_H
 
@@ -12,7 +9,8 @@
  * 时间戳类
  * 封装时间戳的表示和操作
  */
-class Timestamp {
+class Timestamp
+{
 public:
     /**
      * 默认构造函数
@@ -30,7 +28,8 @@ public:
      * 交换两个时间戳
      * @param that 要交换的时间戳
      */
-    void swap(Timestamp& that) {
+    void swap(Timestamp &that)
+    {
         std::swap(microSecondsSinceEpoch_, that.microSecondsSinceEpoch_);
     }
 
@@ -62,7 +61,8 @@ public:
      * 获取秒数
      * @return 秒数
      */
-    time_t secondsSinceEpoch() const {
+    time_t secondsSinceEpoch() const
+    {
         return static_cast<time_t>(microSecondsSinceEpoch_ / kMicroSecondsPerSecond);
     }
 
@@ -76,7 +76,8 @@ public:
      * 创建一个无效的时间戳
      * @return 无效的时间戳
      */
-    static Timestamp invalid() {
+    static Timestamp invalid()
+    {
         return Timestamp();
     }
 
@@ -85,7 +86,8 @@ public:
      * @param t 秒数
      * @return 时间戳
      */
-    static Timestamp fromUnixTime(time_t t) {
+    static Timestamp fromUnixTime(time_t t)
+    {
         return fromUnixTime(t, 0);
     }
 
@@ -95,7 +97,8 @@ public:
      * @param microseconds 微秒数
      * @return 时间戳
      */
-    static Timestamp fromUnixTime(time_t t, int microseconds) {
+    static Timestamp fromUnixTime(time_t t, int microseconds)
+    {
         return Timestamp(static_cast<int64_t>(t) * kMicroSecondsPerSecond + microseconds);
     }
 
@@ -111,11 +114,13 @@ private:
 /**
  * 比较运算符
  */
-inline bool operator<(Timestamp lhs, Timestamp rhs) {
+inline bool operator<(Timestamp lhs, Timestamp rhs)
+{
     return lhs.microSecondsSinceEpoch() < rhs.microSecondsSinceEpoch();
 }
 
-inline bool operator==(Timestamp lhs, Timestamp rhs) {
+inline bool operator==(Timestamp lhs, Timestamp rhs)
+{
     return lhs.microSecondsSinceEpoch() == rhs.microSecondsSinceEpoch();
 }
 
@@ -125,7 +130,8 @@ inline bool operator==(Timestamp lhs, Timestamp rhs) {
  * @param low 较小的时间戳
  * @return 差值（秒）
  */
-inline double timeDifference(Timestamp high, Timestamp low) {
+inline double timeDifference(Timestamp high, Timestamp low)
+{
     int64_t diff = high.microSecondsSinceEpoch() - low.microSecondsSinceEpoch();
     return static_cast<double>(diff) / Timestamp::kMicroSecondsPerSecond;
 }
@@ -136,7 +142,8 @@ inline double timeDifference(Timestamp high, Timestamp low) {
  * @param seconds 要添加的秒数
  * @return 新的时间戳
  */
-inline Timestamp addTime(Timestamp timestamp, double seconds) {
+inline Timestamp addTime(Timestamp timestamp, double seconds)
+{
     int64_t delta = static_cast<int64_t>(seconds * Timestamp::kMicroSecondsPerSecond);
     return Timestamp(timestamp.microSecondsSinceEpoch() + delta);
 }

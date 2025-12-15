@@ -1,6 +1,3 @@
-// Copyright 2024. All Rights Reserved.
-// Author: xxx@xxx.com
-
 #ifndef MY_PROJECT_EPOLL_POLLER_H
 #define MY_PROJECT_EPOLL_POLLER_H
 
@@ -13,13 +10,14 @@ struct epoll_event;
  * epoll的具体实现
  * 继承自Poller类
  */
-class EPollPoller : public Poller {
+class EPollPoller : public Poller
+{
 public:
     /**
      * 构造函数
      * @param loop 所属的EventLoop
      */
-    explicit EPollPoller(EventLoop* loop);
+    explicit EPollPoller(EventLoop *loop);
 
     /**
      * 析构函数
@@ -32,19 +30,19 @@ public:
      * @param activeChannels 活跃的事件通道列表
      * @return 事件发生的时间
      */
-    Timestamp poll(int timeoutMs, ChannelList* activeChannels) override;
+    Timestamp poll(int timeoutMs, ChannelList *activeChannels) override;
 
     /**
      * 更新事件通道
      * @param channel 事件通道
      */
-    void updateChannel(Channel* channel) override;
+    void updateChannel(Channel *channel) override;
 
     /**
      * 移除事件通道
      * @param channel 事件通道
      */
-    void removeChannel(Channel* channel) override;
+    void removeChannel(Channel *channel) override;
 
 private:
     /**
@@ -57,14 +55,14 @@ private:
      * @param numEvents 事件数
      * @param activeChannels 活跃的事件通道列表
      */
-    void fillActiveChannels(int numEvents, ChannelList* activeChannels) const;
+    void fillActiveChannels(int numEvents, ChannelList *activeChannels) const;
 
     /**
      * 更新事件通道的操作
      * @param operation 操作类型
      * @param channel 事件通道
      */
-    void update(int operation, Channel* channel);
+    void update(int operation, Channel *channel);
 
     /**
      * epoll文件描述符

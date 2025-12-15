@@ -13,12 +13,13 @@ class EventLoop;
  * 封装文件描述符和相关的事件
  * 管理事件的注册、修改和删除
  */
-class Channel : noncopyable {
+class Channel : noncopyable
+{
 public:
     using EventCallback = std::function<void()>;
     using ReadEventCallback = std::function<void(Timestamp)>;
 
-    Channel(EventLoop* loop, int fd);
+    Channel(EventLoop *loop, int fd);
     ~Channel();
 
     /**
@@ -30,23 +31,27 @@ public:
     /**
      * 设置回调函数
      */
-    void setReadCallback(ReadEventCallback cb) {
+    void setReadCallback(ReadEventCallback cb)
+    {
         readCallback_ = std::move(cb);
     }
-    void setWriteCallback(EventCallback cb) {
+    void setWriteCallback(EventCallback cb)
+    {
         writeCallback_ = std::move(cb);
     }
-    void setCloseCallback(EventCallback cb) {
+    void setCloseCallback(EventCallback cb)
+    {
         closeCallback_ = std::move(cb);
     }
-    void setErrorCallback(EventCallback cb) {
+    void setErrorCallback(EventCallback cb)
+    {
         errorCallback_ = std::move(cb);
     }
 
     /**
      * 设置事件的所属对象，用于延长对象生命周期
      */
-    void tie(const std::shared_ptr<void>& obj);
+    void tie(const std::shared_ptr<void> &obj);
 
     // 获取fd和事件信息
     int fd() const { return fd_; }
@@ -57,11 +62,31 @@ public:
     /**
      * 事件操作
      */
-    void enableReading() { events_ |= kReadEvent; update(); }
-    void disableReading() { events_ &= ~kReadEvent; update(); }
-    void enableWriting() { events_ |= kWriteEvent; update(); }
-    void disableWriting() { events_ &= ~kWriteEvent; update(); }
-    void disableAll() { events_ = kNoneEvent; update(); }
+    void enableReading()
+    {
+        events_ |= kReadEvent;
+        update();
+    }
+    void disableReading()
+    {
+        events_ &= ~kReadEvent;
+        update();
+    }
+    void enableWriting()
+    {
+        events_ |= kWriteEvent;
+        update();
+    }
+    void disableWriting()
+    {
+        events_ &= ~kWriteEvent;
+        update();
+    }
+    void disableAll()
+    {
+        events_ = kNoneEvent;
+        update();
+    }
 
     /**
      * 事件状态查询
@@ -78,7 +103,7 @@ public:
     /**
      * 所属的EventLoop
      */
-    EventLoop* ownerLoop() { return loop_; }
+    EventLoop *ownerLoop() { return loop_; }
     void remove();
 
 private:
@@ -99,17 +124,17 @@ private:
     static const int kReadEvent;
     static const int kWriteEvent;
 
-    EventLoop* loop_;
-    const int  fd_;
-    int        events_;       // 关注的事件
-    int        revents_;     // 实际发生的事件
-    int        index_;       // 在Poller中的索引
-    bool       logHup_;      // 记录POLLHUP事件
+    EventLoop *loop_;
+    const int fd_;
+    int events_;  // 关注的事件
+    int revents_; // 实际发生的事件
+    int index_;   // 在Poller中的索引
+    bool logHup_; // 记录POLLHUP事件
 
-    std::weak_ptr<void> tie_;    // 用于延长对象生命周期
-    bool tied_;                  // 是否已绑定对象
-    bool eventHandling_;         // 是否正在处理事件
-    bool addedToLoop_;           // 是否已添加到EventLoop
+    std::weak_ptr<void> tie_; // 用于延长对象生命周期
+    bool tied_;               // 是否已绑定对象
+    bool eventHandling_;      // 是否正在处理事件
+    bool addedToLoop_;        // 是否已添加到EventLoop
 
     // 回调函数
     ReadEventCallback readCallback_;

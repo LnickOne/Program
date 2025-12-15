@@ -1,6 +1,3 @@
-// Copyright 2024. All Rights Reserved.
-// Author: xxx@xxx.com
-
 #ifndef MY_PROJECT_LOGGER_H
 #define MY_PROJECT_LOGGER_H
 

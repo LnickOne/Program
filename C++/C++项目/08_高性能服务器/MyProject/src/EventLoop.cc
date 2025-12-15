@@ -1,6 +1,3 @@
-// Copyright 2024. All Rights Reserved.
-// Author: xxx@xxx.com
-
 #include "EventLoop.h"
 #include "Channel.h"
 #include "EPollPoller.h"
@@ -22,21 +19,24 @@
 /**
  * 定义线程本地存储的事件循环指针
  */
-__thread EventLoop* t_loopInThisThread = nullptr;
+__thread EventLoop *t_loopInThisThread = nullptr;
 
 /**
  * 获取当前线程ID
  */
-pid_t gettid() {
+pid_t gettid()
+{
     return static_cast<pid_t>(::syscall(SYS_gettid));
 }
 
 /**
  * 创建eventfd用于线程间通信
  */
-int createEventfd() {
+int createEventfd()
+{
     int evtfd = ::eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
-    if (evtfd < 0) {
+    if (evtfd < 0)
+    {
         LOG_FATAL << "Failed in eventfd: " << strerror(errno);
     }
     return evtfd;
@@ -45,19 +45,23 @@ int createEventfd() {
 /**
  * 事件循环构造函数
  */
-EventLoop::EventLoop() 
+EventLoop::EventLoop()
     : looping_(false),
       quit_(false),
       callingPendingFunctors_(false),
       poller_(new EPollPoller(this)),
       wakeupFd_(createEventfd()),
-      wakeupChannel_(new Channel(this, wakeupFd_)) {
+      wakeupChannel_(new Channel(this, wakeupFd_))
+{
     LOG_DEBUG << "EventLoop " << this << " created";
-    
-    if (t_loopInThisThread) {
-        LOG_FATAL << "Another EventLoop " << t_loopInThisThread 
+
+    if (t_loopInThisThread)
+    {
+        LOG_FATAL << "Another EventLoop " << t_loopInThisThread
                   << " exists in this thread";
-    } else {
+    }
+    else
+    {
         t_loopInThisThread = this;
     }
 
@@ -146,9 +150,11 @@ void EventLoop::removeChannel(Channel *channel)
 /**
  * 检查事件通道是否在当前事件循环线程中
  */
-void EventLoop::assertInLoopThread() const {
-    if (!isInLoopThread()) {
-        LOG_FATAL << "EventLoop::assertInLoopThread - EventLoop " << this 
+void EventLoop::assertInLoopThread() const
+{
+    if (!isInLoopThread())
+    {
+        LOG_FATAL << "EventLoop::assertInLoopThread - EventLoop " << this
                   << " is called in wrong thread";
     }
 }
@@ -156,7 +162,8 @@ void EventLoop::assertInLoopThread() const {
 /**
  * 检查是否在当前事件循环线程中
  */
-bool EventLoop::isInLoopThread() const {
+bool EventLoop::isInLoopThread() const
+{
     return t_loopInThisThread == this;
 }
 

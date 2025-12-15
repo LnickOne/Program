@@ -1,6 +1,3 @@
-// Copyright 2024. All Rights Reserved.
-// Author: xxx@xxx.com
-
 #include "Logger.h"
 #include "Timestamp.h"
 

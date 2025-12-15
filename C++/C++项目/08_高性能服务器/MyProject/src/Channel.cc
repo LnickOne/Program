@@ -16,16 +16,16 @@ const int Channel::kWriteEvent = POLLOUT;
 /**
  * 构造函数
  */
-Channel::Channel(EventLoop* loop, int fd)
-  : loop_(loop),
-    fd_(fd),
-    events_(0),
-    revents_(0),
-    index_(-1),
-    logHup_(true),
-    tied_(false),
-    eventHandling_(false),
-    addedToLoop_(false)
+Channel::Channel(EventLoop *loop, int fd)
+    : loop_(loop),
+      fd_(fd),
+      events_(0),
+      revents_(0),
+      index_(-1),
+      logHup_(true),
+      tied_(false),
+      eventHandling_(false),
+      addedToLoop_(false)
 {
 }
 
@@ -36,7 +36,8 @@ Channel::~Channel()
 {
     assert(!eventHandling_);
     assert(!addedToLoop_);
-    if (loop_->isInLoopThread()) {
+    if (loop_->isInLoopThread())
+    {
         assert(!loop_->hasChannel(this));
     }
 }
@@ -44,7 +45,7 @@ Channel::~Channel()
 /**
  * 设置事件的所属对象
  */
-void Channel::tie(const std::shared_ptr<void>& obj)
+void Channel::tie(const std::shared_ptr<void> &obj)
 {
     tie_ = obj;
     tied_ = true;
@@ -75,12 +76,16 @@ void Channel::remove()
 void Channel::handleEvent(Timestamp receiveTime)
 {
     std::shared_ptr<void> guard;
-    if (tied_) {
+    if (tied_)
+    {
         guard = tie_.lock();
-        if (guard) {
+        if (guard)
+        {
             handleEventWithGuard(receiveTime);
         }
-    } else {
+    }
+    else
+    {
         handleEventWithGuard(receiveTime);
     }
 }
@@ -93,27 +98,37 @@ void Channel::handleEventWithGuard(Timestamp receiveTime)
     eventHandling_ = true;
     LOG_TRACE << "fd = " << fd_ << " events = " << events_ << " revents = " << revents_;
 
-    if ((revents_ & POLLHUP) && !(revents_ & POLLIN)) {
-        if (logHup_) {
+    if ((revents_ & POLLHUP) && !(revents_ & POLLIN))
+    {
+        if (logHup_)
+        {
             LOG_WARN << "fd = " << fd_ << " Channel::handle_event() POLLHUP";
         }
-        if (closeCallback_) closeCallback_();
+        if (closeCallback_)
+            closeCallback_();
     }
 
-    if (revents_ & POLLNVAL) {
+    if (revents_ & POLLNVAL)
+    {
         LOG_WARN << "fd = " << fd_ << " Channel::handle_event() POLLNVAL";
     }
 
-    if (revents_ & (POLLERR | POLLNVAL)) {
-        if (errorCallback_) errorCallback_();
+    if (revents_ & (POLLERR | POLLNVAL))
+    {
+        if (errorCallback_)
+            errorCallback_();
     }
 
-    if (revents_ & (POLLIN | POLLPRI | POLLRDHUP)) {
-        if (readCallback_) readCallback_(receiveTime);
+    if (revents_ & (POLLIN | POLLPRI | POLLRDHUP))
+    {
+        if (readCallback_)
+            readCallback_(receiveTime);
     }
 
-    if (revents_ & POLLOUT) {
-        if (writeCallback_) writeCallback_();
+    if (revents_ & POLLOUT)
+    {
+        if (writeCallback_)
+            writeCallback_();
     }
 
     eventHandling_ = false;
