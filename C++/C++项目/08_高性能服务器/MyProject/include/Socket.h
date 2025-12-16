@@ -22,6 +22,10 @@ public:
     void setReuseAddr(bool on);
     void setReusePort(bool on);
     void setKeepAlive(bool on);
+    void setNonBlocking();
+
+    // 获取socket错误码
+    int getSocketError() const;
 
 private:
     const int sockfd_;

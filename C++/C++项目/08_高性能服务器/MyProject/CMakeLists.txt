@@ -21,6 +21,9 @@ set(SRCS
     src/Logger.cc
     src/Timestamp.cc
     src/Poller.cc
+    src/TcpConnection.cc
+    src/TcpServer.cc
+    src/Acceptor.cc
     src/main.cc
 )
 

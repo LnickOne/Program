@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Acceptor.cc" "CMakeFiles/server.dir/src/Acceptor.cc.o" "gcc" "CMakeFiles/server.dir/src/Acceptor.cc.o.d"
   "/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Channel.cc" "CMakeFiles/server.dir/src/Channel.cc.o" "gcc" "CMakeFiles/server.dir/src/Channel.cc.o.d"
   "/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EPollPoller.cc" "CMakeFiles/server.dir/src/EPollPoller.cc.o" "gcc" "CMakeFiles/server.dir/src/EPollPoller.cc.o.d"
   "/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EventLoop.cc" "CMakeFiles/server.dir/src/EventLoop.cc.o" "gcc" "CMakeFiles/server.dir/src/EventLoop.cc.o.d"
@@ -15,6 +16,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Logger.cc" "CMakeFiles/server.dir/src/Logger.cc.o" "gcc" "CMakeFiles/server.dir/src/Logger.cc.o.d"
   "/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Poller.cc" "CMakeFiles/server.dir/src/Poller.cc.o" "gcc" "CMakeFiles/server.dir/src/Poller.cc.o.d"
   "/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Socket.cc" "CMakeFiles/server.dir/src/Socket.cc.o" "gcc" "CMakeFiles/server.dir/src/Socket.cc.o.d"
+  "/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/TcpConnection.cc" "CMakeFiles/server.dir/src/TcpConnection.cc.o" "gcc" "CMakeFiles/server.dir/src/TcpConnection.cc.o.d"
+  "/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/TcpServer.cc" "CMakeFiles/server.dir/src/TcpServer.cc.o" "gcc" "CMakeFiles/server.dir/src/TcpServer.cc.o.d"
   "/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Timestamp.cc" "CMakeFiles/server.dir/src/Timestamp.cc.o" "gcc" "CMakeFiles/server.dir/src/Timestamp.cc.o.d"
   "/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/main.cc" "CMakeFiles/server.dir/src/main.cc.o" "gcc" "CMakeFiles/server.dir/src/main.cc.o.d"
   )

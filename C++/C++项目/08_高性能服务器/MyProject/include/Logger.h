@@ -8,7 +8,8 @@
 /**
  * 日志级别
  */
-enum LogLevel {
+enum LogLevel
+{
     TRACE,
     DEBUG,
     INFO,
@@ -21,7 +22,7 @@ enum LogLevel {
 /**
  * 日志输出函数类型
  */
-typedef void (*OutputFunc)(const char* msg, int len);
+typedef void (*OutputFunc)(const char *msg, int len);
 
 /**
  * 日志刷新函数类型
@@ -46,32 +47,39 @@ void setLogLevel(LogLevel level);
 /**
  * 日志类
  */
-class Logger {
+class Logger
+{
 public:
-    Logger(LogLevel level, const char* file, int line);
+    Logger(LogLevel level, const char *file, int line);
     ~Logger();
 
     /**
      * 获取日志流
      */
-    std::ostream& stream();
+    std::ostream &stream();
 
     /**
      * 获取日志级别名称
      */
-    static const char* logLevelName[NUM_LOG_LEVELS];
+    static const char *logLevelName[NUM_LOG_LEVELS];
 
 private:
     class Impl;
-    Impl* impl_;
+    Impl *impl_;
 };
 
 /**
  * 日志宏定义
  */
-#define LOG_TRACE if (Logger::logLevelName[TRACE]) Logger(TRACE, __FILE__, __LINE__).stream()
-#define LOG_DEBUG if (Logger::logLevelName[DEBUG]) Logger(DEBUG, __FILE__, __LINE__).stream()
-#define LOG_INFO if (Logger::logLevelName[INFO]) Logger(INFO, __FILE__, __LINE__).stream()
+#define LOG_TRACE                    \
+    if (Logger::logLevelName[TRACE]) \
+    Logger(TRACE, __FILE__, __LINE__).stream()
+#define LOG_DEBUG                    \
+    if (Logger::logLevelName[DEBUG]) \
+    Logger(DEBUG, __FILE__, __LINE__).stream()
+#define LOG_INFO                    \
+    if (Logger::logLevelName[INFO]) \
+    Logger(INFO, __FILE__, __LINE__).stream()
 #define LOG_WARN Logger(WARN, __FILE__, __LINE__).stream()
 #define LOG_ERROR Logger(ERROR, __FILE__, __LINE__).stream()
 #define LOG_FATAL Logger(FATAL, __FILE__, __LINE__).stream()

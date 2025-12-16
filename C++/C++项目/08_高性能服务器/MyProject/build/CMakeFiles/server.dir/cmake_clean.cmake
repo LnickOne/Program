@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/server.dir/src/Acceptor.cc.o"
+  "CMakeFiles/server.dir/src/Acceptor.cc.o.d"
   "CMakeFiles/server.dir/src/Channel.cc.o"
   "CMakeFiles/server.dir/src/Channel.cc.o.d"
   "CMakeFiles/server.dir/src/EPollPoller.cc.o"
@@ -13,6 +15,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/src/Poller.cc.o.d"
   "CMakeFiles/server.dir/src/Socket.cc.o"
   "CMakeFiles/server.dir/src/Socket.cc.o.d"
+  "CMakeFiles/server.dir/src/TcpConnection.cc.o"
+  "CMakeFiles/server.dir/src/TcpConnection.cc.o.d"
+  "CMakeFiles/server.dir/src/TcpServer.cc.o"
+  "CMakeFiles/server.dir/src/TcpServer.cc.o.d"
   "CMakeFiles/server.dir/src/Timestamp.cc.o"
   "CMakeFiles/server.dir/src/Timestamp.cc.o.d"
   "CMakeFiles/server.dir/src/main.cc.o"

@@ -595,9 +595,183 @@ int main()
 | 扩展性 | 有限 | 高度可扩展，支持多线程模型 |
 | 性能 | 基础 | 高性能，支持百万级并发连接 |
 
+## 第三阶段：TCP连接管理（TcpConnection）
+
+### 功能说明
+第三阶段实现了TCP连接的完整生命周期管理，包括连接的建立、数据传输、连接关闭等核心功能。这一阶段引入了三个关键组件：
+
+1. **TcpConnection**：管理单个TCP连接的生命周期
+2. **TcpServer**：负责监听端口、接受连接并管理所有连接
+3. **Acceptor**：处理新连接的监听和接收
+
+### 设计思路
+
+#### 连接生命周期管理
+- **连接建立**：Acceptor监听新连接，TcpServer创建TcpConnection对象
+- **数据传输**：通过Channel和EventLoop实现事件驱动的数据读写
+- **连接关闭**：支持主动关闭和被动关闭，确保资源正确释放
+
+#### 组件关系
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   TcpServer │────▶│   Acceptor  │────▶│TcpConnection│
+└─────────────┘     └─────────────┘     └─────────────┘
+        ▲                                      │
+        │                                      ▼
+        └────────────────────────────────────────┘
+```
+
+### 核心组件
+
+#### TcpConnection
+管理单个TCP连接，处理连接的建立、数据收发和关闭。
+
+**关键功能**：
+- 连接状态管理（连接中、已连接、断开中、已断开）
+- 非阻塞IO操作（读/写）
+- 输入/输出缓冲区管理
+- 事件回调机制
+
+**核心代码**：
+```cpp
+class TcpConnection : noncopyable {
+public:
+    // 连接状态枚举
+    enum StateE { kDisconnected, kConnecting, kConnected, kDisconnecting };
+    
+    // 构造函数
+    TcpConnection(EventLoop* loop, const std::string& name, int sockfd,
+                 const InetAddress& localAddr, const InetAddress& peerAddr);
+    
+    // 发送数据
+    void send(const std::string& message);
+    
+    // 关闭连接
+    void shutdown();
+    
+    // 设置回调函数
+    void setConnectionCallback(const ConnectionCallback& cb);
+    void setMessageCallback(const MessageCallback& cb);
+    void setWriteCompleteCallback(const WriteCompleteCallback& cb);
+    void setCloseCallback(const CloseCallback& cb);
+    
+    // 获取连接状态
+    bool connected() const { return state_ == kConnected; }
+    
+private:
+    // 处理IO事件
+    void handleRead(Timestamp receiveTime);
+    void handleWrite();
+    void handleClose();
+    void handleError();
+    
+    // 其他成员变量...
+};
+```
+
+#### TcpServer
+负责监听端口，接受新连接，并管理所有TcpConnection对象。
+
+**关键功能**：
+- 监听指定地址和端口
+- 接受新连接并创建TcpConnection对象
+- 管理所有活跃连接
+- 提供统一的事件回调接口
+
+**核心代码**：
+```cpp
+class TcpServer : noncopyable {
+public:
+    // 构造函数
+    TcpServer(EventLoop* loop, const InetAddress& listenAddr, const std::string& nameArg);
+    
+    // 启动服务器
+    void start();
+    
+    // 设置回调函数
+    void setConnectionCallback(const ConnectionCallback& cb);
+    void setMessageCallback(const MessageCallback& cb);
+    void setWriteCompleteCallback(const WriteCompleteCallback& cb);
+    
+private:
+    // 处理新连接
+    void newConnection(int sockfd, const InetAddress& peerAddr);
+    
+    // 移除连接
+    void removeConnection(const std::shared_ptr<TcpConnection>& conn);
+    
+    // 其他成员变量...
+};
+```
+
+#### Acceptor
+负责监听新的连接请求，并在有新连接时调用回调函数。
+
+**关键功能**：
+- 监听套接字的创建和配置
+- 处理新连接的接受
+- 解决文件描述符耗尽问题
+
+**核心代码**：
+```cpp
+class Acceptor : noncopyable {
+public:
+    // 构造函数
+    Acceptor(EventLoop* loop, const InetAddress& listenAddr);
+    
+    // 设置新连接回调
+    void setNewConnectionCallback(const NewConnectionCallback& cb);
+    
+    // 开始监听
+    void listen();
+    
+    // 是否正在监听
+    bool listenning() const { return listenning_; }
+    
+private:
+    // 处理可读事件
+    void handleRead();
+    
+    // 其他成员变量...
+};
+```
+
+### 项目结构更新
+第三阶段新增了以下文件：
+
+```
+MyProject/
+├── include/
+│   ├── TcpConnection.h    # TCP连接管理头文件
+│   ├── TcpServer.h        # TCP服务器头文件
+│   └── Acceptor.h         # 连接接受器头文件
+└── src/
+    ├── TcpConnection.cc   # TCP连接管理实现
+    ├── TcpServer.cc       # TCP服务器实现
+    └── Acceptor.cc        # 连接接受器实现
+```
+
+### 技术特点
+
+1. **完整的连接生命周期管理**：从连接建立到关闭的全过程管理
+2. **事件驱动的数据传输**：基于Reactor模式的非阻塞IO操作
+3. **高效的缓冲区设计**：输入输出缓冲区确保数据完整性
+4. **统一的回调接口**：简化业务逻辑的实现
+5. **优雅的错误处理**：全面的错误检测和处理机制
+6. **线程安全设计**：支持在多线程环境下使用
+
+### 与前两阶段的区别
+
+| 特性 | 第一阶段 | 第二阶段 | 第三阶段 |
+|------|----------|----------|----------|
+| 架构模式 | 阻塞式IO | 事件驱动 | 事件驱动+连接管理 |
+| 连接管理 | 无 | 无 | 完整的TCP连接生命周期管理 |
+| 服务器功能 | 基础Socket | 事件循环 | 完整的TCP服务器 |
+| 组件数量 | 4 | 7 | 10 |
+| 功能完整性 | 基础 | 核心架构 | 可用的TCP服务器 |
+
 ## 后续规划
 
-- **第三阶段**：实现TCP连接管理（TcpConnection）
 - **第四阶段**：实现HTTP协议解析（HttpRequest/HttpResponse）
 - **第五阶段**：实现多线程处理（EventLoopThread）
 - **第六阶段**：实现完整的HTTP服务器功能
@@ -616,5 +790,5 @@ int main()
 
 ---
 
-**版本**：第二阶段实现（v2.0）
-**更新日期**：2025年11月15日
+**版本**：第三阶段实现（v3.0）
+**更新日期**：2025年11月16日

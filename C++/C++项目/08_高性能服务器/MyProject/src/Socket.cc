@@ -78,3 +78,25 @@ void Socket::setKeepAlive(bool on)
     int optval = on ? 1 : 0;
     ::setsockopt(sockfd_, SOL_SOCKET, SO_KEEPALIVE, &optval, sizeof optval);
 }
+
+void Socket::setNonBlocking()
+{
+    int flags = ::fcntl(sockfd_, F_GETFL, 0);
+    if (flags < 0)
+    {
+        // 处理错误
+        return;
+    }
+    ::fcntl(sockfd_, F_SETFL, flags | O_NONBLOCK);
+}
+
+int Socket::getSocketError() const
+{
+    int optval;
+    socklen_t optlen = sizeof optval;
+    if (::getsockopt(sockfd_, SOL_SOCKET, SO_ERROR, &optval, &optlen) < 0)
+    {
+        return errno;
+    }
+    return optval;
+}
