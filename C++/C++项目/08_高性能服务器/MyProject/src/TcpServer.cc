@@ -24,7 +24,7 @@ TcpServer::TcpServer(EventLoop *loop, const InetAddress &listenAddr, const std::
     // 设置新连接回调函数
     acceptor_->setNewConnectionCallback(
         std::bind(&TcpServer::newConnection, this, std::placeholders::_1, std::placeholders::_2));
-    LOG_INFO << "TcpServer::TcpServer [" << name_ << "] is created";
+    LOG_INFO << "TcpServer构造函数：服务器 [" << name_ << "] 创建成功";
 }
 
 /**
@@ -32,7 +32,7 @@ TcpServer::TcpServer(EventLoop *loop, const InetAddress &listenAddr, const std::
  */
 TcpServer::~TcpServer()
 {
-    LOG_INFO << "TcpServer::~TcpServer [" << name_ << "] is destroyed";
+    LOG_INFO << "TcpServer析构函数：服务器 [" << name_ << "] 销毁";
     for (auto &item : connections_)
     {
         std::shared_ptr<TcpConnection> conn(item.second);
@@ -53,7 +53,7 @@ void TcpServer::start()
     }
     // 调用Acceptor的listen方法
     acceptor_->listen();
-    LOG_INFO << "TcpServer::start [" << name_ << "] start listening on " << listenAddr_.toIpPort();
+    LOG_INFO << "TcpServer::start [" << name_ << "]：开始监听 " << listenAddr_.toIpPort();
 }
 
 /**
@@ -73,13 +73,13 @@ void TcpServer::newConnection(int sockfd, const InetAddress &peerAddr)
     socklen_t addrlen = sizeof localAddr;
     if (::getsockname(sockfd, (struct sockaddr *)localAddr.getSockAddr(), &addrlen) < 0)
     {
-        LOG_ERROR << "TcpServer::newConnection getsockname error";
+        LOG_ERROR << "TcpServer::newConnection：getsockname错误";
         ::close(sockfd);
         return;
     }
 
-    LOG_INFO << "TcpServer::newConnection [" << name_ << "] - new connection [" << connName
-             << "] from " << peerAddr.toIpPort();
+    LOG_INFO << "TcpServer::newConnection [" << name_ << "]：新连接 [" << connName
+             << "] 来自 " << peerAddr.toIpPort();
 
     // 创建TcpConnection对象
     std::shared_ptr<TcpConnection> conn =

@@ -37,7 +37,7 @@ int createEventfd()
     int evtfd = ::eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
     if (evtfd < 0)
     {
-        LOG_FATAL << "Failed in eventfd: " << strerror(errno);
+        LOG_FATAL << "创建eventfd失败: " << strerror(errno);
     }
     return evtfd;
 }
@@ -53,12 +53,11 @@ EventLoop::EventLoop()
       wakeupFd_(createEventfd()),
       wakeupChannel_(new Channel(this, wakeupFd_))
 {
-    LOG_DEBUG << "EventLoop " << this << " created";
+    LOG_DEBUG << "EventLoop构造函数：" << this << " 创建成功";
 
     if (t_loopInThisThread)
     {
-        LOG_FATAL << "Another EventLoop " << t_loopInThisThread
-                  << " exists in this thread";
+        LOG_FATAL << "当前线程中已存在EventLoop " << t_loopInThisThread;
     }
     else
     {
@@ -92,7 +91,7 @@ void EventLoop::loop()
     looping_ = true;
     quit_ = false;
 
-    LOG_DEBUG << "EventLoop " << this << " start looping";
+    LOG_DEBUG << "EventLoop " << this << " 开始事件循环";
 
     while (!quit_)
     {

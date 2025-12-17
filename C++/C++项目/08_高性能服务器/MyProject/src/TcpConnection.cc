@@ -27,8 +27,8 @@ TcpConnection::TcpConnection(EventLoop *loop,
       localAddr_(localAddr),
       peerAddr_(peerAddr)
 {
-    LOG_DEBUG << "TcpConnection::TcpConnection [" << name_ << "] at " << this
-              << " fd=" << sockfd;
+    LOG_DEBUG << "TcpConnection构造函数：连接 [" << name_ << "] 创建于 " << this
+              << "，fd=" << sockfd;
 
     // 设置通道的事件回调函数
     channel_->setReadCallback(
@@ -46,9 +46,9 @@ TcpConnection::TcpConnection(EventLoop *loop,
  */
 TcpConnection::~TcpConnection()
 {
-    LOG_DEBUG << "TcpConnection::~TcpConnection [" << name_ << "] at " << this
-              << " fd=" << channel_->fd()
-              << " state=" << stateToString();
+    LOG_DEBUG << "TcpConnection析构函数：连接 [" << name_ << "] 销毁于 " << this
+              << "，fd=" << channel_->fd()
+              << "，状态=" << stateToString();
 }
 
 /**
@@ -121,7 +121,7 @@ void TcpConnection::sendInLoop(const std::string &message)
             nwrote = 0;
             if (errno != EWOULDBLOCK)
             {
-                LOG_ERROR << "TcpConnection::sendInLoop [" << name_ << "] write error";
+                LOG_ERROR << "TcpConnection::sendInLoop [" << name_ << "]：写入错误";
                 if (errno == EPIPE || errno == ECONNRESET)
                 {
                     faultError = true;
@@ -133,7 +133,7 @@ void TcpConnection::sendInLoop(const std::string &message)
     // 如果还有剩余数据需要发送，且没有错误，将数据添加到输出缓冲区
     if (!faultError && remaining > 0)
     {
-        LOG_DEBUG << "TcpConnection::sendInLoop [" << name_ << "] remaining data=" << remaining;
+        LOG_DEBUG << "TcpConnection::sendInLoop [" << name_ << "]：剩余数据=" << remaining;
         outputBuffer_.append(message.data() + nwrote, remaining);
         if (!channel_->isWriting())
         {
@@ -240,7 +240,6 @@ void TcpConnection::handleRead(Timestamp receiveTime)
 {
     (void)receiveTime; // 消除未使用参数的警告
     loop_->assertInLoopThread();
-    int savedErrno = 0;
     char buf[65536]; // 64KB缓冲区
     ssize_t n = read(channel_->fd(), buf, sizeof buf);
 
@@ -261,7 +260,6 @@ void TcpConnection::handleRead(Timestamp receiveTime)
     else
     {
         // 读取错误
-        savedErrno = errno;
         LOG_ERROR << "TcpConnection::handleRead [" << name_ << "] error";
         handleError();
     }

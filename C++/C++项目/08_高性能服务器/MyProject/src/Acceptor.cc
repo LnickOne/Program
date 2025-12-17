@@ -22,7 +22,7 @@ Acceptor::Acceptor(EventLoop *loop, const InetAddress &listenAddr)
 {
     if (idleFd_ < 0)
     {
-        LOG_ERROR << "Acceptor::Acceptor open /dev/null failed";
+        LOG_ERROR << "Acceptor构造函数：打开/dev/null失败";
     }
 
     // 设置socket选项
@@ -44,7 +44,7 @@ Acceptor::~Acceptor()
     acceptChannel_->disableAll();
     acceptChannel_->remove();
     ::close(idleFd_);
-    LOG_DEBUG << "Acceptor::~Acceptor close idleFd=" << idleFd_;
+    LOG_DEBUG << "Acceptor析构函数：关闭idleFd=" << idleFd_;
 }
 
 /**
@@ -55,7 +55,7 @@ void Acceptor::listen()
     listenning_ = true;
     acceptSocket_->listen();
     acceptChannel_->enableReading();
-    LOG_DEBUG << "Acceptor::listen start listening on " << acceptSocket_->fd();
+    LOG_DEBUG << "Acceptor::listen：开始监听 " << acceptSocket_->fd();
 }
 
 /**
@@ -68,8 +68,8 @@ void Acceptor::handleRead()
     int connfd = acceptSocket_->accept(&peerAddr);
     if (connfd >= 0)
     {
-        LOG_INFO << "Acceptor::handleRead accept new connection from " << peerAddr.toIpPort()
-                 << " with connfd=" << connfd;
+        LOG_INFO << "Acceptor::handleRead：接受来自 " << peerAddr.toIpPort()
+                 << " 的新连接，connfd=" << connfd;
         if (newConnectionCallback_)
         {
             newConnectionCallback_(connfd, peerAddr);
@@ -77,12 +77,12 @@ void Acceptor::handleRead()
         else
         {
             ::close(connfd);
-            LOG_WARN << "Acceptor::handleRead no newConnectionCallback_ set, close connfd=" << connfd;
+            LOG_WARN << "Acceptor::handleRead：未设置newConnectionCallback_，关闭connfd=" << connfd;
         }
     }
     else
     {
-        LOG_ERROR << "Acceptor::handleRead accept error";
+        LOG_ERROR << "Acceptor::handleRead：接受连接错误";
         // 文件描述符耗尽处理
         if (errno == EMFILE)
         {
@@ -90,7 +90,7 @@ void Acceptor::handleRead()
             idleFd_ = ::accept(acceptSocket_->fd(), NULL, NULL);
             ::close(idleFd_);
             idleFd_ = ::open("/dev/null", O_RDONLY | O_CLOEXEC);
-            LOG_WARN << "Acceptor::handleRead EMFILE, handle by closing and reopening idleFd";
+            LOG_WARN << "Acceptor::handleRead：文件描述符耗尽，通过关闭并重新打开idleFd处理";
         }
     }
 }

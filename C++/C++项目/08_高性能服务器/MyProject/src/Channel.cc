@@ -96,13 +96,13 @@ void Channel::handleEvent(Timestamp receiveTime)
 void Channel::handleEventWithGuard(Timestamp receiveTime)
 {
     eventHandling_ = true;
-    LOG_TRACE << "fd = " << fd_ << " events = " << events_ << " revents = " << revents_;
+    LOG_TRACE << "文件描述符 = " << fd_ << " 关注事件 = " << events_ << " 实际事件 = " << revents_;
 
     if ((revents_ & POLLHUP) && !(revents_ & POLLIN))
     {
         if (logHup_)
         {
-            LOG_WARN << "fd = " << fd_ << " Channel::handle_event() POLLHUP";
+            LOG_WARN << "文件描述符 = " << fd_ << " Channel::handle_event()：POLLHUP事件";
         }
         if (closeCallback_)
             closeCallback_();
@@ -110,7 +110,7 @@ void Channel::handleEventWithGuard(Timestamp receiveTime)
 
     if (revents_ & POLLNVAL)
     {
-        LOG_WARN << "fd = " << fd_ << " Channel::handle_event() POLLNVAL";
+        LOG_WARN << "文件描述符 = " << fd_ << " Channel::handle_event()：POLLNVAL事件";
     }
 
     if (revents_ & (POLLERR | POLLNVAL))
