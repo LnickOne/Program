@@ -3,6 +3,7 @@
 
 #include "noncopyable.h"
 #include "InetAddress.h"
+#include "EventLoopThreadPool.h"
 #include <functional>
 #include <string>
 #include <unordered_map>
@@ -44,6 +45,12 @@ public:
      * 启动服务器
      */
     void start();
+
+    /**
+     * 设置线程数量
+     * @param numThreads 线程数量
+     */
+    void setThreadNum(int numThreads) { threadPool_->setThreadNum(numThreads); }
 
     /**
      * 设置线程初始化回调函数
@@ -112,6 +119,7 @@ private:
     EventLoop *loop_;                    // 事件循环
     const std::string name_;             // 服务器名称
     std::unique_ptr<Acceptor> acceptor_; // 接受新连接的对象
+    std::unique_ptr<EventLoopThreadPool> threadPool_; // 线程池
 
     ThreadInitCallback threadInitCallback_;       // 线程初始化回调
     ConnectionCallback connectionCallback_;       // 连接建立回调

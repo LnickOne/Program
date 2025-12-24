@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Acceptor.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Acceptor.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Channel.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Channel.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EPollPoller.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EPollPoller.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EventLoop.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/EventLoop.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/HttpContext.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/HttpContext.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/HttpRequest.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/HttpRequest.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/HttpResponse.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/HttpResponse.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/HttpServer.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/HttpServer.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/InetAddress.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/InetAddress.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Logger.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Logger.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Poller.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Poller.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Socket.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Socket.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/TcpConnection.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/TcpConnection.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/TcpServer.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/TcpServer.cc.o.d"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Timestamp.cc.o"
+  "CMakeFiles/test_http.dir/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/src/Timestamp.cc.o.d"
+  "CMakeFiles/test_http.dir/test_http.cpp.o"
+  "CMakeFiles/test_http.dir/test_http.cpp.o.d"
+  "test_http"
+  "test_http.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/test_http.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

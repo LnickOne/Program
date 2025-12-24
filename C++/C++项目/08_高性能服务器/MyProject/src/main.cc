@@ -1,47 +1,34 @@
 #include <iostream>
 #include "EventLoop.h"
 #include "Logger.h"
-#include "TcpServer.h"
+#include "HttpServer.h"
 #include "InetAddress.h"
-#include "TcpConnection.h"
+#include "HttpRequest.h"
+#include "HttpResponse.h"
 #include <string>
 
-// 连接建立回调函数
-void onConnection(const std::shared_ptr<TcpConnection> &conn)
+// HTTP请求处理函数
+void onHttpRequest(const HttpRequest &req, HttpResponse *resp)
 {
-    if (conn->connected())
-    {
-        LOG_INFO << "onConnection(): new connection [" << conn->name()
-                 << "] from " << conn->peerAddress().toIpPort();
-        // 发送欢迎消息
-        conn->send("Welcome to MyTcpServer!\r\n");
-    }
-    else
-    {
-        LOG_INFO << "onConnection(): connection [" << conn->name()
-                 << "] is down";
-    }
-}
+    LOG_INFO << "onHttpRequest(): " << req.methodString() << " " << req.path();
 
-// 消息到达回调函数
-void onMessage(const std::shared_ptr<TcpConnection> &conn, std::string &message)
-{
-    LOG_INFO << "onMessage(): received " << message.size()
-             << " bytes from connection [" << conn->name() << "]: " << message;
-    // 回显消息给客户端
-    conn->send(message);
-}
+    // 设置响应状态码
+    resp->setStatusCode(HttpResponse::k200Ok);
+    resp->setStatusMessage("OK");
 
-// 写完成回调函数
-void onWriteComplete(const std::shared_ptr<TcpConnection> &conn)
-{
-    LOG_INFO << "onWriteComplete(): connection [" << conn->name() << "] write complete";
-}
+    // 设置响应头
+    resp->setContentType("text/html; charset=utf-8");
+    resp->addHeader("Server", "MyHttpServer");
 
-// 连接关闭回调函数
-void onClose(const std::shared_ptr<TcpConnection> &conn)
-{
-    LOG_INFO << "onClose(): connection [" << conn->name() << "] is closed";
+    // 构造简单的HTML响应体
+    std::string body;
+    body += "<html><head><title>MyHttpServer</title></head>";
+    body += "<body><h1>Hello, World!</h1>";
+    body += "<p>Request path: " + req.path() + "</p>";
+    body += "<p>Request method: " + std::string(req.methodString()) + "</p>";
+    body += "</body></html>";
+
+    resp->setBody(body);
 }
 
 int main()
@@ -55,19 +42,22 @@ int main()
     // 设置服务器监听地址和端口
     InetAddress listenAddr(8080);
 
-    // 创建TCP服务器实例
-    TcpServer server(&loop, listenAddr, "MyTcpServer");
+    // 创建HTTP服务器实例
+    HttpServer server(&loop, listenAddr, "MyHttpServer");
 
-    // 设置回调函数
-    server.setConnectionCallback(onConnection);
-    server.setMessageCallback(onMessage);
-    server.setWriteCompleteCallback(onWriteComplete);
-    server.setCloseCallback(onClose);
+    // 设置HTTP请求处理回调函数
+    server.setHttpCallback(onHttpRequest);
+
+    // 设置静态文件根目录
+    server.setStaticFileRoot("./static");
+
+    // 设置线程数量（多线程处理）
+    server.setThreadNum(4); // 使用4个IO线程
 
     // 启动服务器
     server.start();
 
-    LOG_INFO << "MyTcpServer is running on port 8080...";
+    LOG_INFO << "MyHttpServer is running on port 8080...";
 
     // 运行事件循环
     loop.loop();

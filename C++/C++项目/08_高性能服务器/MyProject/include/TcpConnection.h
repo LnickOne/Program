@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 #include <functional>
+#include <any>
 #include "noncopyable.h"
 #include "InetAddress.h"
 #include "Timestamp.h"
@@ -159,6 +160,30 @@ public:
      */
     void connectDestroyed();
 
+    /**
+     * 设置连接上下文
+     * @param context 上下文对象
+     */
+    void setContext(const std::any& context) {
+        context_ = context;
+    }
+
+    /**
+     * 获取连接上下文
+     * @return 上下文对象
+     */
+    const std::any& getContext() const {
+        return context_;
+    }
+
+    /**
+     * 获取可修改的连接上下文
+     * @return 上下文对象
+     */
+    std::any* getMutableContext() {
+        return &context_;
+    }
+
 private:
     /**
      * 处理读事件
@@ -218,6 +243,7 @@ private:
 
     std::string inputBuffer_;  // 输入缓冲区
     std::string outputBuffer_; // 输出缓冲区
+    std::any context_;         // 连接上下文
 };
 
 #endif // MY_PROJECT_TCP_CONNECTION_H

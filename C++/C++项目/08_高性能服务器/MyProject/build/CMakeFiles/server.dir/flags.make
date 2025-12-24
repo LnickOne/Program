@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/include
 
-CXX_FLAGS =  -Wall -Wextra -g -std=gnu++11
+CXX_FLAGS =  -Wall -Wextra -g -std=gnu++17
 

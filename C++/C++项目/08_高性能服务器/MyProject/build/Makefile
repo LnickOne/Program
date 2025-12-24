@@ -153,6 +153,30 @@ src/Acceptor.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Acceptor.cc.s
 .PHONY : src/Acceptor.cc.s
 
+src/Cache.o: src/Cache.cc.o
+.PHONY : src/Cache.o
+
+# target to build an object file
+src/Cache.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Cache.cc.o
+.PHONY : src/Cache.cc.o
+
+src/Cache.i: src/Cache.cc.i
+.PHONY : src/Cache.i
+
+# target to preprocess a source file
+src/Cache.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Cache.cc.i
+.PHONY : src/Cache.cc.i
+
+src/Cache.s: src/Cache.cc.s
+.PHONY : src/Cache.s
+
+# target to generate assembly for a file
+src/Cache.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Cache.cc.s
+.PHONY : src/Cache.cc.s
+
 src/Channel.o: src/Channel.cc.o
 .PHONY : src/Channel.o
 
@@ -224,6 +248,150 @@ src/EventLoop.s: src/EventLoop.cc.s
 src/EventLoop.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EventLoop.cc.s
 .PHONY : src/EventLoop.cc.s
+
+src/EventLoopThread.o: src/EventLoopThread.cpp.o
+.PHONY : src/EventLoopThread.o
+
+# target to build an object file
+src/EventLoopThread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EventLoopThread.cpp.o
+.PHONY : src/EventLoopThread.cpp.o
+
+src/EventLoopThread.i: src/EventLoopThread.cpp.i
+.PHONY : src/EventLoopThread.i
+
+# target to preprocess a source file
+src/EventLoopThread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EventLoopThread.cpp.i
+.PHONY : src/EventLoopThread.cpp.i
+
+src/EventLoopThread.s: src/EventLoopThread.cpp.s
+.PHONY : src/EventLoopThread.s
+
+# target to generate assembly for a file
+src/EventLoopThread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EventLoopThread.cpp.s
+.PHONY : src/EventLoopThread.cpp.s
+
+src/EventLoopThreadPool.o: src/EventLoopThreadPool.cpp.o
+.PHONY : src/EventLoopThreadPool.o
+
+# target to build an object file
+src/EventLoopThreadPool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EventLoopThreadPool.cpp.o
+.PHONY : src/EventLoopThreadPool.cpp.o
+
+src/EventLoopThreadPool.i: src/EventLoopThreadPool.cpp.i
+.PHONY : src/EventLoopThreadPool.i
+
+# target to preprocess a source file
+src/EventLoopThreadPool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EventLoopThreadPool.cpp.i
+.PHONY : src/EventLoopThreadPool.cpp.i
+
+src/EventLoopThreadPool.s: src/EventLoopThreadPool.cpp.s
+.PHONY : src/EventLoopThreadPool.s
+
+# target to generate assembly for a file
+src/EventLoopThreadPool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/EventLoopThreadPool.cpp.s
+.PHONY : src/EventLoopThreadPool.cpp.s
+
+src/HttpContext.o: src/HttpContext.cc.o
+.PHONY : src/HttpContext.o
+
+# target to build an object file
+src/HttpContext.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpContext.cc.o
+.PHONY : src/HttpContext.cc.o
+
+src/HttpContext.i: src/HttpContext.cc.i
+.PHONY : src/HttpContext.i
+
+# target to preprocess a source file
+src/HttpContext.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpContext.cc.i
+.PHONY : src/HttpContext.cc.i
+
+src/HttpContext.s: src/HttpContext.cc.s
+.PHONY : src/HttpContext.s
+
+# target to generate assembly for a file
+src/HttpContext.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpContext.cc.s
+.PHONY : src/HttpContext.cc.s
+
+src/HttpRequest.o: src/HttpRequest.cc.o
+.PHONY : src/HttpRequest.o
+
+# target to build an object file
+src/HttpRequest.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpRequest.cc.o
+.PHONY : src/HttpRequest.cc.o
+
+src/HttpRequest.i: src/HttpRequest.cc.i
+.PHONY : src/HttpRequest.i
+
+# target to preprocess a source file
+src/HttpRequest.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpRequest.cc.i
+.PHONY : src/HttpRequest.cc.i
+
+src/HttpRequest.s: src/HttpRequest.cc.s
+.PHONY : src/HttpRequest.s
+
+# target to generate assembly for a file
+src/HttpRequest.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpRequest.cc.s
+.PHONY : src/HttpRequest.cc.s
+
+src/HttpResponse.o: src/HttpResponse.cc.o
+.PHONY : src/HttpResponse.o
+
+# target to build an object file
+src/HttpResponse.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpResponse.cc.o
+.PHONY : src/HttpResponse.cc.o
+
+src/HttpResponse.i: src/HttpResponse.cc.i
+.PHONY : src/HttpResponse.i
+
+# target to preprocess a source file
+src/HttpResponse.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpResponse.cc.i
+.PHONY : src/HttpResponse.cc.i
+
+src/HttpResponse.s: src/HttpResponse.cc.s
+.PHONY : src/HttpResponse.s
+
+# target to generate assembly for a file
+src/HttpResponse.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpResponse.cc.s
+.PHONY : src/HttpResponse.cc.s
+
+src/HttpServer.o: src/HttpServer.cc.o
+.PHONY : src/HttpServer.o
+
+# target to build an object file
+src/HttpServer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpServer.cc.o
+.PHONY : src/HttpServer.cc.o
+
+src/HttpServer.i: src/HttpServer.cc.i
+.PHONY : src/HttpServer.i
+
+# target to preprocess a source file
+src/HttpServer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpServer.cc.i
+.PHONY : src/HttpServer.cc.i
+
+src/HttpServer.s: src/HttpServer.cc.s
+.PHONY : src/HttpServer.s
+
+# target to generate assembly for a file
+src/HttpServer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HttpServer.cc.s
+.PHONY : src/HttpServer.cc.s
 
 src/InetAddress.o: src/InetAddress.cc.o
 .PHONY : src/InetAddress.o
@@ -429,6 +597,9 @@ help:
 	@echo "... src/Acceptor.o"
 	@echo "... src/Acceptor.i"
 	@echo "... src/Acceptor.s"
+	@echo "... src/Cache.o"
+	@echo "... src/Cache.i"
+	@echo "... src/Cache.s"
 	@echo "... src/Channel.o"
 	@echo "... src/Channel.i"
 	@echo "... src/Channel.s"
@@ -438,6 +609,24 @@ help:
 	@echo "... src/EventLoop.o"
 	@echo "... src/EventLoop.i"
 	@echo "... src/EventLoop.s"
+	@echo "... src/EventLoopThread.o"
+	@echo "... src/EventLoopThread.i"
+	@echo "... src/EventLoopThread.s"
+	@echo "... src/EventLoopThreadPool.o"
+	@echo "... src/EventLoopThreadPool.i"
+	@echo "... src/EventLoopThreadPool.s"
+	@echo "... src/HttpContext.o"
+	@echo "... src/HttpContext.i"
+	@echo "... src/HttpContext.s"
+	@echo "... src/HttpRequest.o"
+	@echo "... src/HttpRequest.i"
+	@echo "... src/HttpRequest.s"
+	@echo "... src/HttpResponse.o"
+	@echo "... src/HttpResponse.i"
+	@echo "... src/HttpResponse.s"
+	@echo "... src/HttpServer.o"
+	@echo "... src/HttpServer.i"
+	@echo "... src/HttpServer.s"
 	@echo "... src/InetAddress.o"
 	@echo "... src/InetAddress.i"
 	@echo "... src/InetAddress.s"

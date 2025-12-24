@@ -1,6 +1,7 @@
 #include "TcpServer.h"
 #include "Acceptor.h"
 #include "EventLoop.h"
+#include "EventLoopThreadPool.h"
 #include "TcpConnection.h"
 #include "Logger.h"
 #include <string.h>
@@ -14,6 +15,7 @@ TcpServer::TcpServer(EventLoop *loop, const InetAddress &listenAddr, const std::
     : loop_(loop),
       name_(nameArg),
       acceptor_(new Acceptor(loop, listenAddr)),
+      threadPool_(new EventLoopThreadPool(loop, nameArg)),
       threadInitCallback_(),
       connectionCallback_(),
       messageCallback_(),
@@ -51,6 +53,10 @@ void TcpServer::start()
     {
         return;
     }
+
+    // 启动线程池
+    threadPool_->start(threadInitCallback_);
+
     // 调用Acceptor的listen方法
     acceptor_->listen();
     LOG_INFO << "TcpServer::start [" << name_ << "]：开始监听 " << listenAddr_.toIpPort();
@@ -81,9 +87,12 @@ void TcpServer::newConnection(int sockfd, const InetAddress &peerAddr)
     LOG_INFO << "TcpServer::newConnection [" << name_ << "]：新连接 [" << connName
              << "] 来自 " << peerAddr.toIpPort();
 
+    // 从线程池获取EventLoop
+    EventLoop *ioLoop = threadPool_->getNextLoop();
+
     // 创建TcpConnection对象
     std::shared_ptr<TcpConnection> conn =
-        std::make_shared<TcpConnection>(loop_, connName, sockfd, localAddr, peerAddr);
+        std::make_shared<TcpConnection>(ioLoop, connName, sockfd, localAddr, peerAddr);
 
     connections_[connName] = conn;
 
@@ -95,8 +104,9 @@ void TcpServer::newConnection(int sockfd, const InetAddress &peerAddr)
     conn->setCloseCallback(
         std::bind(&TcpServer::removeConnection, this, std::placeholders::_1));
 
-    // 建立连接
-    conn->connectEstablished();
+    // 建立连接（必须在TcpConnection所属的EventLoop线程中执行）
+    ioLoop->runInLoop(
+        std::bind(&TcpConnection::connectEstablished, conn));
 }
 
 /**
@@ -120,7 +130,9 @@ void TcpServer::removeConnectionInLoop(const std::shared_ptr<TcpConnection> &con
     size_t n = connections_.erase(conn->name());
     (void)n;
     assert(n == 1);
-    conn->connectDestroyed();
+    // 必须在TcpConnection所属的EventLoop线程中调用connectDestroyed
+    conn->getLoop()->queueInLoop(
+        std::bind(&TcpConnection::connectDestroyed, conn));
 }
 
 /**
