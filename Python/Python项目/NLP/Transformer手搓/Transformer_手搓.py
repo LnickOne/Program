@@ -1,5 +1,5 @@
-import torch  # type: ignore
-import torch.nn as nn  # type: ignore
+import torch
+import torch.nn as nn
 import math
 
 
@@ -176,5 +176,4 @@ class Transformer(nn.Module):
         def forward(self, src, target, src_mask=None, target_mask=None):
             memory = self.encoder(src, src_mask)
             out = self.decode(target, memory, src_mask, target_mask)
-
             return self.out(out)
