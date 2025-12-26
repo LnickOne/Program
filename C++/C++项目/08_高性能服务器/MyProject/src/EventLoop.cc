@@ -15,6 +15,7 @@
 #include <functional>
 #include <iostream>
 #include <cassert>
+#include <mutex>
 
 /**
  * 定义线程本地存储的事件循环指针
@@ -196,8 +197,7 @@ void EventLoop::runInLoop(const std::function<void()> &cb)
 void EventLoop::queueInLoop(const std::function<void()> &cb)
 {
     {
-        // 这里应该加锁保护pendingFunctors_
-        // 为了简化实现，暂时不加锁
+        std::unique_lock<std::mutex> lock(mutex_);
         pendingFunctors_.push_back(cb);
     }
 
@@ -242,8 +242,7 @@ void EventLoop::doPendingFunctors()
     callingPendingFunctors_ = true;
 
     {
-        // 这里应该加锁保护pendingFunctors_
-        // 为了简化实现，暂时不加锁
+        std::unique_lock<std::mutex> lock(mutex_);
         functors.swap(pendingFunctors_);
     }
 

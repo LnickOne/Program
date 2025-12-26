@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <vector>
+#include <mutex>
 #include "noncopyable.h"
 
 class Channel;
@@ -140,6 +141,11 @@ private:
      * 待处理的任务队列
      */
     std::vector<std::function<void()>> pendingFunctors_;
+
+    /**
+     * 保护pendingFunctors_的互斥锁
+     */
+    std::mutex mutex_;
 };
 
 #endif // MY_PROJECT_EVENT_LOOP_H

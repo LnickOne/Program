@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <memory>
 #include <mutex>
+#include <list>
 
 /**
  * 缓存条目类
@@ -55,7 +56,7 @@ private:
 
 /**
  * 缓存管理器类
- * 管理缓存条目，提供线程安全的缓存操作
+ * 管理缓存条目，提供线程安全的缓存操作，使用LRU策略
  */
 class CacheManager
 {
@@ -102,11 +103,19 @@ public:
     size_t size() const { return cacheMap_.size(); }
 
 private:
-    using CacheMap = std::unordered_map<std::string, std::shared_ptr<CacheEntry>>;
+    using KeyList = std::list<std::string>;  // LRU队列，保存键的使用顺序
+    using CacheMap = std::unordered_map<std::string, std::pair<std::shared_ptr<CacheEntry>, KeyList::iterator>>;
+
     CacheMap cacheMap_;                // 缓存映射表
+    KeyList keyList_;                  // LRU队列
     int defaultExpireTime_;            // 默认过期时间（秒）
     size_t maxSize_;                   // 缓存最大条目数
     mutable std::mutex mutex_;         // 互斥锁，保证线程安全
+
+    /**
+     * 移动键到LRU队列的头部（表示最近使用）
+     */
+    void moveToFront(const std::string& key, CacheMap::iterator it);
 };
 
 #endif // MY_PROJECT_CACHE_H

@@ -197,7 +197,8 @@ CMakeFiles/server.dir/src/HttpServer.cc.o: \
  /usr/include/c++/11/system_error \
  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
  /usr/include/c++/11/stdexcept /usr/include/c++/11/bits/std_mutex.h \
- /usr/include/c++/11/bits/unique_lock.h \
+ /usr/include/c++/11/bits/unique_lock.h /usr/include/c++/11/list \
+ /usr/include/c++/11/bits/stl_list.h /usr/include/c++/11/bits/list.tcc \
  /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/include/HttpContext.h \
  /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/include/HttpRequest.h \
  /home/lnick/GitHub/Program/C++/C++项目/08_高性能服务器/MyProject/include/HttpResponse.h \
