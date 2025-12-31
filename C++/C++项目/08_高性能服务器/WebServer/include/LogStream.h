@@ -9,14 +9,16 @@ public:
     GeneralTemplate()
         : data_(nullptr),
           len_(0)
-    {}
+    {
+    }
 
-    explicit GeneralTemplate(const char* data, int len)
+    explicit GeneralTemplate(const char *data, int len)
         : data_(data),
           len_(len)
-    {}
+    {
+    }
 
-    const char* data_;
+    const char *data_;
     int len_;
 };
 // LogStream类用于管理日志输出流，重载输出流运算符<<，将各种类型的值写入内部缓冲区
@@ -78,7 +80,8 @@ public:
     // 重载输出流运算符<<，用于将std::string对象写入缓冲区
     LogStream &operator<<(const std::string &);
     // (const char*, int)的重载
-    LogStream& operator<<(const GeneralTemplate& g);
+    LogStream &operator<<(const GeneralTemplate &g);
+
 private:
     // 定义最大数字大小常量
     static constexpr int kMaxNumberSize = 32;

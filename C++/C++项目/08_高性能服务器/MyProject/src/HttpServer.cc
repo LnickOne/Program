@@ -147,7 +147,7 @@ string HttpServer::getContentTypeByExtension(const string &path)
             contentType = "application/json";
         else if (ext == "xml")
             contentType = "application/xml";
-        
+
         // 图片类型
         else if (ext == "jpg" || ext == "jpeg")
             contentType = "image/jpeg";
@@ -159,7 +159,7 @@ string HttpServer::getContentTypeByExtension(const string &path)
             contentType = "image/x-icon";
         else if (ext == "svg")
             contentType = "image/svg+xml";
-        
+
         // 应用类型
         else if (ext == "pdf")
             contentType = "application/pdf";
@@ -171,7 +171,7 @@ string HttpServer::getContentTypeByExtension(const string &path)
             contentType = "application/x-tar";
         else if (ext == "gz")
             contentType = "application/gzip";
-        
+
         // 音频类型
         else if (ext == "mp3")
             contentType = "audio/mpeg";
@@ -179,7 +179,7 @@ string HttpServer::getContentTypeByExtension(const string &path)
             contentType = "audio/wav";
         else if (ext == "ogg")
             contentType = "audio/ogg";
-        
+
         // 视频类型
         else if (ext == "mp4")
             contentType = "video/mp4";
@@ -187,7 +187,7 @@ string HttpServer::getContentTypeByExtension(const string &path)
             contentType = "video/webm";
         else if (ext == "ogv")
             contentType = "video/ogg";
-        
+
         // 字体类型
         else if (ext == "ttf")
             contentType = "font/ttf";

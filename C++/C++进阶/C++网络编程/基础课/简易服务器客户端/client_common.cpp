@@ -23,7 +23,6 @@ void signalHandler(int signum)
         close(client_sock);
         std::cout << "连接已关闭" << std::endl;
     }
-
     exit(0);
 }
 

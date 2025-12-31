@@ -1,7 +1,7 @@
 #include "Cache.h"
 #include <algorithm>
 
-void CacheManager::moveToFront(const std::string& key, CacheMap::iterator it)
+void CacheManager::moveToFront(const std::string &key, CacheMap::iterator it)
 {
     // 从列表中移除当前位置
     keyList_.erase(it->second.second);
@@ -11,7 +11,7 @@ void CacheManager::moveToFront(const std::string& key, CacheMap::iterator it)
     it->second.second = keyList_.begin();
 }
 
-void CacheManager::addCache(const std::string& key, const std::string& content, const std::string& contentType, int expireTime)
+void CacheManager::addCache(const std::string &key, const std::string &content, const std::string &contentType, int expireTime)
 {
     std::lock_guard<std::mutex> lock(mutex_);
 
@@ -46,11 +46,10 @@ void CacheManager::addCache(const std::string& key, const std::string& content, 
     // 添加到缓存映射表
     cacheMap_[key] = std::make_pair(
         std::make_shared<CacheEntry>(content, contentType, expireTimeStamp),
-        keyList_.begin()
-    );
+        keyList_.begin());
 }
 
-std::shared_ptr<CacheEntry> CacheManager::getCache(const std::string& key)
+std::shared_ptr<CacheEntry> CacheManager::getCache(const std::string &key)
 {
     std::lock_guard<std::mutex> lock(mutex_);
 
@@ -76,7 +75,7 @@ std::shared_ptr<CacheEntry> CacheManager::getCache(const std::string& key)
     return it->second.first;
 }
 
-void CacheManager::removeCache(const std::string& key)
+void CacheManager::removeCache(const std::string &key)
 {
     std::lock_guard<std::mutex> lock(mutex_);
     auto it = cacheMap_.find(key);
@@ -96,9 +95,9 @@ void CacheManager::cleanupExpired()
     auto it = keyList_.begin();
     while (it != keyList_.end())
     {
-        const std::string& key = *it;
+        const std::string &key = *it;
         auto cacheIt = cacheMap_.find(key);
-        
+
         if (cacheIt != cacheMap_.end() && cacheIt->second.first->isExpired())
         {
             // 缓存已过期，从LRU队列和映射表中移除

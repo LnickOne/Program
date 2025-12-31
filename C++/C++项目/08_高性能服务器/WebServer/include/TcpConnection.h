@@ -38,21 +38,32 @@ public:
 
     // 发送数据
     void send(const std::string &buf);
-    void sendFile(int fileDescriptor, off_t offset, size_t count); 
-    
+    void sendFile(int fileDescriptor, off_t offset, size_t count);
+
     // 关闭半连接
     void shutdown();
 
     void setConnectionCallback(const ConnectionCallback &cb)
-    { connectionCallback_ = cb; }
+    {
+        connectionCallback_ = cb;
+    }
     void setMessageCallback(const MessageCallback &cb)
-    { messageCallback_ = cb; }
+    {
+        messageCallback_ = cb;
+    }
     void setWriteCompleteCallback(const WriteCompleteCallback &cb)
-    { writeCompleteCallback_ = cb; }
+    {
+        writeCompleteCallback_ = cb;
+    }
     void setCloseCallback(const CloseCallback &cb)
-    { closeCallback_ = cb; }
+    {
+        closeCallback_ = cb;
+    }
     void setHighWaterMarkCallback(const HighWaterMarkCallback &cb, size_t highWaterMark)
-    { highWaterMarkCallback_ = cb; highWaterMark_ = highWaterMark; }
+    {
+        highWaterMarkCallback_ = cb;
+        highWaterMark_ = highWaterMark;
+    }
 
     // 连接建立
     void connectEstablished();
@@ -70,7 +81,7 @@ private:
     void setState(StateE state) { state_ = state; }
 
     void handleRead(Timestamp receiveTime);
-    void handleWrite();//处理写事件
+    void handleWrite(); // 处理写事件
     void handleClose();
     void handleError();
 
@@ -80,7 +91,7 @@ private:
     EventLoop *loop_; // 这里是baseloop还是subloop由TcpServer中创建的线程数决定 若为多Reactor 该loop_指向subloop 若为单Reactor 该loop_指向baseloop
     const std::string name_;
     std::atomic_int state_;
-    bool reading_;//连接是否在监听读事件
+    bool reading_; // 连接是否在监听读事件
 
     // Socket Channel 这里和Acceptor类似    Acceptor => mainloop    TcpConnection => subloop
     std::unique_ptr<Socket> socket_;
@@ -94,10 +105,10 @@ private:
     MessageCallback messageCallback_;             // 有读写消息时的回调
     WriteCompleteCallback writeCompleteCallback_; // 消息发送完成以后的回调
     HighWaterMarkCallback highWaterMarkCallback_; // 高水位回调
-    CloseCallback closeCallback_; // 关闭连接的回调
-    size_t highWaterMark_; // 高水位阈值
+    CloseCallback closeCallback_;                 // 关闭连接的回调
+    size_t highWaterMark_;                        // 高水位阈值
 
     // 数据缓冲区
-    Buffer inputBuffer_;    // 接收数据的缓冲区
-    Buffer outputBuffer_;   // 发送数据的缓冲区 用户send向outputBuffer_发
+    Buffer inputBuffer_;  // 接收数据的缓冲区
+    Buffer outputBuffer_; // 发送数据的缓冲区 用户send向outputBuffer_发
 };

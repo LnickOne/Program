@@ -28,7 +28,7 @@ public:
      * @param data 要写入的数据
      * @param len 数据长度
      */
-    void append(const char *data,int len);
+    void append(const char *data, int len);
 
     /**
      * @brief 强制将缓冲区数据刷新到磁盘
@@ -47,7 +47,6 @@ private:
      * @brief 禁用析构函数，使用智能指针管理
      */
 
-
     /**
      * @brief 生成日志文件名
      * @param basename 日志文件基本名称
@@ -64,16 +63,16 @@ private:
     void appendInlock(const char *data, int len);
 
     const std::string basename_;
-    const off_t rollsize_;    //滚动文件大小
+    const off_t rollsize_;    // 滚动文件大小
     const int flushInterval_; // 冲刷时间限值，默认3s
     const int checkEveryN_;   // 写数据次数限制，默认1024
 
     int count_; // 写数据次数计数, 超过限值checkEveryN_时清除, 然后重新计数
 
     std::mutex mutex_;
-    time_t startOfPeriod_;// 本次写log周期的起始时间(秒)
-    time_t lastRoll_;// 上次roll日志文件时间(秒)
-    time_t lastFlush_; // 上次flush日志文件时间(秒)
+    time_t startOfPeriod_; // 本次写log周期的起始时间(秒)
+    time_t lastRoll_;      // 上次roll日志文件时间(秒)
+    time_t lastFlush_;     // 上次flush日志文件时间(秒)
     std::unique_ptr<FileUtil> file_;
-    const static int kRollPerSeconds_ = 60*60*24;
+    const static int kRollPerSeconds_ = 60 * 60 * 24;
 };

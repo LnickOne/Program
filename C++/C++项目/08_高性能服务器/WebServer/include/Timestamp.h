@@ -20,17 +20,17 @@ public:
 
     // 获取当前时间戳
     static Timestamp now();
-    std::string toString()const;
-    
-    //格式, "%4d年%02d月%02d日 星期%d %02d:%02d:%02d.%06d",时分秒.微秒
+    std::string toString() const;
+
+    // 格式, "%4d年%02d月%02d日 星期%d %02d:%02d:%02d.%06d",时分秒.微秒
     std::string toFormattedString(bool showMicroseconds = false) const;
 
-    //返回当前时间戳的微妙
+    // 返回当前时间戳的微妙
     int64_t microSecondsSinceEpoch() const { return microSecondsSinceEpoch_; }
-    //返回当前时间戳的秒数
+    // 返回当前时间戳的秒数
     time_t secondsSinceEpoch() const
-    { 
-        return static_cast<time_t>(microSecondsSinceEpoch_ / kMicroSecondsPerSecond); 
+    {
+        return static_cast<time_t>(microSecondsSinceEpoch_ / kMicroSecondsPerSecond);
     }
 
     // 失效的时间戳，返回一个值为0的Timestamp

@@ -12,7 +12,7 @@
 class AsyncLogging
 {
 public:
-    AsyncLogging(const std::string &basename, off_t rollSize, int flushInterval=3);
+    AsyncLogging(const std::string &basename, off_t rollSize, int flushInterval = 3);
     ~AsyncLogging()
     {
         if (running_)
@@ -46,7 +46,7 @@ private:
     Thread thread_;
     std::mutex mutex_;
     std::condition_variable cond_;
-    
+
     BufferPtr currentBuffer_;
     BufferPtr nextBuffer_;
     BufferVector buffers_;
