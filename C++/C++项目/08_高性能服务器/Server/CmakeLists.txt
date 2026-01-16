@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.10)
+project(Server)
+# 设置C++标准
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# 设置编译选项
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -g")
+
+# 创建可执行文件
+add_executable(server ${SRCS})
+
+# 链接库
+target_link_libraries(server pthread)
+
+# 链接filesystem库（对于某些编译器版本可能需要）
+if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9.0)
+    target_link_libraries(server stdc++fs)
+endif()

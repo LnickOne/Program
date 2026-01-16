@@ -71,7 +71,7 @@ private:
 void foo5()
 {
     shared_ptr<MyClass1> obj_ptr = make_shared<MyClass1>(); // 用shared_ptr管理类对象的生命周期
-    thread t5(&MyClass1::foo5, obj_ptr);                   // 因为是指针，所以地址一直有效
+    thread t5(&MyClass1::foo5, obj_ptr);                    // 因为是指针，所以地址一直有效
     t5.join();
 }
 
