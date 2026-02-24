@@ -1,9 +1,7 @@
 /* > 题目难度: 中等
 
 > [原题链接](https://leetcode-cn.com/problems/jian-sheng-zi-ii-lcof/)
-
 题目描述
-
 给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n 都是整数，n>1 并且 m>1），每段绳子的长度记为 `k[0],k[1]...k[m-1]` 。
 请问 `k[0]*k[1]*...*k[m-1]` 可能的最大乘积是多少？
 例如，当绳子的长度是 8 时，我们把它剪成长度分别为 2、3、3 的三段，此时得到的最大乘积是 18。
@@ -29,7 +27,6 @@
 解决方案
 思路
 分析
-
 - 这次我们换个思路, 从前面几个数开始找规律:
   - 首先 n<=3 时不剪最合适, 但 m>1, 所以至少得剪成 2 段, 这和昨天的分析一致, 直接返回 n-1
   - n = 4: 剪成 2 段 `2*2`
@@ -47,7 +44,6 @@
   - `n%3==0`: 直接剪成 `n/3` 段 3 即可
   - `n%3==1`: 要把最后的 `1+3` 变成 `2+2`, 这样 `2*2` 总比 `1*3` 大一点
   - `n%3==2`: 直接保留最后一个 2, 其他段都是 3
-
 实现
 - 根据最后分析的结论实现代码即可
 复杂度
@@ -60,26 +56,23 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <cmath>
 using namespace std;
+
 class Solution
 {
 public:
   int cuttingBamboo(int bamboo_len)
   {
-    if (bamboo_len < 2)
-      return 0;
-    if (bamboo_len == 2)
-      return 1;
-    if (bamboo_len == 3)
-      return 2;
-    int count_3 = bamboo_len / 3;
-    if (bamboo_len % 3 == 0)
-      return pow(3, count_3);
-    else if (bamboo_len % 3 == 1)
-      return pow(3, count_3 - 1) * 4;
-    else
-      return pow(3, count_3) * 2;
+    if (bamboo_len <= 3)
+      return bamboo_len - 1;
+    const int MOD = 1000000007;
+    long long result = 1;
+    while (bamboo_len > 4)
+    {
+      result = (result * 3) % MOD;
+      bamboo_len -= 3;
+    }
+    return (result * bamboo_len) % MOD;
   }
 };
 

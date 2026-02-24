@@ -50,9 +50,29 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-
+class Solution
+{
+public:
+  int cuttingBamboo(int bamboo_len)
+  {
+    if (bamboo_len <= 3)
+      return bamboo_len - 1;
+    vector<int> dp(bamboo_len + 1, 0);
+    for (int i = 2; i <= bamboo_len; i += 1)
+    {
+      for (int j = 1; j < i; j += 1)
+      {
+        dp[i] = max(dp[i], max(j, dp[j]) * (i - j));
+      }
+    }
+    return dp[bamboo_len];
+  }
+};
 int main()
 {
+  Solution s;
+  int bamboo_len = 10;
+  cout << s.cuttingBamboo(bamboo_len) << endl;
 
   return 0;
 }
