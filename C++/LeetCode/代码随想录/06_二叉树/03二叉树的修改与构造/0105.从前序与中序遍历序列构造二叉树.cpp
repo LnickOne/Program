@@ -8,7 +8,7 @@
 输入: preorder = [-1], inorder = [-1]
 输出: [-1]
  */
-#include "../BinaryTree.h" 
+#include "../BinaryTree.h"
 class Solution
 {
 public:
@@ -19,7 +19,7 @@ public:
         int root_val = preorder.front();
         TreeNode *root = new TreeNode(root_val);
         int root_index;
-        for (int i = 0; i < inorder.size(); i++)
+        for (int i = 0; i < inorder.size(); i += 1)
         {
             if (inorder[i] == root_val)
             {

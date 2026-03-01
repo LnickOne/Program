@@ -81,7 +81,6 @@ public:
 
 int main()
 {
-    cout << "test1" << endl;
     Solution s;
     ListNode *head = createListNode({1, 2, 3, 4, 5});
     vector<int> result = s.reverseBookList(head);

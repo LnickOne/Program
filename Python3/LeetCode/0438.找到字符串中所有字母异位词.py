@@ -36,5 +36,6 @@ print(Solution().findAnagrams("cbaebabacd", "abc"))
 print(Solution().findAnagrams("abab", "ab"))
 print(Solution().findAnagrams("baa", "aa"))
 print(Solution().findAnagrams("aaaaaaaaaa", "aaaaaaaaaaaaa"))
+print(Solution().findAnagrams("abacbabc", "abc"))
 
 # @lc code=end

@@ -1,5 +1,4 @@
 /* > 题目难度: 中等
-
 > [原题链接](https://leetcode-cn.com/problems/jian-sheng-zi-ii-lcof/)
 题目描述
 给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n 都是整数，n>1 并且 m>1），每段绳子的长度记为 `k[0],k[1]...k[m-1]` 。

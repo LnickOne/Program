@@ -73,6 +73,5 @@ int main()
   Solution s;
   int bamboo_len = 10;
   cout << s.cuttingBamboo(bamboo_len) << endl;
-
   return 0;
 }
