@@ -28,6 +28,6 @@ int main()
     TreeNode *root = createBinaryTree({1, 2, 2, 3, 4, 4, 3});
     Solution s;
     bool result = s.checkSymmetricTree(root);
-    cout<<result<<endl;
+    cout << result << endl;
     return 0;
 }

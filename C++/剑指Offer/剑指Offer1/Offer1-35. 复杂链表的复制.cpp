@@ -1,11 +1,7 @@
-/* > 题目难度: 中等
-
-> [原题链接](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
-
-## 题目描述
-
+/* 题目难度: 中等
+[原题链接](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
+题目描述
 请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。
-
 - -10000 <= Node.val <= 10000
 - Node.random 为空（null）或指向链表中的节点。
 - 节点数目不超过 1000 。
@@ -15,7 +11,6 @@
 ### 示例
 
 #### 输入
-
 ![](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/01/09/e1.png)
 
 head = [[7,null],[13,0],[11,4],[10,2],[1,0]]

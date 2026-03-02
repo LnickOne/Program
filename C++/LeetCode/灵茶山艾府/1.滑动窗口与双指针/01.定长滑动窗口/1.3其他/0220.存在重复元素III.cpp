@@ -36,7 +36,7 @@ public:
   {
     for (int i = 0; i < nums.size(); i++)
     {
-      for (int j = i + 1; j < nums.size(); j++)
+      for (int j = i + 1; j < nums.size(); j += 1)
       {
         if (abs(i - j) <= indexDiff && abs(nums[i] - nums[j]) <= valueDiff)
         {
