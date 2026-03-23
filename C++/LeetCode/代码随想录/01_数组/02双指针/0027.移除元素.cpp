@@ -26,10 +26,9 @@ public:
             {
                 nums[slow] = nums[fast];
                 slow += 1;
-                result += 1;
             }
         }
-        return result;
+        return slow;
     }
 };
 

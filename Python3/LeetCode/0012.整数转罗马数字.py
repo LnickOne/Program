@@ -35,6 +35,7 @@ print(Solution().intToRoman(4))
 print(Solution().intToRoman(9))
 print(Solution().intToRoman(58))
 print(Solution().intToRoman(1994))
+print(Solution().intToRoman(1000))
 
 
 # @lc code=end
