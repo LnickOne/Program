@@ -55,5 +55,6 @@ print(Solution().twoSum([3, 2, 4], 6))
 print(Solution().twoSum([3, 3], 6))
 print(Solution().twoSum([2, 5, 5, 11], 10))
 print(Solution().twoSum([2, 5, 5, 11], 16))
-print(Solution().twoSum([2, 5, 5, 11], 13))
+print(Solution().twoSum([-3, 4, 3, 90], 0))
+
 # @lc code=end
