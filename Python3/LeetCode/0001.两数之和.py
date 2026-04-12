@@ -1,10 +1,6 @@
-#
 # @lc app=leetcode.cn id=1 lang=python3
-#
 # [1] 两数之和
-#
 # https://leetcode.cn/problems/two-sum/description/
-#
 # algorithms
 # Easy (55.07%)
 # Likes:    20338

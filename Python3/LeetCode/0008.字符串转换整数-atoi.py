@@ -3,8 +3,6 @@
 #
 # [8] 字符串转换整数 (atoi)
 #
-
-
 # @lc code=start
 class Solution:
     def myAtoi(self, s: str) -> int:
