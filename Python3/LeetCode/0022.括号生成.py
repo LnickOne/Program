@@ -21,8 +21,6 @@
 # 输出：["()"]
 # 提示：
 # 1 <= n <= 8
-
-
 # @lc code=start
 from typing import List
 

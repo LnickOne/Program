@@ -22,7 +22,6 @@
 # 1 <= k <= n <= 5000
 # 0 <= Node.val <= 1000
 # 进阶：你可以设计一个只用 O(1) 额外内存空间的算法解决此问题吗？
-
 # @lc code=start
 # Definition for singly-linked list.
 # class ListNode:
