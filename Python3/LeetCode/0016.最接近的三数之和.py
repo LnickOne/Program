@@ -23,9 +23,6 @@
 # 3 <= nums.length <= 1000
 # -1000 <= nums[i] <= 1000
 # -10^4 <= target <= 10^4
-
-
-
 # @lc code=start
 from typing import List
 

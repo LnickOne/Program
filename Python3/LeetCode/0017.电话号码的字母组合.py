@@ -1,4 +1,3 @@
-#
 # @lc app=leetcode.cn id=17 lang=python3
 # [17] 电话号码的字母组合
 # https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
@@ -9,9 +8,7 @@
 # Total Accepted:    1.2M
 # Total Submissions: 1.9M
 # Testcase Example:  '"23"'
-#
 # 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。
-#
 # 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
 # 示例 1：
 # 输入：digits = "23"

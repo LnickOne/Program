@@ -22,5 +22,6 @@ class Solution:
 
 print(Solution().isMatch("aa", "a"))
 print(Solution().isMatch("aa", "a*"))
+print(Solution().isMatch)
 
 # @lc code=end

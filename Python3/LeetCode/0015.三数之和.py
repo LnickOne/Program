@@ -1,10 +1,6 @@
-#
 # @lc app=leetcode.cn id=15 lang=python3
-#
 # [15] 三数之和
-#
 # https://leetcode.cn/problems/3sum/description/
-#
 # algorithms
 # Medium (40.01%)
 # Likes:    7748
@@ -71,5 +67,5 @@ print(Solution().threeSum([-1, 0, 1, 2, -1, -4]))
 print(Solution().threeSum([0, 0, 0, 0]))
 print(Solution().threeSum([-2, 0, 0, 2, 2]))
 print(Solution().threeSum([-2, 0, 1, 1, 2]))
-
+print(Solution().threeSum([-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]))
 # @lc code=end
